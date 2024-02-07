@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-.m-auto{
-    margin:auto
+html {
+    scroll-behavior: smooth;
+  }
+.intro{
+    background-image: url("/shelter_Photo.jpg");
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family:Georgia, 'Times New Roman', Times, serif;
 }
