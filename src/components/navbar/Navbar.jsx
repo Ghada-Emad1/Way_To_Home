@@ -1,13 +1,14 @@
 import Logo from "/Home_Logo.png";
 import { HiOutlineMenu } from "react-icons/hi";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 import Navbar_Mobile from "./Navbar_Mobile/Navbar_Mobile";
 const Navbar = () => {
   const [OpenMenu, setOpenMenu] = useState(false);
   return (
-    <nav className="bg-light pr-4  w-full flex sm:block justify-between items-center">
+    <nav className="bg-light sticky z-40 top-0 pr-4  w-full flex sm:block justify-between items-center">
     <div>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-2">
         <div>
@@ -15,9 +16,11 @@ const Navbar = () => {
         </div>
 
         <div className="space-x-6 font-semibold text-lg hidden sm:flex text-basic justify-end">
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contacts">Contacts</NavLink>
-          <NavLink to="/login">Login</NavLink>
+          <AnchorLink href='#home'>Home</AnchorLink>
+         
+           <AnchorLink href="#about">About</AnchorLink>
+           <AnchorLink href="#contacts">Contact</AnchorLink>
+          <Link href="/login">Login</Link>
           
         </div>
       </div>
