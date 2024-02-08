@@ -2,9 +2,11 @@ import About from "/About.png";
 
 import Contacts from "../../components/Contacts/Contacts";
 import Footer from "../../components/Footer/Footer";
+import Navbar from "../../components/navbar/Navbar";
 const Home = () => {
   return (
     <div id="home">
+      <Navbar/>
       <div className="intro">
         <h1 className="font-bold text-9xl">The Way To Home</h1>
       </div>
