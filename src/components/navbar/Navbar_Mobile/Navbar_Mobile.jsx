@@ -1,5 +1,5 @@
 import { IoClose } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const Navbar_Mobile = ({ setOpenMenu }) => {
@@ -21,8 +21,8 @@ const Navbar_Mobile = ({ setOpenMenu }) => {
         <div className="flex flex-col gap-4 pl-4">
           <AnchorLink href="#about">
             About</AnchorLink>
-          <AnchorLink href='contacts'>Contact</AnchorLink>
-          <AnchorLink href='login'>Login</AnchorLink>
+          <AnchorLink href='#contacts'>Contact</AnchorLink>
+          <Link to='/login'>Login</Link>
         </div>
       </div>
     </div>

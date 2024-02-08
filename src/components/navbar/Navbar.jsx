@@ -20,7 +20,7 @@ const Navbar = () => {
          
            <AnchorLink href="#about">About</AnchorLink>
            <AnchorLink href="#contacts">Contact</AnchorLink>
-          <Link href="/login">Login</Link>
+           <Link to='/login'>Login</Link>
           
         </div>
       </div>
