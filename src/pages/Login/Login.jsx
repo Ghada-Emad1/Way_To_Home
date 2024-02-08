@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <div className="h-[100vh] w-full  flex items-center justify-center ">
-      <div>
+      <div className="hidden sm:block">
         <img src={LoginImage} alt="" />
       </div>
       <form
