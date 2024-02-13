@@ -7,7 +7,7 @@ import Resources from "../Resources/Resources";
 import Education from "../Education/Education";
 import Settings from "../Settings/Settings";
 import Feed from "../Feed/Feed";
-import Logout from "../Logout/Logout";
+
 import Profile from "../Profile/Profile";
 const Dashboard = () => {
   return (
@@ -22,7 +22,7 @@ const Dashboard = () => {
             <Route path="feed" element={<Feed/>}/>
             <Route path="profile" element={<Profile/>}/>
             <Route path="settings" element={<Settings/>}/>
-            <Route path="logout" element={<Logout/>}/>
+
         </Routes>
       </div>
       <RightNav />
