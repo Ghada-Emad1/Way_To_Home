@@ -2,9 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base{
+  body{
+    background-color: #EFF5F5;
+  }
+}
 html {
     scroll-behavior: smooth;
   }
+  .container,.slide1
+{
+  display: flex;
+  justify-content: center;
+
+  
+}
+
+
+.slide1.view{
+  display: flex;
+  height:450px;
+
+
+  flex-direction: column;
+  
+}
 .intro{
     background-image: url("/shelter_Photo.jpg");
     background-repeat: no-repeat;

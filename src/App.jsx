@@ -11,7 +11,9 @@ import Education from "./pages/Education/Education";
 import Feed from "./pages/Feed/Feed";
 import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
-import Logout from "./pages/Logout/Logout";
+
+import SignUp from "./pages/SignUp/SignUp";
+import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/" element={<Home />} />
 
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp/>}/>
+          <Route path="/forgetpassword" element={<ForgetPassword/>}/>
 
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="shelter" element={<Shelter />} />
@@ -31,8 +35,7 @@ function App() {
             <Route path="feed" element={<Feed/>}/>
             <Route path="profile" element={<Profile/>}/>
             <Route path="settings" element={<Settings/>}/>
-            <Route path="logout" element={<Logout/>}/>
-          </Route>
+           </Route>
         </Routes>
       </Router>
     </>
