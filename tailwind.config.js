@@ -15,11 +15,9 @@ export default {
         "Text":"#141212"
       }
       ,
-      // screens:{
-      //   "sm":"530px",
-      //   "md":"768",
-      //   "lg":"1024px"
-      // }
+      fontFamily:{
+        "playfair":["Playfair Display", "serif"],
+      }
     },
   },
   plugins: [],
