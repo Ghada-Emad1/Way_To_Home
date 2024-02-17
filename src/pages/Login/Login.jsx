@@ -88,8 +88,10 @@ const Login = () => {
           <p className="text-Error">{errors.password?.message}</p>
         </div>
         
-        <div className=" text-Orange text-base -mt-3 flex justify-center">
+        <div className="flex-col items-center text-Orange  text-base -mt-3 flex justify-center">
           <Link to='/forgetpassword'>Forget Password!!</Link>
+          <hr className='mt-2 border-none w-[30%] h-[1px] -leading-3 rounded-lg bg-Orange'/>
+       
         </div>
         <div>
           <button
