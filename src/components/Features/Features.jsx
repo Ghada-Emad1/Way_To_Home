@@ -19,16 +19,19 @@ const Features = () => {
           border-radius:100%;
           border:2px solide black;
           color:#EB6440;
-          display: flex;
-  justify-content: center;
-  align-items: center;
         }
         .swiper-pagination-bullet{
-          width:15px;
-          height:15px;
+          width:10px;
+          height:10px;
           background-color:#EB6440;
         }`,
       ],
+      breakpoints: {
+         340: {
+          slidesPerView:1
+        },
+      },
+      
     };
 
     Object.assign(swiperContainer, params);
@@ -36,7 +39,7 @@ const Features = () => {
   }, []);
 
   return (
-    <div>
+    <div id="prop">
       <div className="text-center">
         <h1 className="font-bold text-4xl mt-6">
           Featured <span className="text-Orange">Properites</span>

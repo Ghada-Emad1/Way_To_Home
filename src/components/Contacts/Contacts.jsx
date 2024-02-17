@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
-import Contact from "/Contact.png";
+import Contact from "/contact.jpg";
 const Contacts = () => {
-  const inputText = `p-3 bg-light focus:outline-basic rounded-lg text-basic`;
+  const inputText = `p-3 mt-2 bg-light focus:outline-basic rounded-lg text-basic`;
   const {
     register,
     trigger,
@@ -14,22 +14,20 @@ const Contacts = () => {
     }
   };
   return (
-    <section className="mx-auto w-full "id="contacts">
-      <div className="bg-white text-center">
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-3xl font-bold" >
-            Contact Us
-          </h1>
-          <hr className="mt-2 border-none w-[10%] h-1 rounded-lg bg-basic" />
-        </div>
+    <section className="mx-auto w-5/6 ">
+      <div
+        id="contacts"
+        className="flex justify-center -mb-12 text-bold font-playfair text-5xl text-basic"
+      >
+        <h1>Contact Us</h1>
       </div>
       <div>
         {/* FORM AND IMAGE */}
-        <div className="mt-10 justify-between gap-8 md:flex p-6">
+        <div className="mt-10 justify-between gap-[90px] md:flex p-6">
           <div>
             <div className="w-full">
               <img
-                className="w-[900px] h-[500px] object-cover hidden md:block"
+                className="w-full ml-10 rounded-ss-[100px] rounded-ee-[100px]  h-[90vh] object-cover hidden md:block"
                 src={Contact}
                 alt="Contact_Us"
               />
@@ -37,7 +35,7 @@ const Contacts = () => {
           </div>
           <div>
             <form
-              className="flex flex-col gap-6"
+              className="flex  flex-col gap-6 bg-white p-10 rounded-lg"
               target="_blank"
               onSubmit={onSubmit}
               action="https://formsubmit.co/e8a5bdfa807605332f809e5656e27c6e"
@@ -93,11 +91,12 @@ const Contacts = () => {
                 <label htmlFor="EMAIL" className="font-bold text-basic text-lg">
                   Do You Want To Ask Anything?
                 </label>
+
                 <textarea
-                  className={inputText}
+                  className={`${inputText} w-[210px] md:w-[700px]`}
                   placeholder="MESSAGE"
-                  rows={6}
-                  cols={90}
+                  rows={8}
+                  cols={65}
                   {...register("message", {
                     required: true,
                     maxLength: 2000,
