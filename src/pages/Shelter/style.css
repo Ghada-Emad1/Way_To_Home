@@ -1,0 +1,139 @@
+.contaner{
+    /* padding: 50px 50px; */
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+} 
+.contaner .main{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 30px 12px;
+    background-color: #EFF5F5;
+    margin: 10px;
+    border-radius: 8px;
+    flex-direction: row;
+    
+}
+input.search{
+    width: 81%;
+    margin: auto;
+    padding: 7px;
+    display: block;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px; 
+    background: #E8E8E8;
+    position: relative;
+}
+input.search::placeholder{
+padding: 20px;
+}
+@media (min-width: 1300px) {
+    .img{
+
+        width: 170px;
+        height: 170px;
+    }
+    .imgleft{
+        width: 170px;
+        height: 170px; 
+    }
+
+}
+@media (max-width: 1140px){
+    .imgleft{
+        display: none;
+    }
+    .rightside{
+        display: block;
+        gap: 0;
+    }
+    .contaner.main{
+        display: flex;
+        flex-direction: column;
+    }
+    .box{
+        display: block;
+        
+    }
+}
+
+
+
+.rightside{
+    display: flex;
+    gap: 40px;
+}
+.contaner .main .rightside h4{
+    font-weight: bold;
+}
+
+.contaner .main .rightside h4 span{
+    font-weight: normal;
+    font-size: 12px;
+    color: #497174;
+}
+
+input[type=submit]{
+    display: block;
+    background-color: #497174;
+    margin-top: 58px;
+    padding: 6px 28px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.box{
+    display: block;
+}
+
+input[type=submit]:hover{
+    background-color: #3c7e83;
+    cursor: pointer;
+}
+.img{
+    display: block;
+    /* border: 1px solid #719092; */
+    border-radius: 2px;
+    width: 200px;
+    height: 150px;
+}
+.img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.imgleft{
+    /* border: 1px solid #719092; */
+    border-radius: 2px;
+    width: 200px;
+    height: 150px; 
+    overflow: hidden;
+}
+.imgleft:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+
+.whats{
+    position: relative;
+    top: 85px;
+    left: 9px;
+    color: white;
+}
+@media (max-width: 865px){
+    .img{
+        width: 100%;
+    }
+    .rightside{
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+    input[type=submit]{
+        margin: auto;
+    }
+
+}
+
