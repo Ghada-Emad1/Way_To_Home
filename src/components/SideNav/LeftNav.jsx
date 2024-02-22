@@ -3,6 +3,7 @@ import { MdOutlineNightShelter } from "react-icons/md";
 import { MdOutlineFoodBank } from "react-icons/md";
 import { GrResources } from "react-icons/gr";
 import { MdCastForEducation } from "react-icons/md";
+import { GrWorkshop } from "react-icons/gr";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
@@ -38,6 +39,12 @@ const LeftNav = () => {
           <Link to="/dashboard/education" className={StyleLink}>
             <MdCastForEducation size={25} />
             <h1>Education</h1>
+          </Link>
+        </div>
+        <div>
+          <Link to="/dashboard/Works" className={StyleLink}>
+            <GrWorkshop size={25} /> 
+            <h1>Works</h1>
           </Link>
         </div>
 

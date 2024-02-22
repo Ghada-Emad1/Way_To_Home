@@ -9,6 +9,7 @@ import Settings from "../Settings/Settings";
 import Feed from "../Feed/Feed";
 
 import Profile from "../Profile/Profile";
+import Works from "../Works/Works";
 const Dashboard = () => {
   return (
     <div className="w-full flex justify-between">
@@ -19,6 +20,7 @@ const Dashboard = () => {
           <Route path="food" element={<Food />} />
           <Route path="resources" element={<Resources/>}/>
             <Route path="education" element={<Education/>}/>
+            <Route path="works" element={<Works/>}/>
             <Route path="feed" element={<Feed/>}/>
             <Route path="profile" element={<Profile/>}/>
             <Route path="settings" element={<Settings/>}/>

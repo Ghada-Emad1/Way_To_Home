@@ -6,7 +6,7 @@ import "./style.css";
 
 const Shelter = () => {
   return (
-    <div>
+    <div >
       
       <input className='search' type='text'placeholder='Search items '/>
           <div className="contaner">
