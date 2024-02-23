@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { MdOutlineNightShelter } from "react-icons/md";
 import { MdOutlineFoodBank } from "react-icons/md";
-import { GrResources } from "react-icons/gr";
+
 import { MdCastForEducation } from "react-icons/md";
 import { GrWorkshop } from "react-icons/gr";
 import { IoLogOutOutline } from "react-icons/io5";
@@ -12,7 +12,7 @@ import { MdOutlineFeed } from "react-icons/md";
 const LeftNav = () => {
   const StyleLink = `flex items-center gap-2 font-bold text-basic text-lg`;
   return (
-    <div className="w-1/4 flex gap-6 flex-col bg-light h-[100vh] shadow-lg  p-4">
+    <div className="w-1/4 flex gap-6 flex-col bg-light   p-4">
       <div className="font-bold text-basic text-lg  text-center border border-basic py-2 ">
         <h1>Services</h1>
       </div>
@@ -29,12 +29,7 @@ const LeftNav = () => {
             <h1>Food</h1>
           </Link>
         </div>
-        <div>
-          <Link to="/dashboard/resources" className={StyleLink}>
-            <GrResources size={25} />
-            <h1>Resources</h1>
-          </Link>
-        </div>
+        
         <div>
           <Link to="/dashboard/education" className={StyleLink}>
             <MdCastForEducation size={25} />

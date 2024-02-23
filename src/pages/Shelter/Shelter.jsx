@@ -1,5 +1,5 @@
 import {Outlet }  from 'react-router-dom';
-import { IoIosSearch } from "react-icons/io";
+
 import { FaWhatsapp } from "react-icons/fa";
 import "./style.css";
 
