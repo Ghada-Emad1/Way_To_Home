@@ -10,6 +10,8 @@ import Feed from "../Feed/Feed";
 
 import Profile from "../Profile/Profile";
 import Works from "../Works/Works";
+import ChatBot from "../ChatBot/ChatBot";
+import Search from "../Search/Search";
 const Dashboard = () => {
   return (
     <div className="w-full flex justify-between bg-white h-[100vh]">
@@ -24,6 +26,8 @@ const Dashboard = () => {
           <Route path="feed" element={<Feed />} />
           <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="chatbot" element={<ChatBot/>}/>
+          <Route path="search" element={<Search/>}/>
         </Routes>
       </div>
       <RightNav />
