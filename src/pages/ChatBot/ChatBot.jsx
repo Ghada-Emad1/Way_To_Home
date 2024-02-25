@@ -56,7 +56,7 @@ const ChatBot = () => {
     setUserQes("");
 
     const AIResponse = await getResponse(prompt);
-    
+    //
 
     setChatContent((prevChat) => [...prevChat, ChatResponde(AIResponse)]);
     let newUserRole = {
