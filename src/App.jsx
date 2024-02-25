@@ -15,6 +15,8 @@ import Settings from "./pages/Settings/Settings";
 import SignUp from "./pages/SignUp/SignUp";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import Works from "./pages/Works/Works";
+import ChatBot from "./pages/ChatBot/ChatBot";
+import Search from "./pages/Search/Search";
 
 function App() {
   return (
@@ -31,7 +33,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="shelter" element={<Shelter />} />
             <Route path="food" element={<Food />} />
-            
+            <Route path="chatbot"element={<ChatBot/>}/>
+            <Route path="search" element={<Search/>}/>
             <Route path="education" element={<Education/>}/>
             <Route path='works' element={<Works/>}/>
             <Route path="feed" element={<Feed/>}/>
