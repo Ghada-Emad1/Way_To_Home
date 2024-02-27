@@ -36,7 +36,7 @@ const ChatBot = () => {
   };
   const ChatResponde = (data) => {
     return (
-      <div className="flex gap-2 mb-24 justify-end text-nowrap overflow-auto">
+      <div className="flex gap-2 mb-16  justify-end text-nowrap overflow-auto">
         <pre className=" p-4 rounded-md shadow-md whitespace-pre-wrap bg-light text-basic">
           {data}
         </pre>
@@ -56,7 +56,7 @@ const ChatBot = () => {
     setUserQes("");
 
     const AIResponse = await getResponse(prompt);
-    //
+    
 
     setChatContent((prevChat) => [...prevChat, ChatResponde(AIResponse)]);
     let newUserRole = {
@@ -75,25 +75,25 @@ const ChatBot = () => {
   }
   console.log(chatContent);
   return (
-    <div className="overflow-auto text-nowrap m-5 rounded-lg  bg-basic">
-      <div className=" flex flex-col justify-between h-screen  p-6 text-white   shadow-lg rounded-lg">
-        <header className="flex items-center p-4">
+    <div className="overflow-auto text-nowrap mx-5 rounded-lg   bg-basic">
+      <div className=" flex flex-col justify-between h-[100vh] p-4 text-white   shadow-lg rounded-lg">
+        <header className="flex items-center ">
           <img src={Logo} />
           <h1 className="font-bold text-lg">
             H<span className=" text-Orange font bold">O</span>ME Campass
           </h1>
         </header>
 
-        <div className="mb-[400px]">
+        <div className="mb-[20px]">
           {/* <hr className="-mt-8 mb-4 overflow-auto p-4" /> */}
           {chatContent}
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bottom-4 fixed flex justify-center items-end"
+          className="bottom-4   flex justify-center items-end"
         >
-          <div className="flex mt-10 gap-4 ">
+          <div className="flex  gap-4 ">
             <input
               className="text-basic ml-4 rounded-lg p-2 w-[500px] focus:ring-light focus:light outline-none"
               type="text"

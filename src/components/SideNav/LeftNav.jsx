@@ -12,7 +12,9 @@ import { MdOutlineFeed } from "react-icons/md";
 const LeftNav = () => {
   const StyleLink = `flex items-center gap-2 font-bold text-basic text-lg`;
   return (
-    <div className="w-1/4 flex gap-6 flex-col bg-light   p-4">
+    
+    <aside className="sticky top-0 h-[100vh] w-1/4  flex flex-col bg-light overflow-y-auto p-4"
+    >
       <div className="font-bold text-basic text-lg  text-center border border-basic py-2 ">
         <h1>Services</h1>
       </div>
@@ -71,7 +73,7 @@ const LeftNav = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

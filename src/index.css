@@ -7,11 +7,11 @@
 @tailwind utilities;
 
 
-@layer base{
+/* @layer base{
   body{
     background-color: #EFF5F5;
   }
-}
+} */
 html {
     scroll-behavior: smooth;
   }
