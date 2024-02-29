@@ -12,6 +12,20 @@
     background-color: #EFF5F5;
   }
 } */
+@layer components{
+  .modal{
+    background-color: rgba(0,0,0,0.9);
+    position:fixed;
+    left:0;
+    right:0;
+    top:0;
+    z-index:10;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+  }
+}
 html {
     scroll-behavior: smooth;
   }
@@ -31,18 +45,4 @@ html {
 
   flex-direction: column;
   
-}
-.intro{
-    background-image: url("/shelter_Photo.jpg");
-    background-repeat: no-repeat;
-    height: 100vh;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-family:Georgia, 'Times New Roman', Times, serif;
 }
