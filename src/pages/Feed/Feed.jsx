@@ -1,53 +1,47 @@
-import {Outlet} from 'react-router-dom'
-import { CiHeart } from "react-icons/ci";
-import { MdMessage } from "react-icons/md";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import "./style.css"
-const Feed = () => {
-  return (
-    <div>
-        <input className='search' type='text'placeholder='Search items '/>
-      <div className="main">
-        <div className="cardfeed">
-                <div className="content">
-                    <div className='imagefont'>
-                      <img  src="/Ellipse 7.png" alt="" />
-                      <div className='discribtion'>
-                        <h5>Unknown </h5>
-                        <span>Needy</span>
-                      </div>
-                    </div>
-                    <p>I need a home , I live under Dort bridge.</p>
-                    <div className='icons'>
-                    <CiHeart />
-                    <MdMessage />
-                    <AiOutlineExclamationCircle />
-                    </div>
-                </div>
-        </div>
-        <div className="cardfeed">
-                <div className="content">
-                    <div className='imagefont'>
-                      <img  src="/Ellipse 8.png" alt="" />
-                      <div className='discribtion'>
-                        <h5> Mark </h5>
-                        <span>Volunteer</span>
-                      </div>
-                    </div>
-                    <p>I have a home for any one in need</p> 
-                    {/* <p>address:Lorem ipsum dolor sit amet</p> */}
-                    <div className='icons'>
-                    <CiHeart  />
-                    <MdMessage />
-                    <AiOutlineExclamationCircle />
-                    </div>
-                </div>
-        </div>
-      </div>
-        <Outlet/>
-      
-    </div>
-  )
-}
+import { Outlet } from "react-router-dom";
 
-export default Feed
+import { AiFillLike, AiFillDislike } from 'react-icons/ai';
+import {useSelector,useDispatch} from 'react-redux'
+import "./style.css";
+import { useState } from "react";
+const Feed = () => {
+  const users=useSelector((state)=>state.users)
+  const dispatch=useDispatch();
+  const[color,setcolor]=useState("")
+  const handleLike=()=>{
+    if(color=='red'){
+      setcolor("")
+    }else{
+      setcolor("red")
+    }
+
+  }
+  return (
+    <div className="flex gap-3 mx-6 my-4 flex-wrap">
+      {users.map((element, index) => (
+        <div className="bg-light w-[350px] flex flex-col gap-4 p-3 rounded-lg" key={index}>
+          <div className="flex items-center gap-2">
+            <img src={element.img} />
+            <div>
+              <h1 className="font-bold text-sm text-Orange">{element.name}</h1>
+              <p className="font-bold text-sm text-Orange">{element.description}</p>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <p>{element.post}</p>
+          </div>
+          <div className="flex justify-center">
+            <AiFillLike color={color}  onClick={handleLike}/>
+            <AiFillDislike/>
+            
+          </div>
+        </div>
+      ))}
+
+      <Outlet />
+    </div>
+  );
+};
+
+
+export default Feed;
