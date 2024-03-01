@@ -75,7 +75,7 @@ const ChatBot = () => {
   }
   console.log(chatContent);
   return (
-    <div className="overflow-auto text-nowrap mx-5 rounded-lg   bg-basic">
+    <div className="overflow-auto  text-nowrap mx-5 rounded-lg   bg-basic">
       <div className=" flex flex-col justify-between h-[100vh] p-4 text-white   shadow-lg rounded-lg">
         <header className="flex items-center ">
           <img src={Logo} />
