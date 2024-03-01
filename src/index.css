@@ -46,3 +46,19 @@ html {
   flex-direction: column;
   
 }
+::-webkit-scrollbar-track {
+  background-color: rgba(237, 240, 242, 0.5);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(190, 190, 190);
+  border-radius: 5px;
+}
