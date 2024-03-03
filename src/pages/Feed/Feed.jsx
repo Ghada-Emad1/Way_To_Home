@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom";
 
 import { AiFillLike, AiFillDislike } from 'react-icons/ai';
-import {useSelector,useDispatch} from 'react-redux'
+import {useSelector} from 'react-redux'
 import "./style.css";
 import { useState } from "react";
 const Feed = () => {
-  const users=useSelector((state)=>state.users)
-  const dispatch=useDispatch();
+  const users=useSelector((state)=>state.Addfeed)
+  console.log(users)
+  
   const[color,setcolor]=useState("")
   const handleLike=()=>{
     if(color=='red'){

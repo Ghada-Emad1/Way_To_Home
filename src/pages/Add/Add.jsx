@@ -8,7 +8,7 @@ const Add = () => {
   const [AddPost, setAddPost] = useState(false);
   const navigate = useNavigate();
   const [post, setPost] = useState("");
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.Addfeed);
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -6,7 +6,7 @@ import "./style.css";
 
 const Shelter = () => {
   return (
-    <div >
+    <div className='h-[100vh] overflow-auto'>
       
       <input className='search' type='text'placeholder='Search items '/>
           <div className="contaner">

@@ -7,11 +7,13 @@ import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addUser } from "../../AddReducer/AddReducer";
+
+import { addUserInfo } from "../../AddReducer/AddUserInfo";
 const SignUp = () => {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state) => state.Adduser);
+  console.log(users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputText = `p-2 w-full focus:outline-basic rounded-lg border-2 border-light`;
@@ -39,12 +41,9 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data) => {
-   
-    dispatch(addUser({ id: users[users.length - 1].id + 1, Name, Email }));
-
+    dispatch(addUserInfo({id:users[users.length-1].id+1,Name,Email}))
     navigate("/dashboard", { replace: true });
 
-    console.log({ data });
     reset();
   };
 

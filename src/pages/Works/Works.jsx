@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import "./stylework.css";
 const Works = () => {
   return (
-    <div >
+    <div className="h-[100vh] overflow-auto">
       {/* <IoIosSearch size={25} className="ico"/> */}
       <input className="search" type="text" placeholder="Search items " />
       <div className="main">

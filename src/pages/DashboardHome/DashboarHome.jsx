@@ -3,7 +3,7 @@ import { HomelessDashboard } from "../../data/HomelessDasboard";
 
 const DashboarHome = () => {
   return (
-    <div>
+    <div className="h-[100vh] overflow-auto">
       <div className="flex justify-center m-4">
         <input
           className="w-[350px] px-3 py-1 rounded-lg border border-basic"
