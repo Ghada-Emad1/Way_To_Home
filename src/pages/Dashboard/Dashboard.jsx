@@ -4,7 +4,7 @@ import RightNav from "../../components/SideNav/RightNav";
 import Shelter from "../Shelter/Shelter";
 import Food from "../Food/Food";
 
-import Education from "../Education/Education";
+
 import Settings from "../Settings/Settings";
 import Feed from "../Feed/Feed";
 
@@ -27,7 +27,7 @@ const Dashboard = () => {
             <Route path="shelter" element={<Shelter />} />
             <Route path="food" element={<Food />} />
 
-            <Route path="education" element={<Education />} />
+           
             <Route path="works" element={<Works />} />
             <Route path="feed" element={<Feed />} />
             <Route path="profile" element={<Profile />} />

@@ -1,12 +1,18 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Signup from "/signup.jpg";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser } from "../../AddReducer/AddReducer";
 const SignUp = () => {
+  const [Name, setName] = useState("");
+  const [Email, setEmail] = useState("");
+  const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputText = `p-2 w-full focus:outline-basic rounded-lg border-2 border-light`;
   const schema = yup.object().shape({
@@ -19,7 +25,7 @@ const SignUp = () => {
       .string()
       .required("Password is required")
       .min(6, "Password must be at least 6 characters"),
-      confirmPassword: yup
+    confirmPassword: yup
       .string()
       .required("Confirm Password is required")
       .oneOf([yup.ref("password")], "Passwords must match"),
@@ -33,7 +39,8 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
   const onSubmit = async (data) => {
-    console.log({ data });
+   
+    dispatch(addUser({ id: users[users.length - 1].id + 1, Name, Email }));
 
     navigate("/dashboard", { replace: true });
 
@@ -66,6 +73,7 @@ const SignUp = () => {
             required
             className={inputText}
             {...register("YourName")}
+            onChange={(e) => setName(e.target.value)}
           />
           <p className=" text-Error">{errors.YourName?.message}</p>
         </div>
@@ -80,6 +88,7 @@ const SignUp = () => {
             placeholder="Your Email"
             className={inputText}
             {...register("Email")}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <p className="text-Error">{errors.Email?.message}</p>
         </div>
@@ -120,16 +129,14 @@ const SignUp = () => {
 
         <div className="flex justify-center -mt-2 flex-col gap-4 items-center">
           <h1 className="font-bold text-Orange text-lg">contact With Us</h1>
-         <div className="flex gap-6">
+          <div className="flex gap-6">
             <button>
-                 <FaFacebook size={25}/>
+              <FaFacebook size={25} />
             </button>
             <button>
-              <FaGoogle size={25}/>
-          
-          </button>
+              <FaGoogle size={25} />
+            </button>
           </div>
-
         </div>
       </form>
     </div>
