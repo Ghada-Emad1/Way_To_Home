@@ -1,22 +1,36 @@
 import { Link } from "react-router-dom";
 import { MdOutlineNightShelter } from "react-icons/md";
 import { MdOutlineFoodBank } from "react-icons/md";
-
-import { MdCastForEducation } from "react-icons/md";
 import { GrWorkshop } from "react-icons/gr";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineFeed } from "react-icons/md";
-
+import ProfileImg from "/people.avif";
+// import { userInfo } from "../../data/UserInfo";
+import {useSelector} from "react-redux"
 const LeftNav = () => {
+  const users=useSelector((state)=>state.Adduser)
+  console.log(users)
+  
+  
   const StyleLink = `flex items-center gap-2 font-bold text-basic text-lg`;
   return (
-    
-    <aside className="sticky top-0 h-[100vh] w-1/4  flex flex-col bg-light overflow-y-auto p-4"
-    >
-      <div className="font-bold text-basic text-lg  text-center border border-basic py-2 ">
-        <h1>Services</h1>
+    <aside className="sticky top-0 h-[100vh] w-1/4  flex flex-col bg-light overflow-y-auto p-4">
+      <div className="flex items-center justify-center gap-4 py-4">
+        <img
+          className="w-[100px] h-[100px] object-cover rounded-full"
+          src={ProfileImg}
+          alt=""
+        />
+        <div>
+          {users.map((element,index)=>(
+            <div key={index}>
+              <h1 className="font-bold text-basic ">{element.Name}</h1>
+              <p>{element.Email}</p>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex flex-col gap-8">
         <div>
@@ -31,16 +45,10 @@ const LeftNav = () => {
             <h1>Food</h1>
           </Link>
         </div>
-        
-        <div>
-          <Link to="/dashboard/education" className={StyleLink}>
-            <MdCastForEducation size={25} />
-            <h1>Education</h1>
-          </Link>
-        </div>
+
         <div>
           <Link to="/dashboard/Works" className={StyleLink}>
-            <GrWorkshop size={25} /> 
+            <GrWorkshop size={25} />
             <h1>Works</h1>
           </Link>
         </div>

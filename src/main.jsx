@@ -7,9 +7,13 @@ import "./index.css";
 import { configureStore } from "@reduxjs/toolkit";
 import AddReducer from "./AddReducer/AddReducer.jsx";
 import { Provider } from "react-redux";
+
+import AddUserInfo from "./AddReducer/AddUserInfo.jsx";
 const store = configureStore({
   reducer: {
-    users: AddReducer,
+    Addfeed: AddReducer,
+    Adduser:AddUserInfo
+    
   },
 });
 ReactDOM.createRoot(document.getElementById("root")).render(

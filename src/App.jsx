@@ -7,7 +7,7 @@ import Login from "./pages/Login/Login";
 import Food from "./pages/Food/Food";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
-import Education from "./pages/Education/Education";
+
 import Feed from "./pages/Feed/Feed";
 import Profile from "./pages/Profile/Profile";
 import Settings from "./pages/Settings/Settings";
@@ -35,7 +35,7 @@ function App() {
             <Route path="food" element={<Food />} />
             <Route path="chatbot"element={<ChatBot/>}/>
             <Route path="search" element={<Search/>}/>
-            <Route path="education" element={<Education/>}/>
+          
             <Route path='works' element={<Works/>}/>
             <Route path="feed" element={<Feed/>}/>
             <Route path="profile" element={<Profile/>}/>
