@@ -8,7 +8,6 @@ import Food from "../Food/Food";
 import Settings from "../Settings/Settings";
 import Feed from "../Feed/Feed";
 
-import Profile from "../Profile/Profile";
 import Works from "../Works/Works";
 import ChatBot from "../ChatBot/ChatBot";
 import Search from "../Search/Search";
@@ -30,7 +29,7 @@ const Dashboard = () => {
            
             <Route path="works" element={<Works />} />
             <Route path="feed" element={<Feed />} />
-            <Route path="profile" element={<Profile />} />
+           
             <Route path="settings" element={<Settings />} />
             <Route path="chatbot" element={<ChatBot />} />
             <Route path="search" element={<Search />} />

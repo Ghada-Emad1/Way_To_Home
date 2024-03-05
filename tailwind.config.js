@@ -9,6 +9,7 @@ export default {
       colors:{
         "basic":"#14383A",
         "light":"#EFF5F5",
+        
         "Orange":"#EB6440",
         "Sky":"#A8DADC",
         "Error":"#E63946",

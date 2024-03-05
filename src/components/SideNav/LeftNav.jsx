@@ -4,7 +4,7 @@ import { MdOutlineFoodBank } from "react-icons/md";
 import { GrWorkshop } from "react-icons/gr";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoSettingsOutline } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
+
 import { MdOutlineFeed } from "react-icons/md";
 import ProfileImg from "/people.avif";
 // import { userInfo } from "../../data/UserInfo";
@@ -60,12 +60,7 @@ const LeftNav = () => {
           </Link>
         </div>
 
-        <div>
-          <Link to="/dashboard/profile" className={StyleLink}>
-            <CgProfile size={25} />
-            <h1>Profile</h1>
-          </Link>
-        </div>
+     
 
         <div>
           <Link to="/dashboard/settings" className={StyleLink}>
