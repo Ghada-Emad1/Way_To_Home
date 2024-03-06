@@ -1,0 +1,34 @@
+#para{
+    margin-top: 10px;
+    color: #848484;
+}
+#span{
+    display: block;
+    color: #848484;
+    font-size: 10px;
+}
+#spanbr{
+    display: block;
+    border: 0.5px solid #4971744D;
+}
+.icon-button {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+  
+.icon-button.active {
+    color: #EB6440; /* تغيير لون الأيقونة عند النقر */
+    transform: rotate(180deg); /* تغيير حركة الأيقونة عند النقر */
+}
+h2:hover{
+    color: #EB6440;
+}
+
+.parent{
+    top: auto;
+    
+    padding: 100px;
+    background-color: #4971744D;
+    color: black;
+}
+  
