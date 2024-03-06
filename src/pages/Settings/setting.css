@@ -31,4 +31,13 @@ h2:hover{
     background-color: #4971744D;
     color: black;
 }
+.infoform{
+    background-color: #EFF5F5;
+    margin-right: 10px;
+}
+.input{
+    background: #EFF5F5;
+    border-bottom: 1px solid black;
+}
+
   

@@ -29,7 +29,8 @@ const Settings = () => {
 
   
   return (
-    <div className="h-[100vh] overflow-auto text-nowrap">
+    
+    <div className="  h-[100vh] overflow-auto text-nowrap">
       <div className="flex justify-center my-4">
         <input
           type="text"
@@ -37,191 +38,208 @@ const Settings = () => {
           className="border p-2 rounded-lg border-basic w-[300px]"
         />
       </div>
-      <div className="mx-10 w-[300px]">
-        <h1 className="text-Text font-bold text-xl mb-3">General</h1>
-        <div className="bg-light rounded-lg p-4">
-          <div className="flex justify-between">
-            <button className="flex items-center gap-2">
-              <MdOutlineAccountCircle size={25}/>
-              Account
-            </button>
-            <button
-              onClick={() => setShow((prev) => !prev)}
-              className=" transition-all ease-out duration-150"
-            >
-              <IoIosArrowDropdown />
-            </button>
-          </div>
-          
-
-          {show ? (
-            <div className="flex flex-col items-center gap-2">
-              <div>
-                <img
-                  src={ProfileImage}
-                  className="w-[90px] h-[90px] rounded-full object-cover"
-                  alt=""
-                />
-              </div>
-              <div>
-                <h1>
-                  <span className="font-semibold text-basic text-lg">
-                    Name:{" "}
-                  </span>{" "}
-                  {users[1].Name}
-                </h1>
-                <p>
-                  <span className="font-semibold text-basic text-lg">
-                    Email :{" "}
-                  </span>
-                  {users[1].Email}
-                </p>
-                <p>
-                  <span className="font-semibold text-basic text-lg">
-                    Phone:{" "}
-                  </span>{" "}
-                  01924322
-                </p>
-                <p>
-                  <span className="font-semibold text-basic text-lg">
-                    Gender:{" "}
-                  </span>
-                  Female
-                </p>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-          
-        </div>
-
-        <div className="bg-light rounded-lg p-4 mt-6">
-          <div className="flex justify-between">
-            <button className="flex items-center gap-2">
-              <IoMdNotificationsOutline size={25}/>
-              Notification
-            </button>
-            <button
-              onClick={() => setShownot((prev) => !prev)}
-              className=" transition-all ease-out duration-150"
-             >
-              <IoIosArrowDropdown />
-            </button>
-          </div>
-          {shownot ? (
-            
-            <div className="flex flex-col items-right gap-2">
-              <div>
-                <p id="para">Messages</p>
-               
-              </div>
-              <div>
-                <h1 className="font-semibold text-basic text-lg">
-                Notifications tone
-                <span id="span">Lorem ipsum dolor sit amet</span>
-               
-                </h1>
-                <h1 className="font-semibold text-basic text-lg">
-                Popup notifications
-                <span id="span">No pop</span>
-               
-                </h1>
-               <div className="flex justify-between">
-                  <h1>High priority notifications</h1>
-                  <div className={`icon-button ${active ? 'active' : ''}`} onClick={handleClick}>
-                    <button>
-                    <IoToggleOutline size={20} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            ""
-          )}
-          
-    
-         
-          
-        </div>
-       
-      </div>
-      <div className="mx-10 w-[300px] mt-9">
-          <h1 className="text-Text font-bold text-xl mb-3">Feedback</h1>
+      <div className="grid grid-cols-2">
+        <div className="mx-10 w-[300px]">
+          <h1 className="text-Text font-bold text-xl mb-3">General</h1>
           <div className="bg-light rounded-lg p-4">
             <div className="flex justify-between">
               <button className="flex items-center gap-2">
-                <AiOutlineExclamationCircle size={20}/> 
-                Report
+                <MdOutlineAccountCircle size={25}/>
+                Account
               </button>
               <button
-                onClick={() => setShowreb((prev) => !prev)}
+                onClick={() => setShow((prev) => !prev)}
                 className=" transition-all ease-out duration-150"
               >
                 <IoIosArrowDropdown />
               </button>
             </div>
-            {showreb ? (
             
-            <div className="flex flex-col items-right gap-2">
-              <div>
-                <p id="para">what’s going on? </p>
-               
-              </div>
-              
+
+            {show ? (
+              <div className="flex flex-col items-center gap-2">
                 <div>
-                  <h2 className="font-semibold text-basic text-m mb-3">
-                  Nudity
-                  <span id="spanbr"></span>
-                  </h2>
-                  <h2 className="font-semibold text-basic text-m mb-3">
-                  Violence
-                  <span id="spanbr"></span>
-                  </h2>
-                  <h2 className="font-semibold text-basic text-m mb-3">
-                  Harassment
-                  <span id="spanbr"></span>
-                  </h2>
-                  <h2 className="font-semibold text-basic text-m mb-3">
-                  False information
-                  <span id="spanbr"></span>
-                  </h2>
-                  <h2 className="font-semibold text-basic text-m mb-3">
-                  Spam
-                  <span id="spanbr"></span>
-                  </h2>
-                  <h2 className="font-semibold text-basic text-m mb-3">
-                  Hate speech
-                  <span id="spanbr"></span>
-                  </h2>
-                  <h2 className="font-semibold text-basic text-m mb-3">
-                  Terrorism
-                 </h2>
-                  
+                  <img
+                    src={ProfileImage}
+                    className="w-[90px] h-[90px] rounded-full object-cover"
+                    alt=""
+                  />
                 </div>
+                <div>
+                  <h1>
+                    <span className="font-semibold text-basic text-lg">
+                      Name:{" "}
+                    </span>{" "}
+                    {users[1].Name}
+                  </h1>
+                  <p>
+                    <span className="font-semibold text-basic text-lg">
+                      Email :{" "}
+                    </span>
+                    {users[1].Email}
+                  </p>
+                  <p>
+                    <span className="font-semibold text-basic text-lg">
+                      Phone:{" "}
+                    </span>{" "}
+                    01924322
+                  </p>
+                  <p>
+                    <span className="font-semibold text-basic text-lg">
+                      Gender:{" "}
+                    </span>
+                    Female
+                  </p>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            
+          </div>
+
+          <div className="bg-light rounded-lg p-4 mt-6">
+            <div className="flex justify-between">
+              <button className="flex items-center gap-2">
+                <IoMdNotificationsOutline size={25}/>
+                Notification
+              </button>
+              <button
+                onClick={() => setShownot((prev) => !prev)}
+                className=" transition-all ease-out duration-150"
+              >
+                <IoIosArrowDropdown />
+              </button>
+            </div>
+            {shownot ? (
+              
+              <div className="flex flex-col items-right gap-2">
+                <div>
+                  <p id="para">Messages</p>
+                
+                </div>
+                <div>
+                  <h1 className="font-semibold text-basic text-lg">
+                  Notifications tone
+                  <span id="span">Lorem ipsum dolor sit amet</span>
+                
+                  </h1>
+                  <h1 className="font-semibold text-basic text-lg">
+                  Popup notifications
+                  <span id="span">No pop</span>
+                
+                  </h1>
+                <div className="flex justify-between">
+                    <h1>High priority notifications</h1>
+                    <div className={`icon-button ${active ? 'active' : ''}`} onClick={handleClick}>
+                      <button>
+                      <IoToggleOutline size={20} />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            
+      
+          
+            
+          </div>
+          <div className=" w-[300px] mt-9">
+              <h1 className="text-Text font-bold text-xl mb-3">Feedback</h1>
+              <div className="bg-light rounded-lg p-4">
+                <div className="flex justify-between">
+                  <button className="flex items-center gap-2">
+                    <AiOutlineExclamationCircle size={20}/> 
+                    Report
+                  </button>
+                  <button
+                    onClick={() => setShowreb((prev) => !prev)}
+                    className=" transition-all ease-out duration-150"
+                  >
+                    <IoIosArrowDropdown />
+                  </button>
+                </div>
+                {showreb ? (
+                
+                <div className="flex flex-col items-right gap-2">
+                  <div>
+                    <p id="para">what’s going on? </p>
+                  
+                  </div>
+                  
+                    <div>
+                      <h2 className="font-semibold text-basic text-m mb-3">
+                      Nudity
+                      <span id="spanbr"></span>
+                      </h2>
+                      <h2 className="font-semibold text-basic text-m mb-3">
+                      Violence
+                      <span id="spanbr"></span>
+                      </h2>
+                      <h2 className="font-semibold text-basic text-m mb-3">
+                      Harassment
+                      <span id="spanbr"></span>
+                      </h2>
+                      <h2 className="font-semibold text-basic text-m mb-3">
+                      False information
+                      <span id="spanbr"></span>
+                      </h2>
+                      <h2 className="font-semibold text-basic text-m mb-3">
+                      Spam
+                      <span id="spanbr"></span>
+                      </h2>
+                      <h2 className="font-semibold text-basic text-m mb-3">
+                      Hate speech
+                      <span id="spanbr"></span>
+                      </h2>
+                      <h2 className="font-semibold text-basic text-m mb-3">
+                      Terrorism
+                    </h2>
+                      
+                    </div>
+                </div>
+                
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="bg-light rounded-lg p-4 mt-6">
+              <div className="flex justify-between">
+                <button onClick={() => setmsg((prev) => !prev)}  
+                  className="flex items-center gap-2 " >
+                  <BiUserX size={25}/> 
+                  Delete account
+                </button>           
+              </div> 
+            </div>  
+            {msg ? <Message/> : ""}
+            {/* {msg ?(
+              <div className="parent"></div>
+            ):(
+              ""
+              )} */}
+        
+          </div>
+        </div>
+         <div className="infoform">
+           <div className="p-5">
+              <h1 className="font-semibold text-basic text-lg mb-3">User Management</h1>
+              <label htmlFor="" className="font-semibold text-basic text-lg mb-3">User name</label>
+              <input className="input block w-full mb-3" type="text" value={users[1].Name}/>
+              <label htmlFor="" className="font-semibold text-basic text-lg mb-3">Email</label>
+              <input className="input block w-full mb-3 " type="text" value={users[1].Email}/>
+              <label htmlFor="" className="font-semibold text-basic text-lg mb-3">Tele.No</label>
+              <input className="input block w-full md-3 " type="text" value={123456789}/>
             </div>
             
-          ) : (
-            ""
-          )}
-        </div>
-        <div className="bg-light rounded-lg p-4 mt-6">
-          <div className="flex justify-between">
-            <button onClick={() => setmsg((prev) => !prev)}  
-              className="flex items-center gap-2 " >
-              <BiUserX size={25}/> 
-              Delete account
-            </button>           
-          </div> 
-        </div>  
-        {msg ?(
-          <div className="parent"></div>
-        ):(
-          ""
-          )}
+
+          </div>
+        
+        <Outlet />
       </div>
-      <Outlet />
     </div>
   );
 };
