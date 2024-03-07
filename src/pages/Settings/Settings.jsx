@@ -4,32 +4,20 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import ProfileImage from "/people.avif";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { IoToggleOutline } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { AiOutlineExclamationCircle } from "react-icons/ai";
-import { BiUserX } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
-import "./setting.css"
+import Modal from "../../components/Modal/Modal";
 const Settings = () => {
+  const navigate = useNavigate();
   const users = useSelector((state) => state.Adduser);
-  const [show, setShow] = useState(false);
-  const [shownot, setShownot] = useState(false);
-  const [showreb, setShowreb] = useState(false);
-  const [msg, setmsg] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
+  const [showNotifi, setshowNotifi] = useState(false);
+  const [showReport, setshowReport] = useState(false);
+  const [deleteAcc, setdeleteAcc] = useState(false);
   console.log(users);
 
-
-  
-  const [active, setActive] = useState(false);
-    // تحويل الحالة عند النقر
-  const handleClick = () => {
-    setActive(!active);
-  };
-
-
-  
   return (
-    
     <div className="  h-[100vh] overflow-auto text-nowrap">
       <div className="flex justify-center my-4">
         <input
@@ -44,19 +32,18 @@ const Settings = () => {
           <div className="bg-light rounded-lg p-4">
             <div className="flex justify-between">
               <button className="flex items-center gap-2">
-                <MdOutlineAccountCircle size={25}/>
+                <MdOutlineAccountCircle size={25} />
                 Account
               </button>
               <button
-                onClick={() => setShow((prev) => !prev)}
                 className=" transition-all ease-out duration-150"
+                onClick={() => setShowInfo((prev) => !prev)}
               >
-                <IoIosArrowDropdown />
+                <IoIosArrowDropdown size={20} />
               </button>
             </div>
-            
 
-            {show ? (
+            {showInfo ? (
               <div className="flex flex-col items-center gap-2">
                 <div>
                   <img
@@ -68,25 +55,25 @@ const Settings = () => {
                 <div>
                   <h1>
                     <span className="font-semibold text-basic text-lg">
-                      Name:{" "}
-                    </span>{" "}
+                      Name:
+                    </span>
                     {users[1].Name}
                   </h1>
                   <p>
                     <span className="font-semibold text-basic text-lg">
-                      Email :{" "}
+                      Email :
                     </span>
                     {users[1].Email}
                   </p>
                   <p>
                     <span className="font-semibold text-basic text-lg">
-                      Phone:{" "}
-                    </span>{" "}
+                      Phone:
+                    </span>
                     01924322
                   </p>
                   <p>
                     <span className="font-semibold text-basic text-lg">
-                      Gender:{" "}
+                      Gender:
                     </span>
                     Female
                   </p>
@@ -95,151 +82,130 @@ const Settings = () => {
             ) : (
               ""
             )}
-            
           </div>
 
           <div className="bg-light rounded-lg p-4 mt-6">
             <div className="flex justify-between">
               <button className="flex items-center gap-2">
-                <IoMdNotificationsOutline size={25}/>
+                <IoMdNotificationsOutline size={25} />
                 Notification
               </button>
-              <button
-                onClick={() => setShownot((prev) => !prev)}
-                className=" transition-all ease-out duration-150"
-              >
-                <IoIosArrowDropdown />
+              <button className=" transition-all ease-out duration-150">
+                <IoIosArrowDropdown
+                  size={20}
+                  onClick={() => setshowNotifi((prev) => !prev)}
+                />
               </button>
             </div>
-            {shownot ? (
-              
-              <div className="flex flex-col items-right gap-2">
+            {showNotifi ? (
+              <div className="mt-4 flex flex-col gap-4">
                 <div>
-                  <p id="para">Messages</p>
-                
+                  <p>Message</p>
                 </div>
                 <div>
-                  <h1 className="font-semibold text-basic text-lg">
-                  Notifications tone
-                  <span id="span">Lorem ipsum dolor sit amet</span>
-                
+                  <h1 className="text-basic font-bold text-lg">
+                    Notification Tone{" "}
                   </h1>
-                  <h1 className="font-semibold text-basic text-lg">
-                  Popup notifications
-                  <span id="span">No pop</span>
-                
+                  <p>Lorem ipsum dolor sit amet conse</p>
+                </div>
+                <div>
+                  <h1 className="text-basic font-bold text-lg">
+                    Pop Notification{" "}
                   </h1>
-                <div className="flex justify-between">
-                    <h1>High priority notifications</h1>
-                    <div className={`icon-button ${active ? 'active' : ''}`} onClick={handleClick}>
-                      <button>
-                      <IoToggleOutline size={20} />
-                      </button>
-                    </div>
-                  </div>
+                  <p>No pop</p>
                 </div>
               </div>
             ) : (
               ""
             )}
-            
-      
-          
-            
           </div>
-          <div className=" w-[300px] mt-9">
-              <h1 className="text-Text font-bold text-xl mb-3">Feedback</h1>
-              <div className="bg-light rounded-lg p-4">
-                <div className="flex justify-between">
-                  <button className="flex items-center gap-2">
-                    <AiOutlineExclamationCircle size={20}/> 
-                    Report
-                  </button>
-                  <button
-                    onClick={() => setShowreb((prev) => !prev)}
-                    className=" transition-all ease-out duration-150"
-                  >
-                    <IoIosArrowDropdown />
-                  </button>
-                </div>
-                {showreb ? (
-                
-                <div className="flex flex-col items-right gap-2">
-                  <div>
-                    <p id="para">what’s going on? </p>
-                  
+          <div className="mt-10 w-[300px]">
+            <h1 className="text-Text font-bold text-xl mb-3">FeedBack</h1>
+            <div className="bg-light rounded-lg p-4">
+              <div className="flex justify-between">
+                <button className="flex items-center gap-2">
+                  <MdOutlineAccountCircle size={25} />
+                  Report
+                </button>
+                <button className=" transition-all ease-out duration-150">
+                  <IoIosArrowDropdown
+                    size={20}
+                    onClick={() => setshowReport((prev) => !prev)}
+                  />
+                </button>
+              </div>
+              {showReport ? (
+                <div>
+                  <div className="mt-4 text-basic">
+                    <p>what is going on</p>
                   </div>
-                  
-                    <div>
-                      <h2 className="font-semibold text-basic text-m mb-3">
-                      Nudity
-                      <span id="spanbr"></span>
-                      </h2>
-                      <h2 className="font-semibold text-basic text-m mb-3">
-                      Violence
-                      <span id="spanbr"></span>
-                      </h2>
-                      <h2 className="font-semibold text-basic text-m mb-3">
-                      Harassment
-                      <span id="spanbr"></span>
-                      </h2>
-                      <h2 className="font-semibold text-basic text-m mb-3">
-                      False information
-                      <span id="spanbr"></span>
-                      </h2>
-                      <h2 className="font-semibold text-basic text-m mb-3">
-                      Spam
-                      <span id="spanbr"></span>
-                      </h2>
-                      <h2 className="font-semibold text-basic text-m mb-3">
-                      Hate speech
-                      <span id="spanbr"></span>
-                      </h2>
-                      <h2 className="font-semibold text-basic text-m mb-3">
-                      Terrorism
-                    </h2>
-                      
+                  <div className="ml-4 mt-6">
+                    <div className="border-b border-b-basic mb-2">
+                      <p className="mb-2">Nudity</p>
                     </div>
+                    <div className="border-b border-b-basic mb-2">
+                      <p className="mb-2">Spam</p>
+                    </div>
+                    <div className="border-b border-b-basic mb-2">
+                      <p className="mb-2">Violence</p>
+                    </div>
+                    <div className="border-b border-b-basic mb-2">
+                      <p className="mb-2">Hate Speech</p>
+                    </div>
+                    <div className="border-b border-b-basic mb-2">
+                      <p className="mb-2">Terroism</p>
+                    </div>
+                  </div>
                 </div>
-                
               ) : (
                 ""
               )}
             </div>
-            <div className="bg-light rounded-lg p-4 mt-6">
+          </div>
+          <div
+            className="mt-10 w-[300px]"
+            onClick={() => setdeleteAcc((prev) => !prev)}
+          >
+            <div className="bg-light rounded-lg p-4">
               <div className="flex justify-between">
-                <button onClick={() => setmsg((prev) => !prev)}  
-                  className="flex items-center gap-2 " >
-                  <BiUserX size={25}/> 
-                  Delete account
-                </button>           
-              </div> 
-            </div>  
-            {msg ? <Message/> : ""}
-            {/* {msg ?(
-              <div className="parent"></div>
-            ):(
-              ""
-              )} */}
-        
+                <button className="flex items-center gap-2">
+                  <MdOutlineAccountCircle size={25} />
+                  Delete Account
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-         <div className="infoform">
-           <div className="p-5">
-              <h1 className="font-semibold text-basic text-lg mb-3">User Management</h1>
-              <label htmlFor="" className="font-semibold text-basic text-lg mb-3">User name</label>
-              <input className="input block w-full mb-3" type="text" value={users[1].Name}/>
-              <label htmlFor="" className="font-semibold text-basic text-lg mb-3">Email</label>
-              <input className="input block w-full mb-3 " type="text" value={users[1].Email}/>
-              <label htmlFor="" className="font-semibold text-basic text-lg mb-3">Tele.No</label>
-              <input className="input block w-full md-3 " type="text" value={123456789}/>
-            </div>
-            
 
-          </div>
-        
         <Outlet />
       </div>
+      {deleteAcc ? (
+        <Modal>
+          <div className="bg-white w-[300px] sm:w-[600px] text-center p-5 rounded-lg h-[200px] flex flex-col items-center justify-center">
+            <h1 className="font-bold text-basic text-lg">
+              Are You Sure you Want Delete Account?
+            </h1>
+            <div className="flex items-center justify-center gap-5 mt-5">
+              <button
+                className="bg-Orange px-8 py-2 rounded-lg text-white font-bold text-lg"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Yes
+              </button>
+              <button
+                className="bg-basic px-8 py-2 rounded-lg text-white font-bold text-lg"
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </Modal>
+      ) : null}
     </div>
   );
 };
