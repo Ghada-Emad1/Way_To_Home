@@ -14,3 +14,21 @@
     background-color: rgb(190, 190, 190);
     border-radius: 5px;
 }
+@media (max-width: 1085px) {
+    .cards{
+        display: flex;
+        flex-direction: column;
+        /* margin: auto; */
+    }
+}
+@media (max-width: 700px) {
+    .content{
+        display: flex;
+        flex-direction: column;
+    }
+}
+/* @media (max-width: 700px) {
+    .title{
+        margin: auto;
+    }
+} */
