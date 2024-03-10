@@ -11,7 +11,7 @@ const Shelter = () => {
           <input
             type="text"
             placeholder="Search for Your restaurant"
-            className="rounded-lg border border-basic w-[350px] p-2"
+            className="rounded-lg border border-basic w-[350px] p-2 "
           />
           <button className="rounded-lg bg-basic px-6 py-2 text-white font-semibold">
             Search
@@ -20,7 +20,7 @@ const Shelter = () => {
       <div className=" grid grid-cols-1 gap-4 mx-4 max-lg:flex flex-col ">
         {ShelterList.map((element, index) => (
           <div key={index} className=" flex justify-between flex-row p-2 "> 
-              <div className="flex justify-between flex-row gap-2">
+              <div className="flex justify-between flex-row gap-2 max-md:flex-col">
                 <div></div>
                   <div>
                     <img
@@ -39,7 +39,7 @@ const Shelter = () => {
                       {element.Address}
                     </p>
                     <div>
-                      <button className="bg-basic rounded-lg text-white flex items-center gap-2 px-6 py-2">
+                      <button className="bg-basic rounded-lg text-white flex items-center gap-2 px-6 py-2 max-md:m-auto max-md:mt-3">
                         <FaWhatsapp /> {element.contact}
                       </button>
                     </div>
@@ -47,7 +47,7 @@ const Shelter = () => {
               </div>
               <div>
                 <img
-                    className="w-[200px] h-[150px] object-cover rounded-lg"
+                    className="w-[200px] h-[150px] object-cover rounded-lg max-md:hidden "
                     src={element.imgmap}
                     alt=""
                 />
