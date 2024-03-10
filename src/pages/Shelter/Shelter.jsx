@@ -1,84 +1,65 @@
 import {Outlet }  from 'react-router-dom';
-
 import { FaWhatsapp } from "react-icons/fa";
-import "./style.css";
+import { ShelterList } from '../../data/ShelterList';
+//import "./style.css";
 
 
 const Shelter = () => {
   return (
-    <div className='h-[100vh] overflow-auto'>
+    <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
+      <div className="flex gap-5 justify-center my-4">
+          <input
+            type="text"
+            placeholder="Search for Your restaurant"
+            className="rounded-lg border border-basic w-[350px] p-2"
+          />
+          <button className="rounded-lg bg-basic px-6 py-2 text-white font-semibold">
+            Search
+          </button>
+      </div>
+      <div className=" grid grid-cols-1 gap-4 mx-4 max-lg:flex flex-col ">
+        {ShelterList.map((element, index) => (
+          <div key={index} className=" flex justify-between flex-row p-2 "> 
+              <div className="flex justify-between flex-row gap-2">
+                <div></div>
+                  <div>
+                    <img
+                      className="w-[200px] h-[150px] object-cover rounded-lg"
+                      src={element.img}
+                      alt=""
+                    />
+                  </div>
+                  <div className='flex flex-col justify-evenly'>
+                    <h1>
+                      <span className="text-basic font-bold">Restaurant:</span>{" "}
+                      {element.Phone}
+                    </h1>
+                    <p>
+                      <span className="text-basic font-bold">Address: </span>
+                      {element.Address}
+                    </p>
+                    <div>
+                      <button className="bg-basic rounded-lg text-white flex items-center gap-2 px-6 py-2">
+                        <FaWhatsapp /> {element.contact}
+                      </button>
+                    </div>
+                  </div>
+              </div>
+              <div>
+                <img
+                    className="w-[200px] h-[150px] object-cover rounded-lg"
+                    src={element.imgmap}
+                    alt=""
+                />
+              </div>
+
+          </div>
+        ))}
+      </div>
       
-      <input className='search' type='text'placeholder='Search items '/>
-          <div className="contaner">
-        <div className="main">
-            <div className="rightside">
-                <img className='img' src="/Shelter1.png" alt="" title="imag her"/>
-                <div className="box">
-                  <div className='text'>
-                    <h4>Phone : <span>01015154654</span></h4>
-                    <h4>Address : <span>01015154654</span></h4>
-                  </div>
-                  <FaWhatsapp className='whats'/>
-                    <input type="submit" value="Contact"/>
-                </div>
-                
-            </div>
-            <div className="leftside">
-               <img className='imgleft' src="/map1.png" alt=""/> 
-            </div>
-        </div>
-        <div className="main">
-            <div className="rightside">
-                <img className='img' src="/shelter2.png" alt=""/>
-                <div className="box">
-                  <div className='text'>
-                    <h4>Phone : <span>777-888-999</span></h4>
-                    <h4>Address : <span>22 ***street</span></h4>
-                  </div>
-                    <FaWhatsapp className='whats'/>
-                    <input type="submit" value="Contact"/>
-                </div>
-            </div>
-            <div className="leftside">
-               <img className='imgleft' src="/map2.png" alt=""/> 
-            </div>
-        </div>
-        <div className="main">
-            <div className="rightside">
-                <img className='img' src="/shelter4.png" alt="" title="imag her"/>
-                <div className="box">
-                  <div className='text'>
-                    <h4>Phone : <span>777-888-999</span></h4>
-                    <h4>Address : <span>22 ***street</span></h4>
-                  </div>
-                    <FaWhatsapp className='whats'/>
-                    <input type="submit" value="Contact"/>
-                </div>
-            </div>
-            <div className="leftside">
-               <img className='imgleft' src="/map2.png" alt=""/> 
-            </div>
-            
-        </div>
-        {/* <div className="main">
-            <div className="rightside">
-                <img className='img' src="/Shelter.jpg" alt="" title="imag her"/>
-                <div className="box">
-                  <div className='text'>
-                    <h4>Phone : <span>777-888-999</span></h4>
-                    <h4>Address : <span>22 ***street</span></h4>
-                  </div>
-                  
-                    <input type="submit" value="Contact"/>
-                </div>
-            </div>
-            <div className="leftside">
-               <img className='imgleft' src="/map2.png" alt=""/> 
-            </div>
-        </div> */}
-    </div>
       <Outlet/>
     </div>
+    
   )
 }
 

@@ -16,9 +16,10 @@ const Food = () => {
           Search
         </button>
       </div>
-      <div className=" grid grid-cols-2 gap-4 mx-4 max-lg:flex flex-col ">
+      <div className=" grid grid-cols-2 gap-4 mx-4 bg-white">
         {FoodList.map((element, index) => (
           <div key={index} className=" content flex flex-row gap-2 max-sm:flex flex-row ">
+            <div>
             <div>
               <img
                 className="w-[200px] h-[150px] object-cover rounded-lg"
@@ -40,6 +41,7 @@ const Food = () => {
                   <FaWhatsapp /> {element.contact}
                 </button>
               </div>
+            </div>
             </div>
           </div>
         ))}
