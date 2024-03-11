@@ -29,7 +29,7 @@ const Add = () => {
             Restaurant
           </Link>
           <div
-            className="bg-Orange text-white px-6 py-2 rounded-lg "
+            className="bg-Orange text-white cursor-pointer px-6 py-2 rounded-lg "
             onClick={() => setAddPost((prev) => !prev)}
           >
             Post
