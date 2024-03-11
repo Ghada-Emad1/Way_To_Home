@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { FoodList } from "../../data/FoodList";
 import { FaWhatsapp } from "react-icons/fa6";
-import "./style.css"
+//import "./style.css"
 
 const Food = () => {
   return (
@@ -16,9 +16,10 @@ const Food = () => {
           Search
         </button>
       </div>
-      <div className=" cards grid grid-cols-2 gap-4 mx-4">
+      <div className=" grid grid-cols-2 gap-4 mx-4 bg-white">
         {FoodList.map((element, index) => (
-          <div key={index} className=" content flex gap-2">
+          <div key={index} className=" content flex flex-row gap-2 max-sm:flex flex-row ">
+            <div>
             <div>
               <img
                 className="w-[200px] h-[150px] object-cover rounded-lg"
@@ -26,7 +27,7 @@ const Food = () => {
                 alt=""
               />
             </div>
-            <div className=" title  flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
               <h1>
                 <span className="text-basic font-bold">Restaurant:</span>{" "}
                 {element.Name}
@@ -40,6 +41,7 @@ const Food = () => {
                   <FaWhatsapp /> {element.contact}
                 </button>
               </div>
+            </div>
             </div>
           </div>
         ))}
