@@ -7,13 +7,17 @@ import { IoSettingsOutline } from "react-icons/io5";
 
 import { MdOutlineFeed } from "react-icons/md";
 import ProfileImg from "/people.avif";
-// import { userInfo } from "../../data/UserInfo";
-import {useSelector} from "react-redux"
+
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import Modal from "../Modal/Modal";
+import {useNavigate} from 'react-router-dom'
 const LeftNav = () => {
-  const users=useSelector((state)=>state.Adduser)
-  console.log(users)
-  
-  
+  const users = useSelector((state) => state.Adduser);
+  const [showlogout, setshowlogout] = useState(false);
+  const navigate=useNavigate();
+  console.log(users);
+
   const StyleLink = `flex items-center gap-2 font-bold text-basic text-lg`;
   return (
     <aside className="sticky top-0 h-[100vh] w-1/4  flex flex-col bg-light overflow-y-auto p-4">
@@ -24,7 +28,7 @@ const LeftNav = () => {
           alt=""
         />
         <div>
-          {users.map((element,index)=>(
+          {users.map((element, index) => (
             <div key={index}>
               <h1 className="font-bold text-basic ">{element.Name}</h1>
               <p>{element.Email}</p>
@@ -60,8 +64,6 @@ const LeftNav = () => {
           </Link>
         </div>
 
-     
-
         <div>
           <Link to="/dashboard/settings" className={StyleLink}>
             <IoSettingsOutline size={25} />
@@ -70,12 +72,42 @@ const LeftNav = () => {
         </div>
 
         <div>
-          <Link to="/dashboard/logout" className={StyleLink}>
+          <button
+            onClick={() => setshowlogout((prev) => !prev)}
+            className={StyleLink}
+          >
             <IoLogOutOutline size={25} />
             <h1>Logout</h1>
-          </Link>
+          </button>
         </div>
       </div>
+      {showlogout ? (
+        <Modal>
+          <div className="bg-white w-[300px] sm:w-[600px] text-center p-5 rounded-lg h-[200px] flex flex-col items-center justify-center">
+            <h1 className="font-bold text-basic text-lg">
+              Are You Sure you Logout?
+            </h1>
+            <div className="flex items-center justify-center gap-5 mt-5">
+              <button
+                className="bg-Orange px-8 py-2 rounded-lg text-white font-bold text-lg"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Yes
+              </button>
+              <button
+                className="bg-basic px-8 py-2 rounded-lg text-white font-bold text-lg"
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
+                No
+              </button>
+            </div>
+          </div>
+        </Modal>
+      ) : null}
     </aside>
   );
 };

@@ -19,6 +19,7 @@ import ChatBot from "./pages/ChatBot/ChatBot";
 import Search from "./pages/Search/Search";
 
 function App() {
+  
   return (
     <>
       <Router>
