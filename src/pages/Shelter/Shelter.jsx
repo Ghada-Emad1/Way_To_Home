@@ -10,7 +10,7 @@ const Shelter = () => {
       <div className="flex gap-5 justify-center my-4">
           <input
             type="text"
-            placeholder="Search for Your restaurant"
+            placeholder="Search for Your Shelter"
             className="rounded-lg border border-basic w-[350px] p-2 "
           />
           <button className="rounded-lg bg-basic px-6 py-2 text-white font-semibold">
@@ -19,7 +19,7 @@ const Shelter = () => {
       </div>
       <div className=" grid grid-cols-1 gap-4 mx-4 max-lg:flex flex-col ">
         {ShelterList.map((element, index) => (
-          <div key={index} className=" flex justify-between flex-row p-2 "> 
+          <div key={index} className=" flex justify-between flex-row p-5 bg-[#EFF5F5] rounded-[8px]"> 
               <div className="flex justify-between flex-row gap-2 max-md:flex-col">
                 <div></div>
                   <div>
