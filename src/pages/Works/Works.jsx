@@ -1,7 +1,17 @@
+import axios from "axios";
 import { Outlet } from "react-router-dom";
 //import "./stylework.css";
-import { WorksList } from "../../data/WorksList";
+//import { WorksList } from "../../data/WorksList";
+import { useEffect, useState } from "react";
 const Works = () => {
+  const[resp, setresp]= useState([]);
+  useEffect(()=>{
+    axios .get('https://homecompassapi.azurewebsites.net/Job').then((res)=>{
+      setresp(res.data)
+    }).catch((err)=>{
+      console.log(err);
+    })
+  })
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
         <div className="flex gap-5 justify-center my-4">
@@ -16,32 +26,44 @@ const Works = () => {
         </div>
 
         <div className=" grid grid-cols-2 gap-4 mx-4 max-lg:flex flex-col ">
-          {WorksList.map((element, index) => (
+          {resp.map((data, index) => (
             <div key={index} className=" block  p-5 bg-[#EFF5F5] rounded-[8px]"> 
               <div>
                 <p className="text-[#497174] text-lg font-semibold Inter">
-                  {element.paragrah}</p>
+                  {data.title}</p>
               </div>
               <div>
-                <p className="text-balance text-[14px] text-[#A5A5A5]">Lorem ipsum dolor sit amet is a Latin phrase 
-                that translates to “ pain is an illusion.”</p>
+                <p className="text-balance text-[14px] text-[#A5A5A5]">{data.description} 
+                </p>
               </div>
               <div>
                 <h5 className="text-[#497174] Inter mt-2">
                 <span className="text-basic font-bold Inter "> Address :</span>{" "}
-                  {element.Address}
+                  {data.location}
                 </h5>
               </div>
               <div>
                 <h5 className="text-[#497174] Inter mt-1">
                 <span className="text-basic font-bold Inter "> Phone Number :</span>{" "}
-                  {element.Phone}
+                  {data.contactInformation}
+                </h5>
+              </div>
+              <div>
+                <h5 className="text-[#EB6440] Inter mt-1">
+                <span className="text-basic font-bold Inter "> Work hours :</span>{" "}
+                  {data.salary}
                 </h5>
               </div>
               <div>
                 <h5 className="text-[#EB6440] Inter mt-1">
                 <span className="text-basic font-bold Inter "> Salary :</span>{" "}
-                  {element.salary}
+                  {data.hours}
+                </h5>
+              </div>
+              <div>
+                <h5 className="text-[#497174] Inter mt-1">
+                <span className="text-basic font-bold Inter "> skills :</span>{" "}
+                  {data.skills}
                 </h5>
               </div>
               
