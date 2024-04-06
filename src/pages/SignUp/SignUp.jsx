@@ -5,15 +5,18 @@ import { useNavigate } from "react-router-dom";
 import Signup from "/signup.jpg";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-import { useState } from "react";
+import {  useState } from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addUserInfo } from "../../AddReducer/AddUserInfo";
 const SignUp = () => {
-  const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
+  const [username, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setpassword] = useState("");
+  const [confirm_password, setConfirmPassword] = useState("");
   const users = useSelector((state) => state.Adduser);
-  console.log(users);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputText = `p-2 w-full focus:outline-basic rounded-lg border-2 border-light`;
@@ -40,12 +43,31 @@ const SignUp = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+ 
+const fetchData=()=>{
+  const data={
+    username:username,
+    email:email,
+    password:password
+  }
+  const url=  'https://homecompassapi.azurewebsites.net/Auth/register'
+  axios.post(url,data).then((res)=>{
+    console.log("data inserted")
+    console.log(res.data)
+  })
+
+}
   const onSubmit = async (data) => {
-    dispatch(addUserInfo({id:users[users.length-1].id+1,Name,Email}))
+    
+    dispatch(
+      addUserInfo({ id: users[users.length - 1].id + 1, username, email })
+    );
     navigate("/dashboard", { replace: true });
 
     reset();
   };
+  
 
   return (
     <div className="h-[100vh] flex items-center justify-center w-5/6 mx-auto ">
@@ -68,6 +90,7 @@ const SignUp = () => {
           <input
             type="text"
             name="name"
+            value={username}
             placeholder="Your Name"
             required
             className={inputText}
@@ -84,6 +107,7 @@ const SignUp = () => {
             type="email"
             name="email"
             required
+            value={email}
             placeholder="Your Email"
             className={inputText}
             {...register("Email")}
@@ -97,10 +121,12 @@ const SignUp = () => {
           </label>
           <input
             type="password"
+            value={password}
             name="password"
             placeholder="Password"
             className={inputText}
             {...register("password")}
+            onChange={(e) => setpassword(e.target.value)}
           />
           <p className="text-Error">{errors.password?.message}</p>
         </div>
@@ -113,6 +139,8 @@ const SignUp = () => {
             name="confirm_password"
             className={inputText}
             {...register("confirmPassword")}
+            value={confirm_password}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
           <p className="text-Error">{errors.confirmPassword?.message}</p>
         </div>
@@ -120,6 +148,7 @@ const SignUp = () => {
         <div>
           <button
             type="submit"
+            onClick={()=>fetchData()}
             className="bg-basic font-bold text-white px-10 py-2 flex justify-center  items-center text-center"
           >
             Next

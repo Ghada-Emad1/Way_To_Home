@@ -12,13 +12,12 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import {useNavigate} from 'react-router-dom'
-import {data} from '../../data/category'
+
 const LeftNav = () => {
   const users = useSelector((state) => state.Adduser);
   const [showlogout, setshowlogout] = useState(false);
   const navigate=useNavigate();
   console.log(users);
-  console.log(data)
   
 
   const StyleLink = `flex items-center gap-2 font-bold text-basic text-lg`;
