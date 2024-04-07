@@ -1,10 +1,23 @@
 import {Outlet }  from 'react-router-dom';
 import { FaWhatsapp } from "react-icons/fa";
 import { ShelterList } from '../../data/ShelterList';
-//import "./style.css";
+import "./style.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 const Shelter = () => {
+
+  const[resp, setresp]= useState([]);
+  useEffect(()=>{
+    axios .get(`https://homecompassapi.azurewebsites.net/Facility/bycategory/7`).then((res)=>{
+      //console.log(res);
+      setresp(res.data)
+      
+    }).catch((err)=>{
+      console.log(err);
+    })
+  })
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
       <div className="flex gap-5 justify-center my-4">
@@ -18,40 +31,54 @@ const Shelter = () => {
           </button>
       </div>
       <div className=" grid grid-cols-1 gap-4 mx-4 max-lg:flex flex-col ">
-        {ShelterList.map((element, index) => (
-          <div key={index} className=" flex justify-between flex-row p-5 bg-[#EFF5F5] rounded-[8px]"> 
-              <div className="flex justify-between flex-row gap-2 max-md:flex-col">
-                <div></div>
-                  <div>
-                    <img
-                      className="w-[200px] h-[150px] object-cover rounded-lg"
-                      src={element.img}
+        {resp.map((data , id) => (
+          <div key={id} className="flex gap-10 flex-row   p-5 bg-[#EFF5F5] rounded-[8px] "> 
+              {/* flex gap-20 */}
+                
+                  <div className='flex flex-col  items-center'>
+                    <img 
+                      className="w-[350px] h-[250px] object-cover rounded-lg "
+                      src={data.photoUrl}
                       alt=""
-                    />
+                      />
+                      <h1  className='text-center'>{data.name}</h1>
                   </div>
-                  <div className='flex flex-col justify-evenly'>
-                    <h1>
-                      <span className="text-basic font-bold">Restaurant:</span>{" "}
-                      {element.Phone}
+                  <div className='flex flex-col justify-evenly p-1'>
+                    {/* <h1>
+                      <span className="text-basic font-bold"> Restaurant :</span>{" "}
+                      {data.contactInformaton}
+                    </h1> */}
+                    <h1 className='p-y-4'>
+                      <span className="text-basic font-bold text-balance"> Contact :</span>{" "}
+                      {data.contactInformaton}
                     </h1>
-                    <p>
-                      <span className="text-basic font-bold">Address: </span>
-                      {element.Address}
-                    </p>
-                    <div>
-                      <button className="bg-basic rounded-lg text-white flex items-center gap-2 px-6 py-2 max-md:m-auto max-md:mt-3">
-                        <FaWhatsapp /> {element.contact}
-                      </button>
-                    </div>
+                    <h1 className='text-balance p-y-4'>
+                      <span className="text-basic font-bold"> Description :</span>{" "}
+                      {data.description}
+                    </h1>
+                    <h1 className='text-balance p-y-4'>
+                      <span className="text-basic font-bold"> Target :</span>{" "}
+                      {data.target}
+                    </h1>
+                    <h1 className='text-balance p-y-4'>
+                      <span className="text-basic font-bold"> resources :</span>{" "}
+                      <ul>
+                        <li>
+                        {data.resources.name}
+                        </li>
+
+                
+                      </ul>
+                      
+                    </h1>
+                    <h1 className='text-balance p-y-4'>
+                      <span className="text-basic font-bold"> Address :</span>{" "}
+                      {data.location}
+                    </h1>
+                  
                   </div>
-              </div>
-              <div>
-                <img
-                    className="w-[200px] h-[150px] object-cover rounded-lg max-md:hidden "
-                    src={element.imgmap}
-                    alt=""
-                />
-              </div>
+              
+              
 
           </div>
         ))}

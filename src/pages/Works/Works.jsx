@@ -26,8 +26,8 @@ const Works = () => {
         </div>
 
         <div className=" grid grid-cols-2 gap-4 mx-4 max-lg:flex flex-col ">
-          {resp.map((data, index) => (
-            <div key={index} className=" block  p-5 bg-[#EFF5F5] rounded-[8px]"> 
+          {resp.map((data, id) => (
+            <div key={id} className=" block  p-5 bg-[#EFF5F5] rounded-[8px]"> 
               <div>
                 <p className="text-[#497174] text-lg font-semibold Inter">
                   {data.title}</p>
