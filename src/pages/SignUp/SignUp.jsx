@@ -1,39 +1,49 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import YupPassword from "yup-password";
+YupPassword(yup);
 import { useNavigate } from "react-router-dom";
 import Signup from "/signup.jpg";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-import {  useState } from "react";
+import { useState } from "react";
 import axios from "axios";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { addUserInfo } from "../../AddReducer/AddUserInfo";
 const SignUp = () => {
-  const [username, setName] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [username, setusername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const [confirm_password, setConfirmPassword] = useState("");
   const users = useSelector((state) => state.Adduser);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputText = `p-2 w-full focus:outline-basic rounded-lg border-2 border-light`;
   const schema = yup.object().shape({
-    YourName: yup.string().required("Your Name is Required"),
+    firstName: yup.string().required("This Field is Required"),
+    lastName: yup.string().required("This Field is Required"),
+    UserName: yup.string().required("This Field is Required"),
     Email: yup
       .string()
       .email("Invaild Email")
       .required("Your Email is Required"),
+
     password: yup
       .string()
-      .required("Password is required")
-      .min(6, "Password must be at least 6 characters"),
-    confirmPassword: yup
-      .string()
-      .required("Confirm Password is required")
-      .oneOf([yup.ref("password")], "Passwords must match"),
+      .required("No Password Provided")
+      .min(8, "Password is too short-should be 8 characters")
+      .matches(/[a-z]/, "Passwords must have at least one lowercase character.")
+      .matches(/[A-Z]/, "Passwords must have at least one uppercase character.")
+      .matches(/[0-9]/, "Passwords must have at least one digit ('0'-'9')")
+      .matches(
+        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        "Passwords must have at least one non alphanumeric character."
+      ),
   });
   const {
     register,
@@ -44,64 +54,101 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
 
- 
-const fetchData=()=>{
-  const data={
-    username:username,
-    email:email,
-    password:password
-  }
-  const url=  'https://homecompassapi.azurewebsites.net/Auth/register'
-  axios.post(url,data).then((res)=>{
-    console.log("data inserted")
-    console.log(res.data)
-  })
+  const fetchData = () => {
+    const data = {
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      email: email,
+      password: password,
+    };
 
-}
-  const onSubmit = async (data) => {
-    
+    const Url = "https://homecompassapi.azurewebsites.net/Auth/register";
+    axios({ method: "post", url: Url, data: data })
+      .then((res) => {
+        console.log("data inserted");
+        console.log(res.request);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const onSubmit = async () => {
     dispatch(
       addUserInfo({ id: users[users.length - 1].id + 1, username, email })
     );
     navigate("/dashboard", { replace: true });
-
+    console.log(firstName, lastName, username, email, password);
     reset();
   };
-  
 
   return (
     <div className="h-[100vh] flex items-center justify-center w-5/6 mx-auto ">
       <div className="hidden sm:block">
         <img
           src={Signup}
-          className="w-[600px]  sm:h-[90vh] shadow-lg rounded-ss-lg rounded-es-lg"
+          className="w-[600px]  sm:h-[95vh] shadow-lg rounded-ss-lg rounded-es-lg"
         />
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         action=""
-        method="post"
-        className="flex w-[400px] bg-white  sm:h-[90vh] shadow-lg md:rounded-ee-lg  md:rounded-se-lg sm:w-[600px] my-2 flex-col p-8    gap-6  sm:p-20"
+        method="POST"
+        className="flex w-[400px] bg-white  sm:h-[95vh] shadow-lg md:rounded-ee-lg  md:rounded-se-lg sm:w-[600px] my-2 flex-col p-8  gap-3  sm:p-20"
       >
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className="font-bold text-basic">
-            Your Name
+            FirstName
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={firstName}
+            placeholder="First Name"
+            required
+            className={inputText}
+            {...register("firstName")}
+            onChange={(e) => setfirstName(e.target.value)}
+          />
+          <p className=" text-Error">{errors.firstName?.message}</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="name" className="font-bold text-basic">
+            Last Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={lastName}
+            placeholder="Last Name"
+            required
+            className={inputText}
+            {...register("lastName")}
+            onChange={(e) => setlastName(e.target.value)}
+          />
+          <p className=" text-Error">{errors.lastName?.message}</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <label htmlFor="name" className="font-bold text-basic">
+            UserName
           </label>
           <input
             type="text"
             name="name"
             value={username}
-            placeholder="Your Name"
+            placeholder="UserName"
             required
             className={inputText}
-            {...register("YourName")}
-            onChange={(e) => setName(e.target.value)}
+            {...register("UserName")}
+            onChange={(e) => setusername(e.target.value)}
           />
-          <p className=" text-Error">{errors.YourName?.message}</p>
+          <p className=" text-Error">{errors.UserName?.message}</p>
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="email" className="font-bold text-basic">
-            Your Email
+            Email
           </label>
           <input
             type="email"
@@ -130,25 +177,11 @@ const fetchData=()=>{
           />
           <p className="text-Error">{errors.password?.message}</p>
         </div>
-        <div className="flex flex-col gap-2">
-          <label htmlFor="confirm_password" className="font-bold text-basic">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            name="confirm_password"
-            className={inputText}
-            {...register("confirmPassword")}
-            value={confirm_password}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          <p className="text-Error">{errors.confirmPassword?.message}</p>
-        </div>
 
         <div>
           <button
             type="submit"
-            onClick={()=>fetchData()}
+            onClick={() => fetchData()}
             className="bg-basic font-bold text-white px-10 py-2 flex justify-center  items-center text-center"
           >
             Next

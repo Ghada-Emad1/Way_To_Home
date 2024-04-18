@@ -23,7 +23,7 @@ const Add = () => {
             Shelter
           </button>
           <Link
-            to="/dashboard/shelter"
+            to="/dashboard/restaurant"
             className="bg-Orange text-white px-6 py-2 rounded-lg "
           >
             Restaurant
@@ -35,7 +35,7 @@ const Add = () => {
             Post
           </div>
           <Link
-            to="/dashboard/shelter"
+            to="/dashboard/missing"
             className="bg-Orange text-white px-6 py-2 rounded-lg "
           >
             Missing

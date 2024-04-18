@@ -14,11 +14,9 @@ const Feed = () => {
 
   function fetchPost() {
     axios.get("https://homecompassapi.azurewebsites.net/Post").then((res) => {
-      console.log(res.data);
       setresult(res.data);
     });
   }
-  console.log(result);
   useEffect(() => {
     fetchPost();
   }, []);
@@ -53,6 +51,12 @@ const Feed = () => {
             </div>
           </div>
         ))}
+
+        {users.map((element)=>{
+          <div key={element}>
+            <h1>{element.post}</h1>
+          </div>
+        })}
 
         <Outlet />
       </div>

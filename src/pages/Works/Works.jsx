@@ -14,7 +14,7 @@ const Works = () => {
   })
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
-        <div className="flex gap-5 justify-center my-4">
+        {/* <div className="flex gap-5 justify-center my-4">
           <input
             type="text"
             placeholder="Search for Your Work"
@@ -23,7 +23,7 @@ const Works = () => {
           <button className="rounded-lg bg-basic px-6 py-2 text-white font-semibold">
             Search
           </button>
-        </div>
+        </div> */}
 
         <div className=" grid grid-cols-2 gap-4 mx-4 max-lg:flex flex-col ">
           {resp.map((data, id) => (
@@ -44,7 +44,7 @@ const Works = () => {
               </div>
               <div>
                 <h5 className="text-[#497174] Inter mt-1">
-                <span className="text-basic font-bold Inter "> Phone Number :</span>{" "}
+                <span className="text-basic font-bold Inter ">Email: </span>{" "}
                   {data.contactInformation}
                 </h5>
               </div>
