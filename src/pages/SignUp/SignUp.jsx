@@ -66,8 +66,8 @@ const SignUp = () => {
     const Url = "https://homecompassapi.azurewebsites.net/Auth/register";
     axios({ method: "post", url: Url, data: data })
       .then((res) => {
-        console.log("data inserted");
-        console.log(res.request);
+        console.log(res.data)
+        
       })
       .catch((err) => {
         console.log(err);

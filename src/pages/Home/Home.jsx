@@ -1,4 +1,3 @@
-
 import Blog from "/blog.png";
 import Contacts from "../../components/Contacts/Contacts";
 import Footer from "../../components/Footer/Footer";
@@ -31,14 +30,8 @@ const Home = () => {
           />
         </div>
       </div>
-
-
-    
       <Features/>
       <About/>
-
-      
-
       <Contacts />
       <Footer />
     </div>

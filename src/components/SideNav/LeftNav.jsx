@@ -11,14 +11,13 @@ import ProfileImg from "/people.avif";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import Modal from "../Modal/Modal";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const LeftNav = () => {
   const users = useSelector((state) => state.Adduser);
   const [showlogout, setshowlogout] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   console.log(users);
-  
 
   const StyleLink = `flex items-center gap-2 font-bold text-basic text-lg`;
   return (
@@ -102,6 +101,7 @@ const LeftNav = () => {
                 className="bg-basic px-8 py-2 rounded-lg text-white font-bold text-lg"
                 onClick={() => {
                   navigate("/dashboard");
+                  setshowlogout(false);
                 }}
               >
                 No

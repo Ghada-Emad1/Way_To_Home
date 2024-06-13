@@ -3,11 +3,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import RightNav from "../../components/SideNav/RightNav";
 import Shelter from "../Shelter/Shelter";
 import Food from "../Food/Food";
-
-
 import Settings from "../Settings/Settings";
 import Feed from "../Feed/Feed";
-
 import Works from "../Works/Works";
 import ChatBot from "../ChatBot/ChatBot";
 import Search from "../Search/Search";

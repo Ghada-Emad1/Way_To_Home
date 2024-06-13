@@ -6,7 +6,7 @@ const ForgetPassword = () => {
       <div className="flex flex-col justify-center items-center gap-4 bg-white h-[80vh]  md:rounded-ss-2xl md:rounded-es-2xl p-6 shadow-lg w-[550px]">
         <h1 className="ml-3">Enter your email and we will send the instruction</h1>
         <CiMail 
-          className="absolute left-[80px] top-[344px] md:top-[332px] md:left-[306px]"
+          className="absolute left-[90px] top-[344px] md:top-[337px] md:left-[295px]"
         />
         <input
           type="email"
@@ -14,7 +14,7 @@ const ForgetPassword = () => {
           name="emil"
           id=""
           required
-          className="rounded-sm px-6 py-1 outline outline-basic w-[330px]"
+          className="rounded-sm px-7 py-1 outline outline-basic w-[330px]"
         />
         <div>
           

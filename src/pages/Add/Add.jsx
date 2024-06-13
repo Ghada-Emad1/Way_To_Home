@@ -58,13 +58,12 @@ const Add = () => {
                   className="bg-Orange text-white rounded-lg px-6 py-2"
                   onClick={() => {
                     navigate("/dashboard/feed");
-                    
+                    setAddPost(false)
                   }}
                 >
                   Add
                 </button>
-                <button className="bg-basic text-white rounded-lg px-6 py-2" onClick={() => setAddPost(false)}>Return to page</button>
-             
+               
               </form>
             </div>
           </div>

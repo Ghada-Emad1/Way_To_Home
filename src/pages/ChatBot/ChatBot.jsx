@@ -5,13 +5,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { useState } from "react";
 import "./chatbot.css";
 
-
 const ChatBot = () => {
   const [userQes, setUserQes] = useState("");
   const [chatContent, setChatContent] = useState("");
   console.log(userQes);
-  
-  const APi_key ="AIzaSyALoxzlcf5wQ8Yh3F2LUlP4a0EiFBkCBB8"
+
+  const APi_key = "AIzaSyALoxzlcf5wQ8Yh3F2LUlP4a0EiFBkCBB8";
   const genAI = new GoogleGenerativeAI(APi_key);
   const model_name = genAI.getGenerativeModel({ model: "gemini-pro" });
   let history = [];
@@ -57,7 +56,6 @@ const ChatBot = () => {
     setUserQes("");
 
     const AIResponse = await getResponse(prompt);
-    
 
     setChatContent((prevChat) => [...prevChat, ChatResponde(AIResponse)]);
     let newUserRole = {
