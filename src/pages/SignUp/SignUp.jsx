@@ -74,13 +74,19 @@ const SignUp = () => {
       });
   };
   const onSubmit = async () => {
+    const newUserId = users.length === 0 ? 1 : users[users.length - 1].id + 1
     dispatch(
-      addUserInfo({ id: users[users.length - 1].id + 1, username, email })
+      addUserInfo({ id: newUserId, username, email })
     );
+    // setfirstName("");
+    // setlastName("");
+    // setusername("");
+    // setEmail("");
+    // setpassword("");
     navigate("/dashboard", { replace: true });
     console.log(firstName, lastName, username, email, password);
     reset();
-  };
+  };  
 
   return (
     <div className="h-[100vh] flex items-center justify-center w-5/6 mx-auto ">

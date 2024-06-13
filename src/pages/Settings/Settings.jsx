@@ -57,13 +57,13 @@ const Settings = () => {
                     <span className="font-semibold text-basic text-lg">
                       Name:
                     </span>
-                    {users[1].Name}
+                    {users[1].username}
                   </h1>
                   <p>
                     <span className="font-semibold text-basic text-lg">
                       Email :
                     </span>
-                    {users[1].Email}
+                    {users[1].email}
                   </p>
                   <p>
                     <span className="font-semibold text-basic text-lg">

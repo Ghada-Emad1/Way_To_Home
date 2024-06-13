@@ -6,9 +6,13 @@ const AddUser=createSlice({
     reducers:{
         addUserInfo:(state,action)=>{
             state.push(action.payload)
-        }
+        },
+        deleteuser :( state ,action)=>{
+             return state.filter(item => item.id != action.payload)
+        },
+
     }
 
 })
-export const{addUserInfo}=AddUser.actions
+export const{addUserInfo ,deleteuser}=AddUser.actions
 export default AddUser.reducer
