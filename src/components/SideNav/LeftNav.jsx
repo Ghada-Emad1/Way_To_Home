@@ -13,15 +13,30 @@ import { useSelector ,useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import Modal from "../Modal/Modal";
 import {useNavigate} from 'react-router-dom'
+import { deleteuser } from "../../AddReducer/AddUserInfo";
 
 const LeftNav = () => {
   const users = useSelector((state) => state.Adduser);
   const [showlogout, setshowlogout] = useState(false);
   const navigate=useNavigate();
+  const dispatch = useDispatch();
   console.log(users);
   
 
   const StyleLink = `flex items-center gap-2 font-bold text-basic text-lg`;
+  useEffect(() => {
+    console.log("Current Users:", users);
+    if (users.length === 0) {
+        navigate("/");
+    }
+  }, [users, navigate]);
+
+const handleLogout = () => {
+    if (users.length > 0) {
+        dispatch(deleteuser(users[0].id));
+        //navgate("/")
+    }
+};
   return (
     <aside className="sticky top-0 h-[100vh] w-[12%] md:[20%] sm:full  flex flex-col bg-light overflow-y-auto p-4">
       {users.length>0 ? users.map((element)=>(
@@ -117,7 +132,7 @@ const LeftNav = () => {
                     </div>
                 </div>
 
-          <div className="bg-white w-[300px] sm:w-[600px] text-center p-5 rounded-lg h-[200px] flex flex-col items-center justify-center">
+          {/* <div className="bg-white w-[300px] sm:w-[600px] text-center p-5 rounded-lg h-[200px] flex flex-col items-center justify-center">
             <h1 className="font-bold text-basic text-lg">
               Are You Sure you Logout?
             </h1>
@@ -140,7 +155,7 @@ const LeftNav = () => {
                 No
               </button>
             </div>
-          </div>
+          </div> */}
 
         </Modal>
       ) : null}

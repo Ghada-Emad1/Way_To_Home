@@ -9,8 +9,8 @@ const RightNav = () => {
   const [showAdd, setShowAdd] = useState(false);
 
   return (
-    <div className="w-1/4 ">
-      <div className=" h-[100vh]  bg-light text-basic font-semibold  flex justify-center pt-10">
+    <div className="w-[20%] ">
+      <div className=" h-[100vh]  bg-white shadow-lg text-basic font-semibold  flex justify-center pt-10">
         <div className="flex flex-col items-center gap-6">
           <div className="bg-white rounded-xl shadow-lg w-[150px]">
             <Link to="/dashboard/chatbot">
