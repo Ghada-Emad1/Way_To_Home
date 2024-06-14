@@ -41,7 +41,7 @@ const SignUp = () => {
       .matches(/[A-Z]/, "Passwords must have at least one uppercase character.")
       .matches(/[0-9]/, "Passwords must have at least one digit ('0'-'9')")
       .matches(
-        /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/,
+        /[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?]/,
         "Passwords must have at least one non alphanumeric character."
       ),
   });
@@ -78,11 +78,6 @@ const SignUp = () => {
     dispatch(
       addUserInfo({ id: newUserId, username, email })
     );
-    // setfirstName("");
-    // setlastName("");
-    // setusername("");
-    // setEmail("");
-    // setpassword("");
     navigate("/dashboard", { replace: true });
     console.log(firstName, lastName, username, email, password);
     reset();

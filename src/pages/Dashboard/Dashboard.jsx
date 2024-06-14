@@ -15,7 +15,7 @@ const Dashboard = () => {
   return (
     <div className="w-full flex justify-between bg-white h-[100vh]">
       <LeftNav />
-      <div className="w-[67%]">
+      <div className="w-1/2">
         {location.pathname === "/dashboard" ? (
           <DashboarHome />
         ) : (

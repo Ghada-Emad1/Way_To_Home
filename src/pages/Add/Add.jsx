@@ -16,27 +16,27 @@ const Add = () => {
   };
   return (
     <div>
-      <div className="w-[300px] bg-white flex gap-4 flex-col p-4 rounded-lg">
+      <div className="w-[120px] md:w-[300px] bg-white flex gap-4 flex-col p-4 rounded-lg">
         <h1 className="text-center font-bold text-basic text-xl">Add</h1>
-        <div className="flex flex-wrap gap-4">
-          <button className="bg-Orange text-white px-6 py-2 rounded-lg ">
+        <div className="flex justify-center  flex-wrap gap-4">
+          <button className="bg-Orange  text-white px-2 md:px-6 py-2 rounded-lg ">
             Shelter
           </button>
           <Link
             to="/dashboard/restaurant"
-            className="bg-Orange text-white px-6 py-2 rounded-lg "
+            className="bg-Orange  w-[90px] text-white px-2 md:px-6 py-2 rounded-lg "
           >
             Restaurant
           </Link>
           <div
-            className="bg-Orange text-white cursor-pointer px-6 py-2 rounded-lg "
+            className="bg-Orange   text-white cursor-pointer px-4 md:px-6 py-2 rounded-lg "
             onClick={() => setAddPost((prev) => !prev)}
           >
             Post
           </div>
           <Link
             to="/dashboard/missing"
-            className="bg-Orange text-white px-6 py-2 rounded-lg "
+            className="bg-Orange text-white  px-2 md:px-6 py-2 rounded-lg "
           >
             Missing
           </Link>
