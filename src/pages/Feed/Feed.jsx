@@ -1,5 +1,8 @@
 import { Outlet } from "react-router-dom";
+import imge from '/public/Ellipse7.png'
 import axios from "axios";
+import { FaHeart } from "react-icons/fa6";
+import { MdOutlineReportGmailerrorred } from "react-icons/md";
 import { AiFillLike } from "react-icons/ai";
 import { LiaCommentSolid } from "react-icons/lia";
 import { AiFillInfoCircle } from "react-icons/ai";
@@ -8,8 +11,23 @@ import "./style.css";
 import { useEffect, useState } from "react";
 
 const Feed = () => {
-  const users = useSelector((state) => state.Addfeed);
-  console.log(users);
+  const [likedPosts, setLikedPosts] = useState({});
+  const [showOne, setShowOne] = useState({});
+  const titledes = useSelector((state) => state.Addfeed);
+  const users = useSelector((state) => state.Adduser);
+
+  const handleClick = (postId) => {
+    setLikedPosts(prevLikedPosts => ({
+        ...prevLikedPosts,
+        [postId]: !prevLikedPosts[postId],
+    }));
+    setShowOne(prevShowOne => ({
+      ...prevShowOne,
+      [postId]: !prevShowOne[postId],
+  }));
+};
+
+  console.log(titledes);
   const [result, setresult] = useState([]);
 
   function fetchPost() {
@@ -22,7 +40,7 @@ const Feed = () => {
   }, []);
   return (
     <div className="m-3">
-      <div className="h-[100vh] overflow-auto grid-cols-1 grid md:grid-cols-2  gap-8   ">
+      <div className="h-[100vh] overflow-auto grid-cols-1 grid md:grid-cols-2  gap-4   ">
         {result.map((element) => (
           <div
             key={element.id}
@@ -52,14 +70,57 @@ const Feed = () => {
           </div>
         ))}
 
-        {users.map((element)=>{
-          <div key={element}>
-            <h1>{element.post}</h1>
-          </div>
-        })}
+        
+      {titledes.map((ele ,id)=>(
+              <div key={id} className= ' flex flex-col  bg-light p-3 gap-1 rounded-md'>
+                {users .map((e)=>(
+                  <div className='flex gap-2 items-center'>
+                      <img className='w-[70px] h-[70px]' src={imge}/>
+                      <div>
+                          <h1 className='text-Orange text-sm bold'>Needy</h1>
+                          <span className='text-Orange text-[15px]'>{e.username}</span>
+                      </div>
+                  </div>
+                ))}
+                  
+              <div className=' flex justify-center '>
+                  <p>{ele.postt }</p>
+              </div>
+              <div className='flex justify-evenly items-center mt-2 '>
+              {/* <AiFillLike  size={25} /> */}
+              <button onClick={()=>handleClick(id)}  className=' text-[#ff0000] flex gap-1'
+                
+                >
+                    {/* <FcLike /> */}
+                <FaHeart color={likedPosts[id] ? 'red' : '#28484A'} size={25} />
+                {showOne[id] && <span>1</span>}
+                {/* {clickCounts[id] > 0 ? (
+                            clickCounts[id] === 0 ? (
+                                <span>0</span>
+                            ) : (
+                                <span>1</span>
+                            )
+                ) : null} */}
+                {/* {clickCounts[id ] > 0 && (
+                  <span>{clickCounts [id ]}</span>
+                )} */}
+                {/* <span>{clickCounts[id] || 0}</span> */}
+                </button>
+              <button className='text-basic'>
 
-        <Outlet />
+                <LiaCommentSolid size={25} />
+              </button>
+              <button className='text-[#F9B300]'>
+
+                <MdOutlineReportGmailerrorred size={25} />
+              </button>
+
+              </div>
+          </div>
+
+            ))}
       </div>
+
     </div>
   );
 };
