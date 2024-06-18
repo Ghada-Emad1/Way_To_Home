@@ -1,14 +1,16 @@
 import {createSlice} from '@reduxjs/toolkit'
-import { userInfo } from '../data/UserInfo';
+//import { userInfo } from '../data/UserInfo';
 const AddUser=createSlice({
     name:'AddUser',
-    initialState:userInfo,
+    initialState:{
+        userInfo:[]
+    },
     reducers:{
         addUserInfo:(state,action)=>{
-            state.push(action.payload)
+            state.userInfo.push(action.payload)
         },
         deleteuser :( state ,action)=>{
-             return state.filter(item => item.id != action.payload)
+           state.userInfo = state.userInfo.filter(item => item.id != action.payload)
         },
 
     }

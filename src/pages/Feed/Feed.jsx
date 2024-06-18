@@ -13,8 +13,8 @@ import { useEffect, useState } from "react";
 const Feed = () => {
   const [likedPosts, setLikedPosts] = useState({});
   const [showOne, setShowOne] = useState({});
-  const titledes = useSelector((state) => state.Addfeed);
-  const users = useSelector((state) => state.Adduser);
+  const titledes = useSelector((state) => state.Addfeed.addpost);
+  const users = useSelector((state) => state.Adduser.userInfo);
 
   const handleClick = (postId) => {
     setLikedPosts(prevLikedPosts => ({

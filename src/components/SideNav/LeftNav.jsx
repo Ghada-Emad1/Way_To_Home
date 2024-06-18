@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteuser } from "../../AddReducer/AddUserInfo";
 
 const LeftNav = () => {
-  const users = useSelector((state) => state.Adduser);
+  const users = useSelector((state) => state.Adduser.userInfo);
   const [showlogout, setshowlogout] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -38,17 +38,19 @@ const LeftNav = () => {
   };
   return (
     <aside className="sticky top-0 h-[100vh] w-[12%] md:w-1/4 sm:full  flex flex-col bg-light overflow-y-auto p-4 ">
-      {users.length > 1 && (
-        <div key={users[1].id} className="flex flex-col items-center mt-4">
+      {users.length >0  ?  users.map((elment)=>(
+      
+        <div key={elment.id} className="flex flex-col items-center mt-4">
           <img src={userss} alt="Ellipse" className="w-[100px] rounded-full" />
           <div className="inline text-2xl text-center overflow-hidden text-ellipsis whitespace-nowrap w-full max-md:text-sm">
-            <p>{users[1].username || "No username provided"}</p>
+            <p>{elment.username || "No username provided"}</p>
           </div>
           <p className="overflow-hidden text-ellipsis whitespace-nowrap w-full text-center max-md:hidden">
-            {users[1].email}
+            {elment.email}
           </p>
         </div>
-      )}
+      )):""}
+        
 
       <div className="flex flex-col gap-8 mt-6">
         <div>

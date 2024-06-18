@@ -19,7 +19,7 @@ const SignUp = () => {
   const [username, setusername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
-  const users = useSelector((state) => state.Adduser);
+  const users = useSelector((state) => state.Adduser.userInfo);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
