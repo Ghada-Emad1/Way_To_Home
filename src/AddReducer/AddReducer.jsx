@@ -5,7 +5,8 @@ const AddSlice=createSlice({
     name:'Add',
     initialState:{
         addpost:[],
-        addShelter :[]
+        addShelter :[],
+        addwork :[],
     },
     reducers:{
         addUserpost:(state,action)=>{
@@ -16,10 +17,14 @@ const AddSlice=createSlice({
             state.addShelter.push(actions.payload);
             console.log(actions);
         },
+        work : ( state , actions)  =>{
+            state.addwork.push(actions.payload);
+            console.log(actions);
+        }, 
     }
 
 })
  
 
-export const{addUserpost ,Shelter}=AddSlice.actions
+export const{addUserpost ,Shelter , work}=AddSlice.actions
 export default AddSlice.reducer;

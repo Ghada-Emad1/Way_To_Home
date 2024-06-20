@@ -2,20 +2,28 @@ import { Outlet } from "react-router-dom";
 import { IoIosArrowDropdown } from "react-icons/io";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import ProfileImage from "/people.avif";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-
+import { IoMdClose } from "react-icons/io";
 import Modal from "../../components/Modal/Modal";
+import { deleteuser } from "../../AddReducer/AddUserInfo";
 const Settings = () => {
   const navigate = useNavigate();
-  const users = useSelector((state) => state.Adduser);
+  const dispatch = useDispatch ();
+  const users = useSelector((state) => state.Adduser.userInfo);
   const [showInfo, setShowInfo] = useState(false);
   const [showNotifi, setshowNotifi] = useState(false);
   const [showReport, setshowReport] = useState(false);
   const [deleteAcc, setdeleteAcc] = useState(false);
   console.log(users);
+  const handleLogout = () => {
+    if (users.length > 0) {
+      dispatch(deleteuser(users[0].id));
+      //navgate("/")
+    }
+  };
 
   return (
     <div className="  h-[100vh] overflow-auto text-nowrap">
@@ -52,18 +60,19 @@ const Settings = () => {
                     alt=""
                   />
                 </div>
+                {users.length >0  ?  users.map((element)=>(
                 <div>
                   <h1>
                     <span className="font-semibold text-basic text-lg">
                       Name:
                     </span>
-                    {users[1].username}
+                    {element.username}
                   </h1>
                   <p>
                     <span className="font-semibold text-basic text-lg">
                       Email :
                     </span>
-                    {users[1].email}
+                    {element.email}
                   </p>
                   <p>
                     <span className="font-semibold text-basic text-lg">
@@ -78,6 +87,7 @@ const Settings = () => {
                     Female
                   </p>
                 </div>
+                )):""}
               </div>
             ) : (
               ""
@@ -141,19 +151,19 @@ const Settings = () => {
                   </div>
                   <div className="ml-4 mt-6">
                     <div className="border-b border-b-basic mb-2">
-                      <p className="mb-2">Nudity</p>
+                      <p className="mb-2 hover:text-Orange">Nudity</p>
                     </div>
                     <div className="border-b border-b-basic mb-2">
-                      <p className="mb-2">Spam</p>
+                      <p className="mb-2 hover:text-Orange">Spam</p>
                     </div>
                     <div className="border-b border-b-basic mb-2">
-                      <p className="mb-2">Violence</p>
+                      <p className="mb-2 hover:text-Orange">Violence</p>
                     </div>
                     <div className="border-b border-b-basic mb-2">
-                      <p className="mb-2">Hate Speech</p>
+                      <p className="mb-2 hover:text-Orange">Hate Speech</p>
                     </div>
                     <div className="border-b border-b-basic mb-2">
-                      <p className="mb-2">Terroism</p>
+                      <p className="mb-2 hover:text-Orange">Terroism</p>
                     </div>
                   </div>
                 </div>
@@ -181,16 +191,22 @@ const Settings = () => {
       </div>
       {deleteAcc ? (
         <Modal>
-          <div className="bg-white w-[300px] sm:w-[600px] text-center p-5 rounded-lg h-[200px] flex flex-col items-center justify-center">
+          <div className="bg-white w-[300px] sm:w-[600px] text-center p-5 rounded-lg h-[200px] flex flex-col items-center justify-center relative">
+          <button className='absolute top-5 right-5 text-basic'
+                onClick={()=> setdeleteAcc(false)}
+                >
+                    <IoMdClose size={25}/>
+                </button>
             <h1 className="font-bold text-basic text-lg">
               Are You Sure you Want Delete Account?
             </h1>
             <div className="flex items-center justify-center gap-5 mt-5">
               <button
                 className="bg-Orange px-8 py-2 rounded-lg text-white font-bold text-lg"
-                onClick={() => {
-                  navigate("/");
-                }}
+                onClick={handleLogout}
+                // onClick={() => {{handleLogout}
+                //   //navigate("/");
+                // }}
               >
                 Yes
               </button>
