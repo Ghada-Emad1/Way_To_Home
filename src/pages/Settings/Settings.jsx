@@ -1,14 +1,18 @@
 import { Outlet } from "react-router-dom";
-import { IoIosArrowDropdown } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { MdOutlineAccountCircle } from "react-icons/md";
+import { CiSearch } from "react-icons/ci";
+
 import ProfileImage from "/people.avif";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
+import { MdArrowBackIosNew } from "react-icons/md";
 import Modal from "../../components/Modal/Modal";
 import { deleteuser } from "../../AddReducer/AddUserInfo";
+import { addUserInfo } from "../../AddReducer/AddUserInfo";
 const Settings = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch ();
@@ -16,38 +20,105 @@ const Settings = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [showNotifi, setshowNotifi] = useState(false);
   const [showReport, setshowReport] = useState(false);
-  const [deleteAcc, setdeleteAcc] = useState(false);
+  const [deleteAcc, setdeleteAcc] = useState(false); 
+  const [percent, setpercent] = useState('50%'); 
   console.log(users);
   const handleLogout = () => {
     if (users.length > 0) {
       dispatch(deleteuser(users[0].id));
       //navgate("/")
+      
     }
   };
 
+  //add more infomation user 
+  const stylee =`focus:outline-Orange px-2 py-1 rounded-md  border border-basic w-[300px] mb-2 `
+  const [addmoreinform , setaddmoreinform] =useState(false);
+  const [addphone , setaddphone] =useState('');
+  const [addgender , setaddgender] =useState('');
+  const onsubmit = (e) => {
+    e.preventDefault();
+    if (users.length > 0) {
+      dispatch(
+        addUserInfo({ id: users[0].id, phone: addphone, gender: addgender })
+      );
+      setaddmoreinform(false); // Close the modal after submitting
+      setaddphone('');
+      setaddgender('');
+      setpercent('75%')
+
+    }
+  };
+  
+    // const onsubmit =(e)=>{
+        
+    //     e.preventDefault();
+    //     dispatch(
+    //       addUserInfo({ phone:addphone , gender:addgender })
+    //     );
+        
+    // }
+    
+
   return (
     <div className="  h-[100vh] overflow-auto text-nowrap">
-      <div className="flex justify-center my-4">
-        <input
-          type="text"
-          placeholder="Search item"
-          className="border p-2 rounded-lg border-basic w-[300px]"
-        />
-      </div>
-      <div className="grid grid-cols-2">
-        <div className="mx-10 w-[300px]">
-          <h1 className="text-Text font-bold text-xl mb-3">General</h1>
+        <div className="relative flex items-center mt-2 m-auto w-11/12">
+          <CiSearch className="absolute top-[10px] left-1 text-gray-500" size={19}/>
+          <input className= ' bg-[#dcdfdf] p-2 rounded-sm pl-10 w-[70%]' type="text " 
+            placeholder='Search Items 'style={{ textAlign: 'left',  paddingLeft: '25px' }}
+            
+            
+          />
+        </div>
+          
+          
+      <div className="grid  md-grid-cols-2 grid-cols-1">
+        <div className="mx-10 w-[310px] mt-5">
+
+        <div className="flex  flex-row items-center mb-3 ">
+            <div className="text-[#497174]">
+
+            <MdArrowBackIosNew size={23} />
+            </div>
+            <h1 className=" text-[24px] font-semibold mx-2" >
+            Settings
+
+            </h1>
+          </div>
+
+
+          <div className="flex flex-row max-md:flex-col w-full bg-teal-900 p-6 gap-6 rounded-md">
+            <div className="bg-[#497174] flex justify-center items-center p-3 rounded-full border-2 border-inherit h-[70px]">
+
+            <h1 className="text-white text-[24px] font-semibold leading-7">{percent}</h1>
+
+            </div>
+            <div className="flex flex-col ">
+              <h1 className="text-white text-[18px] font-semibold  leading-7">Profile Information</h1>
+              <p className="text-white  text-[14px] font-thin  leading-7">Lorem ipsum dolor sit amet</p>
+              <button className="bg-white text-teal-900  rounded-md py-1 mt-2 font-semibold px-1 "
+              onClick={() => setaddmoreinform((prev) => !prev)}
+              >Complete your profile</button>
+            </div>
+
+           
+          </div>
+          
+          
+
+
+          <h1 className=" font-bold text-xl mb-3 text-[#848484]">General</h1>
           <div className="bg-light rounded-lg p-4">
             <div className="flex justify-between">
-              <button className="flex items-center gap-2">
+              <button className="flex items-center gap-2 text-[15px] font-semibold text-[#497174] ">
                 <MdOutlineAccountCircle size={25} />
                 Account
               </button>
               <button
-                className=" transition-all ease-out duration-150"
+                className=" transition-all ease-out duration-150 text-[#497174]"
                 onClick={() => setShowInfo((prev) => !prev)}
               >
-                <IoIosArrowDropdown size={20} />
+                <IoIosArrowDown  size={20} />
               </button>
             </div>
 
@@ -78,13 +149,13 @@ const Settings = () => {
                     <span className="font-semibold text-basic text-lg">
                       Phone:
                     </span>
-                    01924322
+                    {element.phone}
                   </p>
                   <p>
                     <span className="font-semibold text-basic text-lg">
                       Gender:
                     </span>
-                    Female
+                    {element.gender}
                   </p>
                 </div>
                 )):""}
@@ -96,12 +167,12 @@ const Settings = () => {
 
           <div className="bg-light rounded-lg p-4 mt-6">
             <div className="flex justify-between">
-              <button className="flex items-center gap-2">
+              <button className="flex items-center gap-2 text-[15px] font-semibold text-[#497174]">
                 <IoMdNotificationsOutline size={25} />
                 Notification
               </button>
-              <button className=" transition-all ease-out duration-150">
-                <IoIosArrowDropdown
+              <button className=" transition-all ease-out duration-150 text-[#497174]">
+                <IoIosArrowDown 
                   size={20}
                   onClick={() => setshowNotifi((prev) => !prev)}
                 />
@@ -130,15 +201,15 @@ const Settings = () => {
             )}
           </div>
           <div className="mt-10 w-[300px]">
-            <h1 className="text-Text font-bold text-xl mb-3">FeedBack</h1>
+            <h1 className="text-[#848484] font-bold text-xl mb-3">FeedBack</h1>
             <div className="bg-light rounded-lg p-4">
               <div className="flex justify-between">
-                <button className="flex items-center gap-2">
+                <button className="flex items-center gap-2 text-[15px] font-semibold text-[#497174]">
                   <MdOutlineAccountCircle size={25} />
                   Report
                 </button>
-                <button className=" transition-all ease-out duration-150">
-                  <IoIosArrowDropdown
+                <button className=" transition-all ease-out duration-150 text-[#497174]">
+                  <IoIosArrowDown 
                     size={20}
                     onClick={() => setshowReport((prev) => !prev)}
                   />
@@ -178,7 +249,7 @@ const Settings = () => {
           >
             <div className="bg-light rounded-lg p-4">
               <div className="flex justify-between">
-                <button className="flex items-center gap-2">
+                <button className="flex items-center gap-2 text-[15px] font-semibold text-[#497174]">
                   <MdOutlineAccountCircle size={25} />
                   Delete Account
                 </button>
@@ -222,6 +293,57 @@ const Settings = () => {
           </div>
         </Modal>
       ) : null}
+    {/* add more information phone and Gender */}
+    {addmoreinform ? (
+        <Modal>
+            <div className="bg-white w-[350px] sm:w-[500px] text-center p-5 rounded-lg  flex flex-col items-center justify-center relative  ">
+                <button className='absolute top-5 right-5 text-basic'
+                onClick={()=> setaddmoreinform(false)}
+                >
+                    <IoMdClose size={25}/>
+                </button>
+                <h1 className='text-[30px] text-Orange'>Add More Information </h1>
+                <div className="  gap-5 mt-5">
+                <form onSubmit={onsubmit}
+                        className='  gap-3'>
+                            <div className='flex flex-col justify-start items-start    '>
+                                
+                                    <label className="font-bold text-basic mb-2"> Your Phone</label>
+                                    <input type='text'
+                                       onChange={(e) => setaddphone(e.target.value)}
+                                        placeholder='Enter your Phone'
+                                    className={stylee}
+                                    />
+
+                                    
+                               
+
+                                <label className="font-bold text-basic mb-2">  Gender  </label>
+                                <input type='text'
+                                  onChange={(e) => setaddgender(e.target.value)}
+                                    placeholder='Enter your Gender'
+                                    
+                                className={stylee}
+                                
+                                />
+  
+                                <div>
+
+                                    <button className='px-6 py-2 rounded-md text-white bg-Orange mt-1'>Add</button>
+                                </div> 
+
+                               
+                            </div>
+                        </form>
+
+                   
+                </div>
+            </div>
+        </Modal>
+
+    ):null}
+
+
     </div>
   );
 };
