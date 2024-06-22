@@ -36,9 +36,21 @@ const Settings = () => {
   const [addmoreinform , setaddmoreinform] =useState(false);
   const [addphone , setaddphone] =useState('');
   const [addgender , setaddgender] =useState('');
+  const [error , seterror] = useState({addphone :'' ,addgender :'' });
   const onsubmit = (e) => {
     e.preventDefault();
-    if (users.length > 0) {
+    let newErrors = { addphone :'' ,addgender :''  };
+    if (addphone =='') {
+        
+        newErrors.addphone = 'Please Enter Your Phone';
+        
+    }
+    if (addgender =='') {
+        
+        newErrors.addgender = 'Please Enter Your Gender';
+    }
+    seterror(newErrors);
+    if ( addphone && addgender && users.length > 0) {
       dispatch(
         addUserInfo({ id: users[0].id, phone: addphone, gender: addgender })
       );
@@ -314,7 +326,7 @@ const Settings = () => {
                                         placeholder='Enter your Phone'
                                     className={stylee}
                                     />
-
+                                      {error.addphone && <span className="text-red-500">{error.addphone}</span>}
                                     
                                
 
@@ -326,7 +338,8 @@ const Settings = () => {
                                 className={stylee}
                                 
                                 />
-  
+                                
+                                {error.addgender && <span className="text-red-500">{error.addgender}</span>}
                                 <div>
 
                                     <button className='px-6 py-2 rounded-md text-white bg-Orange mt-1'>Add</button>
