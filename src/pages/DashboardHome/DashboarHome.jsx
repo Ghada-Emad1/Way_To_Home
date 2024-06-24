@@ -4,15 +4,6 @@ import { HomelessDashboard } from "../../data/HomelessDasboard";
 const DashboarHome = () => {
   return (
     <div className="h-[100vh] overflow-auto">
-      {/* <div className="flex justify-center m-4">
-        <input
-          className="w-[350px] px-3 py-1 rounded-lg border border-basic"
-          type="text"
-          placeholder="Search item"
-          name=""
-          id=""
-        />
-      </div> */}
       <div className=" mt-8 flex flex-wrap justify-center gap-10 ">
         {HomelessDashboard.map((element, index) => (
           <div  key={index}>

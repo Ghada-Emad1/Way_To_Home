@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Outlet } from "react-router-dom";
-//import "./stylework.css";
-//import { WorksList } from "../../data/WorksList";
+
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const Works = () => {
