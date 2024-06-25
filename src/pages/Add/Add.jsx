@@ -90,6 +90,7 @@ const Add = () => {
   // add work
   const [addWork, setaddWork] = useState(false);
   const [namejob, setnamejob] = useState("");
+  const [descrptionwork, setdescrptionwork] = useState("");
   const [workaddrese, setworkaddrese] = useState("");
   const [workemail, setworkemail] = useState("");
   const [Workhour, setWorkhour] = useState("");
@@ -97,6 +98,7 @@ const Add = () => {
   const [skills, setskills] = useState("");
   const [errorwork, seterrorwork] = useState({
     namejob: "",
+    descrptionwork,
     workaddrese: "",
     workemail: "",
     Workhour: "",
@@ -109,6 +111,7 @@ const Add = () => {
     e.preventDefault();
     let newErrors = {
       namejob: "",
+      descrptionwork:"",
       workaddrese: "",
       workemail: "",
       Workhour: "",
@@ -118,6 +121,9 @@ const Add = () => {
 
     if (namejob == "") {
       newErrors.namejob = "Please enter your name job";
+    }
+    if (descrptionwork == "") {
+      newErrors.descrptionwork = "Please enter Description";
     }
 
     if (workaddrese == "") {
@@ -139,16 +145,17 @@ const Add = () => {
 
     seterrorwork(newErrors);
 
-    if (namejob && workaddrese && workemail && Workhour && skills && Salary) {
+    if (namejob && descrptionwork &&workaddrese && workemail && Workhour && skills && Salary ) {
 
       const jobData = {
         //id: 9, // تحقق من أن هذا لن يتعارض مع البيانات في قاعدة البيانات.
-        namejob: namejob,
-        workaddrese: workaddrese,
-        workemail: workemail,
-        Workhour: Workhour,
+        title: namejob,
+        description: descrptionwork,
+        location: workaddrese,
+        contactInformation: workemail,
+        hours: Workhour,
         skills: skills,
-        Salary: Salary,
+        salary: Salary,
       };
       //http://homecompass.runasp.net/
       try {
@@ -156,6 +163,7 @@ const Add = () => {
         dispatch(work(jobData));
         navgate("/dashboard/Works");
         setnamejob("");
+        setdescrptionwork("")
         setworkaddrese("");
         setworkemail("");
         setWorkhour("");
@@ -345,6 +353,20 @@ const Add = () => {
 
                   {errorwork.namejob && (
                     <span className="text-red-500">{errorwork.namejob}</span>
+                  )}
+                  <label className="font-bold text-basic mb-2"> Description</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setdescrptionwork(e.target.value);
+                      seterrorwork({ descrptionwork: "" });
+                    }}
+                    placeholder="Enter Description"
+                    className={stylee}
+                  />
+
+                  {errorwork.descrptionwork && (
+                    <span className="text-red-500">{errorwork.descrptionwork}</span>
                   )}
 
                   <label className="font-bold text-basic mb-2"> Address </label>
