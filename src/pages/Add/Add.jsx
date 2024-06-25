@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdClose } from "react-icons/io";
-import { Shelter, addUserpost, work } from "../../AddReducer/AddReducer";
+import { Shelter, addUserpost, homeless, work } from "../../AddReducer/AddReducer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
@@ -156,11 +156,14 @@ const Add = () => {
         hours: Workhour,
         skills: skills,
         salary: Salary,
+        categoryId:1,
+        contributorId:"df864a81-c1cc-460a-9fc5-50f12d370ac9"
       };
       //http://homecompass.runasp.net/
+      http://homecompass.runasp.net/Job
       try {
         await axios.post('https://homecompass.runasp.net/job', jobData);
-        dispatch(work(jobData));
+        //dispatch(work(jobData));
         navgate("/dashboard/Works");
         setnamejob("");
         setdescrptionwork("")
@@ -173,6 +176,63 @@ const Add = () => {
       } catch (error) {
         console.error("There was an error sending the data to the API", error);
       }
+    }
+  };
+
+  // add missing
+  const [addMissing, setAddMissing] = useState(false);
+  const [name, setname] = useState("");
+  const [missingDescription, setmissingDescription] = useState("");
+  const [missinglocation, setMissinglocation] = useState("");
+  const [missingsince, setmissingsince] = useState("");
+  const [missingErrors, setMissingErrors] = useState({
+    name: "",
+    missingDescription: "",
+    missinglocation: "",
+    missingsince: "",
+  });
+  
+  const addmising =useSelector((state) => state.Addfeed.addhomeless);
+
+  const handleMissingSubmit = (e) => {
+    e.preventDefault();
+    let newErrors = {
+      name: "",
+      missingDescription: "",
+      missinglocation: "",
+      missingsince: "",
+    };
+
+    if (name === "") {
+      newErrors.name = "Please Enter Your Name";
+    }
+    if (missingDescription === "") {
+      newErrors.missingDescription = "Please Enter description";
+    }
+    if (missinglocation === "") {
+      newErrors.missinglocation = "Please Enter Location";
+    }
+    if (missingsince === "") {
+      newErrors.missingsince = "Please Enter Time of mising ";
+    }
+
+    setMissingErrors(newErrors);
+
+    if (name && missingDescription && missinglocation && missingsince) {
+      dispatch(
+        homeless({
+          id: addmising.length + 1,
+          name: name,
+          missingDescription:missingDescription ,
+          missinglocation: missinglocation ,
+          missingsince: missingsince,
+        })
+      );
+      setname("");
+      setmissingDescription("");
+      setMissinglocation("");
+      setmissingsince("");
+      setAddMissing(false);
     }
   };
 
@@ -205,12 +265,12 @@ const Add = () => {
           >
             Post
           </div>
-          <Link
-            to="/dashboard/missing"
-            className="bg-Orange text-white  px-2 md:px-6 py-2 rounded-lg "
+          <button
+            className="bg-Orange  text-white px-2 md:px-6 py-2 rounded-lg "
+            onClick={() => setAddMissing((prev) => !prev)}
           >
-            Missing
-          </Link>
+            Mising
+          </button>
         </div>
       </div>
 
@@ -452,6 +512,95 @@ const Add = () => {
           </div>
         </Modal>
       ) : null}
+      {/* add mising */}
+      {addMissing ? (
+        <Modal>
+          <div className="bg-white w-[320px] sm:w-[550px] text-center p-5 rounded-lg  flex flex-col items-center justify-center relative  ">
+
+          <button
+              className="absolute top-5 right-5 text-basic"
+              onClick={() => setAddMissing(false)}
+            >
+              <IoMdClose size={25} />
+            </button>
+            <h1 className="text-[30px] text-Orange">Add Missing People </h1>
+            <div className="  mt-4">
+              <form onSubmit={handleMissingSubmit} className="  gap-3">
+                <div className="flex flex-col justify-start items-start    ">
+                  <label className="font-bold text-basic mb-2"> Your Name</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setname(e.target.value);
+                      setMissingErrors({ name: "" });
+                    }}
+                    placeholder="Enter your Name"
+                    className={stylee}
+                  />
+
+                  {missingErrors.name && (
+                    <span className="text-red-500">{missingErrors.name}</span>
+                  )}
+                  <label className="font-bold text-basic mb-2"> Description</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setmissingDescription(e.target.value);
+                      setMissingErrors({ missingDescription: "" });
+                    }}
+                    placeholder="Enter Description"
+                    className={stylee}
+                  />
+
+                  {missingErrors.missingDescription && (
+                    <span className="text-red-500">{missingErrors.missingDescription}</span>
+                  )}
+
+                  <label className="font-bold text-basic mb-2"> Location </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setMissinglocation(e.target.value);
+                      setMissingErrors({ missinglocation: "" });
+                    }}
+                    placeholder="Enter your Location"
+                    className={stylee}
+                  />
+                  {missingErrors.missinglocation && (
+                    <span className="text-red-500">
+                      {errorwork.missinglocation}
+                    </span>
+                  )}
+
+                  <label className="font-bold text-basic mb-2"> Missing Since </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setmissingsince(e.target.value);
+                      setMissingErrors({ missingsince: "" });
+                    }}
+                    placeholder="Missing Since"
+                    className={stylee}
+                  />
+                  {missingErrors.missingsince && (
+                    <span className="text-red-500">{missingErrors.missingsince}</span>
+                  )}
+
+                  
+                  <div>
+                    <button className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
+        </Modal>
+
+      ):null}
     </div>
   );
 };

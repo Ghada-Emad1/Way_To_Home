@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import imge from '/public/missing.jpg';
 
 const Missing = () => {
   const[missingpeople,setmissingpeople]=useState([])
@@ -14,6 +16,7 @@ const Missing = () => {
   useEffect(() => {
     GetMissingPeople();
   }, []);
+  const addmising =useSelector((state) => state.Addfeed.addhomeless);
   return (
     <div className="bg-white  flex flex-col overflow-auto h-[100vh] text-nowrap">
      
@@ -46,6 +49,40 @@ const Missing = () => {
 
                 <div>
                   <p className="font-bold text-Orange">Missing Since :{" "}<span className="font-light text-basic">{element.missingDate} </span></p>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+        {addmising.map((element, index) => (
+          <div
+            key={index}
+            className="bg-light p-4 content flex rounded-md   "
+          >
+            <div>
+              <div className="flex justify-center mb-4 m-auto">
+                <img
+                  className="w-[360px] h-[200px]  rounded-sm  "
+                  src={imge}
+                  alt=""
+                />
+              </div>
+              <div className="flex flex-col gap-2 ">
+                <h1>
+                  <span className="text-basic font-bold">Name:</span>{" "}
+                  {element.name}
+                </h1>
+               
+                <div className="flex text-wrap px-5">
+                <p className="w-[200px] text-basic">{element.missingDescription}</p>
+
+                </div>
+                
+                <p><span className="font-bold text-basic">Location: </span>{element.missinglocation}</p>
+
+                <div>
+                  <p className="font-bold text-Orange">Missing Since :{" "}<span className="font-light text-basic">{element.missingsince} </span></p>
                   
                 </div>
               </div>

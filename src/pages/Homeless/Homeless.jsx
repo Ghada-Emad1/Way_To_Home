@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import img from "/public/homeless.jpeg";
-const Works = () => {
+const Homeless = () => {
   const [resp, setresp] = useState([]);
   useEffect(() => {
     axios
@@ -78,4 +78,4 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default Homeless;
