@@ -12,7 +12,7 @@ const Shelter = () => {
   const addshelter = useSelector((state)=> state.Addfeed.addShelter)
   const[resp, setresp]= useState([]);
   useEffect(()=>{
-    axios .get(`https://homecompassapi.azurewebsites.net/Facility/bycategory/7`).then((res)=>{
+    axios .get(`http://homecompass.runasp.net/Facility/bycategory/10`).then((res)=>{
       //console.log(res);
       setresp(res.data)
       
@@ -20,6 +20,7 @@ const Shelter = () => {
       console.log(err);
     })
   })
+  //http://homecompass.runasp.net/index.html
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
       <div className="flex gap-5 justify-center my-4">
@@ -32,48 +33,48 @@ const Shelter = () => {
             Search
           </button>
       </div>
-      <div className=" grid grid-cols-1 gap-4 mx-4 max-lg:flex flex-col ">
+      <div className=" mt-4  ">
         {resp.map((data , id) => (
-          <div key={id} className="flex gap-10 flex-row   p-5 bg-[#EFF5F5] rounded-[8px] "> 
+          <div key={id} className="flex  m-2 p-3 bg-light space-x-12 rounded-lg max-lg:flex-col "> 
               {/* flex gap-20 */}
                 
                   <div className='flex flex-col  items-center'>
                     <img 
-                      className="w-[350px] h-[250px] object-cover rounded-lg "
+                     className='w-[300px] h-[200px] rounded-md'
                       src={data.photoUrl}
                       alt=""
                       />
-                      <h1  className='text-center'>{data.name}</h1>
+                      <h1  className='text-center mt-1'>{data.name}</h1>
                   </div>
-                  <div className='flex flex-col justify-evenly p-1'>
+                  <div className='flex-1'>
                     {/* <h1>
                       <span className="text-basic font-bold"> Restaurant :</span>{" "}
                       {data.contactInformaton}
                     </h1> */}
-                    <h1 className='p-y-4'>
+                    <h1 className='p-y-4 text-basic text-[16px] font-normal'>
                       <span className="text-basic font-bold text-balance"> Contact :</span>{" "}
                       {data.contactInformaton}
                     </h1>
-                    <h1 className='text-balance p-y-4'>
+                    <h1 className='text-balance p-y-4 text-basic text-[16px] font-normal'>
                       <span className="text-basic font-bold"> Description :</span>{" "}
                       {data.description}
                     </h1>
-                    <h1 className='text-balance p-y-4'>
+                    <h1 className='text-balance p-y-4 text-basic text-[16px] font-normal'>
                       <span className="text-basic font-bold"> Target :</span>{" "}
                       {data.target}
                     </h1>
-                    <h1 className='text-balance p-y-4'>
+                    <h1 className='text-balance p-y-4 text-basic text-[16px] font-normal'>
                       <span className="text-basic font-bold"> resources :</span>{" "}
                       <ul>
-                        <li>
-                        {data.resources.name}
-                        </li>
-
-                
+                        {data.resources.map((resource, index) => (
+                          <li key={index}>
+                            {resource.name}
+                          </li>
+                        ))}
                       </ul>
                       
                     </h1>
-                    <h1 className='text-balance p-y-4'>
+                    <h1 className='text-balance p-y-4 text-basic text-[16px] font-normal'>
                       <span className="text-basic font-bold"> Address :</span>{" "}
                       {data.location}
                     </h1>

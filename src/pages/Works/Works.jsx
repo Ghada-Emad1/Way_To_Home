@@ -7,12 +7,13 @@ import { useSelector } from "react-redux";
 const Works = () => {
   const[resp, setresp]= useState([]);
   useEffect(()=>{
-    axios .get('https://homecompassapi.azurewebsites.net/Job').then((res)=>{
+    axios .get('http://homecompass.runasp.net/Job').then((res)=>{
       setresp(res.data)
     }).catch((err)=>{
       console.log(err);
     })
   })
+  ///http://homecompass.runasp.net//Job
   const addwork = useSelector((state)=> state.Addfeed.addwork);
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
@@ -31,7 +32,7 @@ const Works = () => {
           {resp.map((data, id) => (
             <div key={id} className=" block  p-5 bg-[#EFF5F5] rounded-[8px]"> 
               <div>
-                <p className="text-[#497174] text-lg font-semibold Inter">
+                <p className="text-[#497174] text-lg font-bold Inter">
                   {data.title}</p>
               </div>
               <div>
@@ -53,18 +54,19 @@ const Works = () => {
               <div>
                 <h5 className="text-[#EB6440] Inter mt-1">
                 <span className="text-basic font-bold Inter "> Work hours :</span>{" "}
-                  {data.salary}
+                {data.hours}
+                  
                 </h5>
               </div>
               <div>
                 <h5 className="text-[#EB6440] Inter mt-1">
                 <span className="text-basic font-bold Inter "> Salary :</span>{" "}
-                  {data.hours}
+                {data.salary}
                 </h5>
               </div>
               <div>
-                <h5 className="text-[#497174] Inter mt-1">
-                <span className="text-basic font-bold Inter "> skills :</span>{" "}
+                <h5 className="text-[#497174] Inter mt-1 text-balance">
+                <span className="text-basic  font-bold Inter "> skills :</span>{" "}
                   {data.skills}
                 </h5>
               </div>
