@@ -1,13 +1,18 @@
 export const HomelessDashboard = [
   {
     img: "/shelterdashboard.png",
-    name: "Shelter",
+    name: "Facility",
     link: "/dashboard/shelter",
   },
   {
-    img: "/foodDashboard.png",
-    name: "Foods",
-    link: "/dashboard/food",
+    img: "/misspeople.jpeg",
+    name: "Missing People",
+    link: "/dashboard/missingpeople",
+  },
+  {
+    img:"/homeless.jpeg",
+    name:"Homeless",
+    link:"/dashboard/homeless"
   },
   {
     img: "/workDashboard.png",
