@@ -228,6 +228,7 @@ const Add = () => {
           missingsince: missingsince,
         })
       );
+      navgate("/dashboard/missingpeople");
       setname("");
       setmissingDescription("");
       setMissinglocation("");
