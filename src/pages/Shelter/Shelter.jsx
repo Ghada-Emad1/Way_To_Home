@@ -22,11 +22,11 @@ const Shelter = () => {
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
       
-      <div className=" grid grid-cols-1 gap-4 mx-4 max-lg:flex flex-col ">
+      <div className="  ">
         {resp.map((data, id) => (
           <div
             key={id}
-            className="flex gap-10 flex-row   p-5 bg-[#EFF5F5] rounded-[8px] "
+            className="flex  m-2 p-2 bg-light space-x-12 rounded-lg max-lg:flex-col "
           >
             {/* flex gap-20 */}
 
@@ -38,22 +38,22 @@ const Shelter = () => {
               />
               <h1 className="text-center">{data.name}</h1>
             </div>
-            <div className="flex flex-col justify-evenly p-1">
-              <h1 className="text-balance p-y-4">
+            <div className="flex-1   gap-5">
+              <h1 className="text-balance mb-2 mt-3">
                 <span className="text-basic font-bold"> Description :</span>{" "}
                 {data.description}
               </h1>
-              <h1 className="text-balance p-y-4">
+              <h1 className="text-balance mb-2">
                 <span className="text-basic font-bold"> Target :</span>{" "}
                 {data.target}
               </h1>
-              <h1 className="text-balance p-y-4">
+              <h1 className="text-balance mb-2">
                 <span className="text-basic font-bold"> resources :</span>{" "}
                 <ul>
                   <li>{data.resources.name}</li>
                 </ul>
               </h1>
-              <h1 className="text-balance p-y-4">
+              <h1 className="text-balance mb-2">
                 <span className="text-basic font-bold"> Address :</span>{" "}
                 {data.location}
               </h1>

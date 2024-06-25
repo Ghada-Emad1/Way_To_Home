@@ -17,21 +17,21 @@ const Missing = () => {
   return (
     <div className="bg-white  flex flex-col overflow-auto h-[100vh] text-nowrap">
      
-      <div className=" grid grid-cols-2 justify-center items-center gap-4 mx-4 bg-white">
+      <div className=" grid grid-cols-2 gap-3 p-2 max-lg:grid-cols-1 ">
         {missingpeople.map((element, index) => (
           <div
             key={index}
-            className="bg-light p-4 content flex justify-center   gap-2 max-sm:flex flex-row "
+            className="bg-light p-4 content flex rounded-md   "
           >
             <div>
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-4 m-auto">
                 <img
-                  className="w-[200px] h-[150px] object-cover rounded-sm "
+                  className="w-[360px] h-[200px]  rounded-sm  "
                   src={element.photoURL}
                   alt=""
                 />
               </div>
-              <div className="flex flex-col gap-2 items-center">
+              <div className="flex flex-col gap-2 ">
                 <h1>
                   <span className="text-basic font-bold">Name:</span>{" "}
                   {element.name}

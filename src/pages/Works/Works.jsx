@@ -18,7 +18,7 @@ const Works = () => {
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
         
 
-        <div className=" grid grid-cols-2  gap-4 mx-4 max-lg:flex flex-col mt-2">
+        <div className=" grid grid-cols-2 gap-3 p-2 max-lg:grid-cols-1">
           {resp.map((data, id) => (
             <div key={id} className="p-5 bg-[#EFF5F5] rounded-[8px]"> 
               <div>
@@ -55,8 +55,8 @@ const Works = () => {
                 </h5>
               </div>
               <div>
-                <h5 className="text-[#497174] Inter mt-1">
-                <span className="text-basic font-bold Inter "> skills :</span>{" "}
+                <h5 className="text-[#497174] Inter mt-1 text-pretty">
+                <span className="text-basic font-bold Inter"> skills :</span>{" "}
                   {data.skills}
                 </h5>
               </div>
