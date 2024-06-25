@@ -56,7 +56,7 @@ const Works = () => {
               </div>
               <div>
                 <h5 className="text-[#497174] Inter mt-1 text-pretty">
-                <span className="text-basic font-bold Inter"> skills :</span>{" "}
+                <span className="text-basic font-bold "> skills :</span>{" "}
                   {data.skills}
                 </h5>
               </div>
