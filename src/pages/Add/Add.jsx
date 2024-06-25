@@ -5,6 +5,7 @@ import { IoMdClose } from "react-icons/io";
 import { Shelter, addUserpost, work } from "../../AddReducer/AddReducer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import axios from 'axios';
 const Add = () => {
   const navgate = useNavigate();
   const dispatch = useDispatch();
@@ -104,7 +105,7 @@ const Add = () => {
   });
   const addwork = useSelector((state) => state.Addfeed.addwork);
   // submit for work
-  const hundelsubmitwork = (e) => {
+  const hundelsubmitwork = async(e) => {
     e.preventDefault();
     let newErrors = {
       namejob: "",
@@ -139,26 +140,31 @@ const Add = () => {
     seterrorwork(newErrors);
 
     if (namejob && workaddrese && workemail && Workhour && skills && Salary) {
-      dispatch(
-        work({
-          id: addwork.length + 1,
-          namejob: namejob,
-          workaddrese: workaddrese,
-          workemail: workemail,
-          Workhour: Workhour,
-          skills: skills,
-          Salary: Salary,
-        })
-      );
-      navgate("/dashboard/Works");
-      setnamejob("");
-      setworkaddrese("");
-      setworkemail("");
-      setWorkhour("");
-      setSalary("");
-      setskills("");
 
-      setaddWork(false);
+      const jobData = {
+        //id: 9, // تحقق من أن هذا لن يتعارض مع البيانات في قاعدة البيانات.
+        namejob: namejob,
+        workaddrese: workaddrese,
+        workemail: workemail,
+        Workhour: Workhour,
+        skills: skills,
+        Salary: Salary,
+      };
+      //http://homecompass.runasp.net/
+      try {
+        await axios.post('https://homecompass.runasp.net/job', jobData);
+        dispatch(work(jobData));
+        navgate("/dashboard/Works");
+        setnamejob("");
+        setworkaddrese("");
+        setworkemail("");
+        setWorkhour("");
+        setSalary("");
+        setskills("");
+        setaddWork(false);
+      } catch (error) {
+        console.error("There was an error sending the data to the API", error);
+      }
     }
   };
 

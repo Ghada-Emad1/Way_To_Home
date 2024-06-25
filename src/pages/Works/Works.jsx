@@ -65,7 +65,7 @@ const Works = () => {
           ))}
 
 
-          {addwork.map((data, id) => (
+          {/* {addwork.map((data, id) => (
             <div key={id} className=" block  p-5 bg-[#EFF5F5] rounded-[8px]"> 
               <div>
                 <p className="text-[#497174] text-lg font-semibold Inter">
@@ -107,7 +107,7 @@ const Works = () => {
               </div>
               
             </div>
-          ))}
+          ))} */}
 
         </div>
       <Outlet />
