@@ -7,6 +7,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineFeed } from "react-icons/md";
 import userss from "/public/unkownProfile.png";
+import { PiMaskSadLight } from "react-icons/pi";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -61,20 +62,32 @@ const LeftNav = () => {
             }
           >
             <MdOutlineNightShelter size={25} />
-            <p className="lg:block max-md:hidden"> Shelter </p>
+            <p className="lg:block max-md:hidden"> Facility </p>
           </NavLink>
         </div>
         <div>
           <NavLink
-            to="/dashboard/food"
+            to="/dashboard/missingpeople"
             className={({ isActive }) =>
               isActive ? `${StyleLink} text-red-500` : StyleLink
             }
           >
             <MdOutlineFoodBank size={25} />
-            <p className="lg:block max-md:hidden"> Food </p>
+            <p className="lg:block max-md:hidden"> Missing People </p>
           </NavLink>
         </div>
+        <div>
+          <NavLink
+            to="/dashboard/homeless"
+            className={({ isActive }) =>
+              isActive ? `${StyleLink} text-red-500` : StyleLink
+            }
+          >
+            <PiMaskSadLight size={25} />
+            <p className="lg:block max-md:hidden"> HomeLess </p>
+          </NavLink>
+        </div>
+        
 
         <div>
           <NavLink

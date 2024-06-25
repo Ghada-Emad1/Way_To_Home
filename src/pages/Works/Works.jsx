@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Works = () => {
   const[resp, setresp]= useState([]);
   useEffect(()=>{
-    axios .get('https://homecompassapi.azurewebsites.net/Job').then((res)=>{
+    axios .get('http://homecompass.runasp.net/Job').then((res)=>{
       setresp(res.data)
     }).catch((err)=>{
       console.log(err);
@@ -15,22 +15,13 @@ const Works = () => {
   const addwork = useSelector((state)=> state.Addfeed.addwork);
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
-        {/* <div className="flex gap-5 justify-center my-4">
-          <input
-            type="text"
-            placeholder="Search for Your Work"
-            className="rounded-lg border border-basic w-[350px] p-2 "
-          />
-          <button className="rounded-lg bg-basic px-6 py-2 text-white font-semibold">
-            Search
-          </button>
-        </div> */}
+        
 
-        <div className=" grid grid-cols-2 gap-4 mx-4 max-lg:flex flex-col mt-2">
+        <div className=" grid grid-cols-2  gap-4 mx-4 max-lg:flex flex-col mt-2">
           {resp.map((data, id) => (
-            <div key={id} className=" block  p-5 bg-[#EFF5F5] rounded-[8px]"> 
+            <div key={id} className="p-5 bg-[#EFF5F5] rounded-[8px]"> 
               <div>
-                <p className="text-[#497174] text-lg font-semibold Inter">
+                <p className="text-[#497174] text-lg font-semibold">
                   {data.title}</p>
               </div>
               <div>
@@ -63,7 +54,7 @@ const Works = () => {
               </div>
               <div>
                 <h5 className="text-[#497174] Inter mt-1">
-                <span className="text-basic font-bold Inter "> skills :</span>{" "}
+                <span className="text-basic font-bold Inter  "> skills :</span>{" "}
                   {data.skills}
                 </h5>
               </div>

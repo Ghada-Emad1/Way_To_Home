@@ -11,7 +11,6 @@ const AddUser=createSlice({
         const userIndex = state.userInfo.findIndex(user => user.id === id);
 
         if (userIndex !== -1) {
-            // Update existing user info
             state.userInfo[userIndex] = {
             ...state.userInfo[userIndex],
             phone,

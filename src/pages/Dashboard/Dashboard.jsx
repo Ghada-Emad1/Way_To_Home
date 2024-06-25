@@ -2,13 +2,14 @@ import LeftNav from "../../components/SideNav/LeftNav";
 import { Route, Routes, useLocation } from "react-router-dom";
 import RightNav from "../../components/SideNav/RightNav";
 import Shelter from "../Shelter/Shelter";
-import Food from "../Food/Food";
+import Missing from "../Missing/Missing";
 import Settings from "../Settings/Settings";
 import Feed from "../Feed/Feed";
 import Works from "../Works/Works";
 import ChatBot from "../ChatBot/ChatBot";
 import Search from "../Search/Search";
 import DashboarHome from "../DashboardHome/DashboarHome";
+import Homeless from "../Homeless/Homeless";
 const Dashboard = () => {
   const location = useLocation();
 
@@ -21,8 +22,8 @@ const Dashboard = () => {
         ) : (
           <Routes>
             <Route path="shelter" element={<Shelter />} />
-            <Route path="food" element={<Food />} />
-
+            <Route path="missingpeople" element={<Missing/>} />
+            <Route path="homeless" element={<Homeless />} />
             <Route path="works" element={<Works />} />
             <Route path="feed" element={<Feed />} />
 

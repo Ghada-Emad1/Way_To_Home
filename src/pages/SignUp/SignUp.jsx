@@ -67,6 +67,7 @@ const SignUp = () => {
     try {
       const res = await axios.post(Url, data);
       console.log(res.data);
+      localStorage.setItem("user", JSON.stringify(res.data));
       setApiError(""); // Clear previous error
       return true;
     } catch (err) {

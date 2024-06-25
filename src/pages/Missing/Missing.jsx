@@ -2,32 +2,23 @@ import { Outlet } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const Food = () => {
-  const[foodlist,setfoodlist]=useState([])
-  function GetFood() {
+const Missing = () => {
+  const[missingpeople,setmissingpeople]=useState([])
+  function GetMissingPeople() {
     axios
-      .get("https://homecompassapi.azurewebsites.net/Facility/bycategory/10")
+      .get("http://homecompass.runasp.net/Missing")
       .then((res) => {
-        setfoodlist(res.data)
+        setmissingpeople(res.data)
       });
   }
   useEffect(() => {
-    GetFood();
+    GetMissingPeople();
   }, []);
   return (
     <div className="bg-white  flex flex-col overflow-auto h-[100vh] text-nowrap">
-      <div className="flex gap-5 justify-center my-4">
-        <input
-          type="text"
-          placeholder="Search for Your restaurant"
-          className="rounded-lg border border-basic w-[350px] p-2"
-        />
-        <button className="rounded-lg bg-basic px-6 py-2 text-white font-semibold">
-          Search
-        </button>
-      </div>
+     
       <div className=" grid grid-cols-2 justify-center items-center gap-4 mx-4 bg-white">
-        {foodlist.map((element, index) => (
+        {missingpeople.map((element, index) => (
           <div
             key={index}
             className="bg-light p-4 content flex justify-center   gap-2 max-sm:flex flex-row "
@@ -36,25 +27,25 @@ const Food = () => {
               <div className="flex justify-center mb-4">
                 <img
                   className="w-[200px] h-[150px] object-cover rounded-sm "
-                  src={element.photoUrl}
+                  src={element.photoURL}
                   alt=""
                 />
               </div>
               <div className="flex flex-col gap-2 items-center">
                 <h1>
-                  <span className="text-basic font-bold">Restaurant:</span>{" "}
+                  <span className="text-basic font-bold">Name:</span>{" "}
                   {element.name}
                 </h1>
                
                 <div className="flex text-wrap px-5">
-                <small className="w-[200px] text-Orange">{element.description}</small>
+                <p className="w-[200px] text-basic">{element.description}</p>
 
                 </div>
                 
-                <p><span className="font-bold text-basic">Location: </span>{element.location}</p>
+                <p><span className="font-bold text-basic">Location: </span>{element.address}</p>
 
                 <div>
-                  <p><span className="text-Orange font-bold">For: </span>{element.target}</p>
+                  <p className="font-bold text-Orange">Missing Since :{" "}<span className="font-light text-basic">{element.missingDate} </span></p>
                   
                 </div>
               </div>
@@ -72,4 +63,4 @@ const Food = () => {
   
   
 
-export default Food;
+export default Missing;
