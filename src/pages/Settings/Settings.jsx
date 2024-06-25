@@ -61,16 +61,7 @@ const Settings = () => {
 
     }
   };
-  
-    // const onsubmit =(e)=>{
-        
-    //     e.preventDefault();
-    //     dispatch(
-    //       addUserInfo({ phone:addphone , gender:addgender })
-    //     );
-        
-    // }
-    
+ 
 
   return (
     <div className="  h-[100vh] overflow-auto text-nowrap">
@@ -144,7 +135,7 @@ const Settings = () => {
                   />
                 </div>
                 {users.length >0  ?  users.map((element)=>(
-                <div>
+                <div key={element}>
                   <h1>
                     <span className="font-semibold text-basic text-lg">
                       Name:

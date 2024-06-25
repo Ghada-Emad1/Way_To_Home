@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-// import Navbar from "./components/navbar/Navbar";
+
 import Home from "./pages/Home/Home";
 import Shelter from "./pages/Shelter/Shelter";
 import Login from "./pages/Login/Login";
@@ -18,6 +18,11 @@ import Works from "./pages/Works/Works";
 import ChatBot from "./pages/ChatBot/ChatBot";
 import Search from "./pages/Search/Search";
 
+import ChangePassword from "./pages/ChangePassword/ChangePassword";
+import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
+
+import ConfirmSignUpwithToken from "./pages/ConfirmSignUpWithToken/ConfirmSignUpwithToken";
+
 function App() {
   
   return (
@@ -25,13 +30,17 @@ function App() {
       <Router>
         {/* <Navbar /> */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} exact/>
 
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp/>}/>
           <Route path="/forgetpassword" element={<ForgetPassword/>}/>
+          <Route path="/confirmtoken" element={<ConfirmPassword/>}/>
+          
+          <Route path="/confirmsignupwithToken" element={<ConfirmSignUpwithToken/>}/>
+          <Route path="/changepassword"element={<ChangePassword/>}/>
 
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="/dashboard/*" element={<Dashboard />}>
             <Route path="shelter" element={<Shelter />} />
             <Route path="food" element={<Food />} />
             <Route path="chatbot"element={<ChatBot/>}/>

@@ -19,6 +19,7 @@ const SignUp = () => {
   const [username, setusername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setpassword] = useState("");
+  const [apiError, setApiError] = useState("");
   const users = useSelector((state) => state.Adduser.userInfo);
 
   const dispatch = useDispatch();
@@ -54,7 +55,7 @@ const SignUp = () => {
     resolver: yupResolver(schema),
   });
 
-  const fetchData = () => {
+  const fetchData = async () => {
     const data = {
       firstName: firstName,
       lastName: lastName,
@@ -62,26 +63,31 @@ const SignUp = () => {
       email: email,
       password: password,
     };
-
-    const Url = "https://homecompassapi.azurewebsites.net/Auth/register";
-    axios({ method: "post", url: Url, data: data })
-      .then((res) => {
-        console.log(res.data)
-        
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const Url = "http://homecompass.runasp.net/Auth/register";
+    try {
+      const res = await axios.post(Url, data);
+      console.log(res.data);
+      setApiError(""); // Clear previous error
+      return true;
+    } catch (err) {
+      if (err.response && err.response.data) {
+        setApiError(err.response.data); // Set error message from response
+      } else {
+        setApiError("An unexpected error occurred. Please try again.");
+      }
+      return false;
+    }
   };
+
   const onSubmit = async () => {
-    const newUserId = users.length === 0 ? 1 : users[users.length - 1].id + 1
-    dispatch(
-      addUserInfo({ id: newUserId, username, email })
-    );
-    navigate("/dashboard", { replace: true });
-    console.log(firstName, lastName, username, email, password);
-    reset();
-  };  
+    const success = await fetchData();
+    if (success) {
+      const newUserId = users.length === 0 ? 1 : users[users.length - 1].id + 1;
+      dispatch(addUserInfo({ id: newUserId, username, email }));
+      navigate("/confirmsignupwithToken");
+      reset();
+    }
+  };
 
   return (
     <div className="h-[100vh] flex items-center justify-center w-5/6 mx-auto ">
@@ -93,8 +99,6 @@ const SignUp = () => {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        action=""
-        method="POST"
         className="flex w-[400px] bg-white  sm:h-[95vh] shadow-lg md:rounded-ee-lg  md:rounded-se-lg sm:w-[600px] my-2 flex-col p-8  gap-3  sm:p-20"
       >
         <div className="flex flex-col gap-2">
@@ -188,6 +192,7 @@ const SignUp = () => {
             Next
           </button>
         </div>
+        {apiError && <p className="text-Error">{apiError}</p>}
 
         <div className="flex justify-center -mt-2 flex-col gap-4 items-center">
           <h1 className="font-bold text-Orange text-lg">contact With Us</h1>

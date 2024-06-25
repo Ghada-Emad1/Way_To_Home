@@ -1,6 +1,5 @@
 import {Outlet }  from 'react-router-dom';
-import { FaWhatsapp } from "react-icons/fa";
-import { ShelterList } from '../../data/ShelterList';
+
 import "./style.css";
 import { useEffect, useState } from "react";
 import axios from "axios";

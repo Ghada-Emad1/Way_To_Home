@@ -7,11 +7,6 @@
 @tailwind utilities;
 
 
-/* @layer base{
-  body{
-    background-color: #EFF5F5;
-  }
-} */
 @layer components{
   .modal{
     background-color: rgba(0,0,0,0.9);

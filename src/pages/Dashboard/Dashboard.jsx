@@ -11,7 +11,7 @@ import Search from "../Search/Search";
 import DashboarHome from "../DashboardHome/DashboarHome";
 const Dashboard = () => {
   const location = useLocation();
-  
+
   return (
     <div className="w-full flex justify-between bg-white h-[100vh]">
       <LeftNav />
@@ -23,10 +23,9 @@ const Dashboard = () => {
             <Route path="shelter" element={<Shelter />} />
             <Route path="food" element={<Food />} />
 
-           
             <Route path="works" element={<Works />} />
             <Route path="feed" element={<Feed />} />
-           
+
             <Route path="settings" element={<Settings />} />
             <Route path="chatbot" element={<ChatBot />} />
             <Route path="search" element={<Search />} />
