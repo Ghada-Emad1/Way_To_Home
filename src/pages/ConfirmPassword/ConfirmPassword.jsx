@@ -11,7 +11,7 @@ const ConfirmPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); 
     axios
-      .post(`http://homecompass.runasp.net/Auth/confirmpasswordtoken?email=${email}&token=${token}`)
+      .post(`https://homecompass.runasp.net/Auth/confirmpasswordtoken?email=${email}&token=${token}`)
       .then((res) => {
         console.log(res);
         console.log("success");

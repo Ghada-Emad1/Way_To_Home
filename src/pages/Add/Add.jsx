@@ -5,7 +5,8 @@ import { IoMdClose } from "react-icons/io";
 import { Shelter, addUserpost, homeless, missing, work } from "../../AddReducer/AddReducer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
+
 const Add = () => {
   const navgate = useNavigate();
   const dispatch = useDispatch();
@@ -34,11 +35,15 @@ const Add = () => {
   // Add shelter
   const stylee = `focus:outline-Orange px-2 py-1 rounded-md  border border-basic w-[300px] mb-2 `;
   const [addShelter, setShelter] = useState(false);
+  const [nameshelter, setnameshelter] = useState("");
   const [addres, setaddres] = useState("");
+  const [targetshelter, settargetShelter] = useState("");
   const [desc, setdesc] = useState("");
- 
+
   const [Phone, setphone] = useState("");
   const [errors, seterrors] = useState({
+    name: "",
+    target: "",
     addres: "",
     desc: "",
     Phone: "",
@@ -50,11 +55,19 @@ const Add = () => {
   const hundelsubmitshelter = (e) => {
     e.preventDefault();
     let newErrors = {
+      name: "",
+      target: "",
       addres: "",
       desc: "",
       Phone: "",
     };
 
+    if (nameshelter == "") {
+      newErrors.name = "Please Enter Your Name";
+    }
+    if (targetshelter == "") {
+      newErrors.target = "Please Enter Your Target";
+    }
     if (addres == "") {
       newErrors.addres = "Please Enter Your Address";
     }
@@ -69,11 +82,13 @@ const Add = () => {
 
     seterrors(newErrors);
 
-    if (addres && desc && Phone) {
+    if (addres && desc && nameshelter && targetshelter) {
       dispatch(
         Shelter({
           id: addshelter.length + 1,
           addrese: addres,
+          target: targetshelter,
+          name: nameshelter,
           description: desc,
           phone: Phone,
         })
@@ -82,9 +97,27 @@ const Add = () => {
       setaddres("");
       setdesc("");
       setphone("");
+      setnameshelter("");
+      settargetShelter("");
 
       setShelter(false);
     }
+
+
+    const data={
+      categoryId:addshelter.length+1,
+      Name:addshelter.name,
+      Location:addshelter.addrese,
+      description:addshelter.description,
+      target:addshelter.target,
+
+
+    }
+    axios.post("https://homecompass.runasp.net/Facility",data).then((res)=>{
+      console.log(res.data)
+    }).catch((err)=>{
+      console.log(err)
+    })
   };
 
   // add work
@@ -107,11 +140,11 @@ const Add = () => {
   });
   const addwork = useSelector((state) => state.Addfeed.addwork);
   // submit for work
-  const hundelsubmitwork = async(e) => {
+  const hundelsubmitwork = async (e) => {
     e.preventDefault();
     let newErrors = {
       namejob: "",
-      descrptionwork:"",
+      descrptionwork: "",
       workaddrese: "",
       workemail: "",
       Workhour: "",
@@ -145,8 +178,15 @@ const Add = () => {
 
     seterrorwork(newErrors);
 
-    if (namejob && descrptionwork &&workaddrese && workemail && Workhour && skills && Salary ) {
-
+    if (
+      namejob &&
+      descrptionwork &&
+      workaddrese &&
+      workemail &&
+      Workhour &&
+      skills &&
+      Salary
+    ) {
       const jobData = {
         //id: 9, // تحقق من أن هذا لن يتعارض مع البيانات في قاعدة البيانات.
         title: namejob,
@@ -162,11 +202,20 @@ const Add = () => {
       //http://homecompass.runasp.net/
       http://homecompass.runasp.net/Job
       try {
+<<<<<<< HEAD
+        await axios
+          .post("https://homecompass.runasp.net/job", jobData)
+          .then((res) => {
+            console.log(res.data);
+          });
+        dispatch(work(jobData));
+=======
         await axios.post('https://homecompass.runasp.net/job', jobData);
         //dispatch(work(jobData));
+>>>>>>> f6700188c756368aade983d03d73252088743e6f
         navgate("/dashboard/Works");
         setnamejob("");
-        setdescrptionwork("")
+        setdescrptionwork("");
         setworkaddrese("");
         setworkemail("");
         setWorkhour("");
@@ -380,6 +429,37 @@ const Add = () => {
                 <div className="flex flex-col justify-start items-start    ">
                   <label className="font-bold text-basic mb-2">
                     {" "}
+                    Shelter Name
+                  </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setnameshelter(e.target.value);
+                      seterrors({ name: "" });
+                    }}
+                    placeholder="Enter Shelter Name"
+                    className={stylee}
+                  />
+
+                  {errors.addres && (
+                    <span className="text-red-500">{errors.name}</span>
+                  )}
+                  <label className="font-bold text-basic mb-2">Target</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      settargetShelter(e.target.value);
+                      seterrors({ target: "" });
+                    }}
+                    placeholder="Enter your Target"
+                    className={stylee}
+                  />
+
+                  {errors.target && (
+                    <span className="text-red-500">{errors.target}</span>
+                  )}
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
                     your Address
                   </label>
                   <input
@@ -464,7 +544,10 @@ const Add = () => {
                   {errorwork.namejob && (
                     <span className="text-red-500">{errorwork.namejob}</span>
                   )}
-                  <label className="font-bold text-basic mb-2"> Description</label>
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Description
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -476,7 +559,9 @@ const Add = () => {
                   />
 
                   {errorwork.descrptionwork && (
-                    <span className="text-red-500">{errorwork.descrptionwork}</span>
+                    <span className="text-red-500">
+                      {errorwork.descrptionwork}
+                    </span>
                   )}
 
                   <label className="font-bold text-basic mb-2"> Address </label>
