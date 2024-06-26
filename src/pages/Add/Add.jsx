@@ -249,6 +249,7 @@ const Add = () => {
       location: workaddrese,
       workHours: Workhour,
       salary: Salary,
+      contactInformation: workemail,
       contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
       categoryId: addwork.length + 1,
     };
@@ -346,7 +347,6 @@ const Add = () => {
           homeAddress: homeAddress,
           missinglocation: missinglocation,
           missingsince: missingsince,
-
         })
       );
       navgate("/dashboard/missingpeople");
@@ -369,14 +369,17 @@ const Add = () => {
       physicalDescription: physicalDescription,
       contactNumber: contactNumber,
       homeAddress: homeAddress,
-      reporterId: addmising.length+1,
+      reporterId: addmising.length + 1,
       contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
     };
-    axios.post("https://homecompass.runasp.net/Missing",data).then((res)=>{
-      console.log(res.data)
-    }).catch((err)=>{
-      console.error("Error:", err.response ? err.response.data : err.message);
-    })
+    axios
+      .post("https://homecompass.runasp.net/Missing", data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err.response ? err.response.data : err.message);
+      });
   };
   //Add Homeless
   const [addHomeless, setaddHomeless] = useState(false);
@@ -384,17 +387,17 @@ const Add = () => {
   const [homelessdes, sethomelessdes] = useState("");
   const [homelessloc, sethomelessloc] = useState("");
   const [homelesserr, sethomelesserr] = useState({
-    nameHomeless : "",
-    homelessdes : "" ,
-    homelessloc : "" ,
+    nameHomeless: "",
+    homelessdes: "",
+    homelessloc: "",
   });
-  const addhomeless =useSelector((state) => state.Addfeed.addhomeless);
+  const addhomeless = useSelector((state) => state.Addfeed.addhomeless);
   const handleHomelessSubmit = (e) => {
     e.preventDefault();
     let newErrors = {
-      nameHomeless : "",
-      homelessdes : "" ,
-      homelessloc : "" ,
+      nameHomeless: "",
+      homelessdes: "",
+      homelessloc: "",
     };
 
     if (nameHomeless === "") {
@@ -406,7 +409,7 @@ const Add = () => {
     if (homelessloc === "") {
       newErrors.homelessloc = "Please Enter Location";
     }
-    
+
     sethomelesserr(newErrors);
 
     if (nameHomeless && homelessdes && homelessloc) {
@@ -414,9 +417,8 @@ const Add = () => {
         homeless({
           id: addhomeless.length + 1,
           name: nameHomeless,
-          description:homelessdes ,
-          location: homelessloc ,
-          
+          description: homelessdes,
+          location: homelessloc,
         })
       );
       navgate("/dashboard/homeless");
@@ -426,20 +428,22 @@ const Add = () => {
       setaddHomeless(false);
     }
     const data = {
-      
       FullName: nameHomeless,
       lastKnownLocation: homelessloc,
       physicalDescription: homelessdes,
       //contactNumber: contactNumber,
-     // homeAddress: homeAddress,
-      reporterId: addhomeless.length+1,
+      // homeAddress: homeAddress,
+      reporterId: addhomeless.length + 1,
       contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
     };
-    axios.post("https://homecompass.runasp.net/Homeless",data).then((res)=>{
-      console.log(res.data)
-    }).catch((err)=>{
-      console.error("Error:", err.response ? err.response.data : err.message);
-    })
+    axios
+      .post("https://homecompass.runasp.net/Homeless", data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err.response ? err.response.data : err.message);
+      });
   };
 
   return (
@@ -475,8 +479,9 @@ const Add = () => {
           <button
             className="bg-Orange  text-white px-2 md:px-6 py-2 rounded-lg "
             onClick={() => setaddHomeless((prev) => !prev)}
-          >Homeless</button>
-          
+          >
+            Homeless
+          </button>
         </div>
       </div>
 
@@ -768,9 +773,7 @@ const Add = () => {
             <div className="  mt-4">
               <form onSubmit={handleMissingSubmit} className="  gap-3">
                 <div className="flex flex-col justify-start items-start    ">
-                  <label className="font-bold text-basic mb-2">
-                     Name
-                  </label>
+                  <label className="font-bold text-basic mb-2">Name</label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -803,9 +806,7 @@ const Add = () => {
                       {missingErrors.missingDescription}
                     </span>
                   )}
-                   <label className="font-bold text-basic mb-2">
-                    Age
-                  </label>
+                  <label className="font-bold text-basic mb-2">Age</label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -819,9 +820,7 @@ const Add = () => {
                   {missingErrors.age && (
                     <span className="text-red-500">{missingErrors.age}</span>
                   )}
-                   <label className="font-bold text-basic mb-2">
-                    Gender
-                  </label>
+                  <label className="font-bold text-basic mb-2">Gender</label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -835,9 +834,7 @@ const Add = () => {
                   {missingErrors.gender && (
                     <span className="text-red-500">{missingErrors.gender}</span>
                   )}
-                   <label className="font-bold text-basic mb-2">
-                    Phone
-                  </label>
+                  <label className="font-bold text-basic mb-2">Phone</label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -849,9 +846,10 @@ const Add = () => {
                   />
 
                   {missingErrors.contactNumber && (
-                    <span className="text-red-500">{missingErrors.contactNumber}</span>
+                    <span className="text-red-500">
+                      {missingErrors.contactNumber}
+                    </span>
                   )}
-
 
                   <label className="font-bold text-basic mb-2">
                     {" "}
@@ -902,12 +900,11 @@ const Add = () => {
           </div>
         </Modal>
       ) : null}
-         {/* Add Homeless */}
-      {addHomeless ?(
-          <Modal>
+      {/* Add Homeless */}
+      {addHomeless ? (
+        <Modal>
           <div className="bg-white w-[320px] sm:w-[550px] text-center p-5 rounded-lg  flex flex-col items-center justify-center relative  ">
-
-          <button
+            <button
               className="absolute top-5 right-5 text-basic"
               onClick={() => setaddHomeless(false)}
             >
@@ -917,7 +914,10 @@ const Add = () => {
             <div className="  mt-4">
               <form onSubmit={handleHomelessSubmit} className="  gap-3">
                 <div className="flex flex-col justify-start items-start    ">
-                  <label className="font-bold text-basic mb-2"> Your Name</label>
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Your Name
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -929,9 +929,14 @@ const Add = () => {
                   />
 
                   {homelesserr.nameHomeless && (
-                    <span className="text-red-500">{homelesserr.nameHomeless}</span>
+                    <span className="text-red-500">
+                      {homelesserr.nameHomeless}
+                    </span>
                   )}
-                  <label className="font-bold text-basic mb-2"> Description</label>
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Description
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -943,10 +948,15 @@ const Add = () => {
                   />
 
                   {homelesserr.homelessdes && (
-                    <span className="text-red-500">{homelesserr.homelessdes}</span>
+                    <span className="text-red-500">
+                      {homelesserr.homelessdes}
+                    </span>
                   )}
 
-                  <label className="font-bold text-basic mb-2"> Location </label>
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Location{" "}
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -970,14 +980,9 @@ const Add = () => {
                 </div>
               </form>
             </div>
-
-
           </div>
         </Modal>
-
-
-      )
-      :null}
+      ) : null}
     </div>
   );
 };

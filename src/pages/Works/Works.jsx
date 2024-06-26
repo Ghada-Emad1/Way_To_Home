@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 const Works = () => {
   const[resp, setresp]= useState([]);
+ 
   useEffect(()=>{
     axios .get('https://homecompass.runasp.net/Job').then((res)=>{
       setresp(res.data)
@@ -14,6 +15,7 @@ const Works = () => {
   })
   ///http://homecompass.runasp.net//Job
   const addwork = useSelector((state)=> state.Addfeed.addwork);
+  console.log(addwork);
   return (
     <div className="bg-white flex flex-col overflow-auto h-[100vh] text-nowrap">
         
