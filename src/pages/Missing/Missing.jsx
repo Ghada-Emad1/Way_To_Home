@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import imge from '/public/missing.jpg';
 
 const Missing = () => {
+  const addmissingpeople = useSelector((state) => state.Addfeed.addhomeless);
+  console.log(addmissingpeople)
   const[missingpeople,setmissingpeople]=useState([])
   function GetMissingPeople() {
     axios

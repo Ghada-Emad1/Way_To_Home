@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdClose } from "react-icons/io";
-import { Shelter, addUserpost, homeless, work } from "../../AddReducer/AddReducer";
+import img from "/public/shelter11.jpeg";
+import {
+  Shelter,
+  addUserpost,
+  homeless,
+  work,
+} from "../../AddReducer/AddReducer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -30,6 +35,19 @@ const Add = () => {
       setdespost("");
       setaddpost(false);
     }
+    const data = {
+      title: despost,
+      content: despost,
+      userId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+    };
+    axios
+      .post("https://homecompass.runasp.net/post", data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // Add shelter
@@ -103,21 +121,36 @@ const Add = () => {
       setShelter(false);
     }
 
+    const data = {
+      name: nameshelter, // Ensure this matches your actual variable name
+      location: addres, // Ensure this matches your actual variable name
+      description: desc, // Corrected from 'descrption' to 'description'
+      categoryId: addshelter.length + 1, // Provide a valid categoryId
+      target: targetshelter, // Ensure this matches your actual variable name
+      resources: [
+        {
+          name: "Resource Name", // Provide a valid resource name
+          isAvailable: true,
+        },
+      ],
+      days: [
+        "Monday",
+        "Tuesday", // Provide valid days
+      ],
+      hours: 8, // Provide valid hours
+      photoUrl: img, // Provide a valid photo URL
+      contactInformation: Phone, // Corrected from 'contactInformaton' to 'contactInformation'
+      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9", // Ensure this ID exists in the backend
+    };
 
-    const data={
-      categoryId:addshelter.length+1,
-      Name:addshelter.name,
-      Location:addshelter.addrese,
-      description:addshelter.description,
-      target:addshelter.target,
-
-
-    }
-    axios.post("https://homecompass.runasp.net/Facility",data).then((res)=>{
-      console.log(res.data)
-    }).catch((err)=>{
-      console.log(err)
-    })
+    axios
+      .post("https://homecompass.runasp.net/Facility", data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err.response ? err.response.data : err.message);
+      });
   };
 
   // add work
@@ -187,67 +220,79 @@ const Add = () => {
       skills &&
       Salary
     ) {
-      const jobData = {
-        //id: 9, // تحقق من أن هذا لن يتعارض مع البيانات في قاعدة البيانات.
-        title: namejob,
-        description: descrptionwork,
-        location: workaddrese,
-        contactInformation: workemail,
-        hours: Workhour,
-        skills: skills,
-        salary: Salary,
-        categoryId:1,
-        contributorId:"df864a81-c1cc-460a-9fc5-50f12d370ac9"
-      };
-      //http://homecompass.runasp.net/
-      http://homecompass.runasp.net/Job
-      try {
-<<<<<<< HEAD
-        await axios
-          .post("https://homecompass.runasp.net/job", jobData)
-          .then((res) => {
-            console.log(res.data);
-          });
-        dispatch(work(jobData));
-=======
-        await axios.post('https://homecompass.runasp.net/job', jobData);
-        //dispatch(work(jobData));
->>>>>>> f6700188c756368aade983d03d73252088743e6f
-        navgate("/dashboard/Works");
-        setnamejob("");
-        setdescrptionwork("");
-        setworkaddrese("");
-        setworkemail("");
-        setWorkhour("");
-        setSalary("");
-        setskills("");
-        setaddWork(false);
-      } catch (error) {
-        console.error("There was an error sending the data to the API", error);
-      }
+      dispatch(
+        work({
+          id: addshelter.length + 1,
+          name: namejob,
+          description: descrptionwork,
+          workaddrese: workaddrese,
+          workemail: workemail,
+          Workhour: Workhour,
+          skills: skills,
+          Salary: Salary,
+        })
+      );
+      navgate("/dashboard/shelter");
+      setnamejob("");
+      setdescrptionwork("");
+      setworkaddrese("");
+      setworkemail("");
+      setWorkhour("");
+      setSalary("");
+      setskills("");
+      setaddWork(false);
     }
+    const data = {
+      title: namejob,
+      description: descrptionwork,
+      location: workaddrese,
+      workHours: Workhour,
+      salary: Salary,
+      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+      categoryId: addwork.length + 1,
+    };
+    await axios
+      .post("https://homecompass.runasp.net/Job", data)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.error("Error:", err.response ? err.response.data : err.message);
+      });
   };
 
   // add missing
   const [addMissing, setAddMissing] = useState(false);
   const [name, setname] = useState("");
-  const [missingDescription, setmissingDescription] = useState("");
+  const [age, setAge] = useState("");
+  const [homeAddress, sethomeAddress] = useState("");
+  const [contactNumber, setcotactNumber] = useState("");
+  const [physicalDescription, setphysicalDescription] = useState("");
+  const [gender, setgender] = useState("");
   const [missinglocation, setMissinglocation] = useState("");
   const [missingsince, setmissingsince] = useState("");
   const [missingErrors, setMissingErrors] = useState({
     name: "",
-    missingDescription: "",
+    age: "",
+    homeaddress: "",
+    contactNumber: "",
+    gender: "",
+    physicalDescription: "",
     missinglocation: "",
     missingsince: "",
   });
-  
-  const addmising =useSelector((state) => state.Addfeed.addhomeless);
+
+  const addmising = useSelector((state) => state.Addfeed.addhomeless);
 
   const handleMissingSubmit = (e) => {
     e.preventDefault();
     let newErrors = {
       name: "",
-      missingDescription: "",
+      age: "",
+      homeaddress: "",
+      contactNumber: "",
+      gender: "",
+      physicalDescription: "",
       missinglocation: "",
       missingsince: "",
     };
@@ -255,8 +300,20 @@ const Add = () => {
     if (name === "") {
       newErrors.name = "Please Enter Your Name";
     }
-    if (missingDescription === "") {
-      newErrors.missingDescription = "Please Enter description";
+    if (physicalDescription === "") {
+      newErrors.physicalDescription = "Please Enter description";
+    }
+    if (age === "") {
+      newErrors.age = "Please Enter Age";
+    }
+    if (homeAddress === "") {
+      newErrors.homeaddress = "Please Enter Home Address";
+    }
+    if (gender === "") {
+      newErrors.gender = "Please Enter the gender";
+    }
+    if (contactNumber === "") {
+      newErrors.contactNumber = "Please Enter Your Phone";
     }
     if (missinglocation === "") {
       newErrors.missinglocation = "Please Enter Location";
@@ -267,23 +324,58 @@ const Add = () => {
 
     setMissingErrors(newErrors);
 
-    if (name && missingDescription && missinglocation && missingsince) {
+    if (
+      name &&
+      physicalDescription &&
+      gender &&
+      age &&
+      homeAddress &&
+      contactNumber &&
+      missinglocation &&
+      missingsince
+    ) {
       dispatch(
         homeless({
           id: addmising.length + 1,
           name: name,
-          missingDescription:missingDescription ,
-          missinglocation: missinglocation ,
+          missingDescription: physicalDescription,
+          age: age,
+          gender: gender,
+          contactNumber: contactNumber,
+          homeAddress: homeAddress,
+          missinglocation: missinglocation,
           missingsince: missingsince,
+
         })
       );
       navgate("/dashboard/missingpeople");
       setname("");
-      setmissingDescription("");
+      setphysicalDescription("");
+      setAge("");
+      setcotactNumber("");
+      setgender("");
+      sethomeAddress("");
       setMissinglocation("");
       setmissingsince("");
       setAddMissing(false);
     }
+
+    const data = {
+      FullName: name,
+      age: age,
+      gender: gender,
+      lastKnownLocation: missingsince,
+      physicalDescription: physicalDescription,
+      contactNumber: contactNumber,
+      homeAddress: homeAddress,
+      reporterId: addmising.length+1,
+      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+    };
+    axios.post("https://homecompass.runasp.net/Missing",data).then((res)=>{
+      console.log(res.data)
+    }).catch((err)=>{
+      console.error("Error:", err.response ? err.response.data : err.message);
+    })
   };
 
   return (
@@ -303,12 +395,7 @@ const Add = () => {
           >
             Work
           </button>
-          <Link
-            to="/dashboard/restaurant"
-            className="bg-Orange  w-[90px] text-white px-2 md:px-6 py-2 rounded-lg "
-          >
-            Restaurant
-          </Link>
+
           <div
             className="bg-Orange   text-white cursor-pointer px-4 md:px-6 py-2 rounded-lg "
             onClick={() => setaddpost((prev) => !prev)}
@@ -602,8 +689,7 @@ const Add = () => {
       {addMissing ? (
         <Modal>
           <div className="bg-white w-[320px] sm:w-[550px] text-center p-5 rounded-lg  flex flex-col items-center justify-center relative  ">
-
-          <button
+            <button
               className="absolute top-5 right-5 text-basic"
               onClick={() => setAddMissing(false)}
             >
@@ -613,7 +699,9 @@ const Add = () => {
             <div className="  mt-4">
               <form onSubmit={handleMissingSubmit} className="  gap-3">
                 <div className="flex flex-col justify-start items-start    ">
-                  <label className="font-bold text-basic mb-2"> Your Name</label>
+                  <label className="font-bold text-basic mb-2">
+                     Name
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -627,11 +715,14 @@ const Add = () => {
                   {missingErrors.name && (
                     <span className="text-red-500">{missingErrors.name}</span>
                   )}
-                  <label className="font-bold text-basic mb-2"> Description</label>
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Description
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
-                      setmissingDescription(e.target.value);
+                      setphysicalDescription(e.target.value);
                       setMissingErrors({ missingDescription: "" });
                     }}
                     placeholder="Enter Description"
@@ -639,10 +730,64 @@ const Add = () => {
                   />
 
                   {missingErrors.missingDescription && (
-                    <span className="text-red-500">{missingErrors.missingDescription}</span>
+                    <span className="text-red-500">
+                      {missingErrors.missingDescription}
+                    </span>
+                  )}
+                   <label className="font-bold text-basic mb-2">
+                    Age
+                  </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setAge(e.target.value);
+                      setMissingErrors({ age: "" });
+                    }}
+                    placeholder="Enter the age"
+                    className={stylee}
+                  />
+
+                  {missingErrors.age && (
+                    <span className="text-red-500">{missingErrors.age}</span>
+                  )}
+                   <label className="font-bold text-basic mb-2">
+                    Gender
+                  </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setgender(e.target.value);
+                      setMissingErrors({ gender: "" });
+                    }}
+                    placeholder="Enter the gender"
+                    className={stylee}
+                  />
+
+                  {missingErrors.gender && (
+                    <span className="text-red-500">{missingErrors.gender}</span>
+                  )}
+                   <label className="font-bold text-basic mb-2">
+                    Phone
+                  </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setcotactNumber(e.target.value);
+                      setMissingErrors({ contactNumber: "" });
+                    }}
+                    placeholder="Enter your Phone"
+                    className={stylee}
+                  />
+
+                  {missingErrors.contactNumber && (
+                    <span className="text-red-500">{missingErrors.contactNumber}</span>
                   )}
 
-                  <label className="font-bold text-basic mb-2"> Location </label>
+
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Location of missing{" "}
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -658,7 +803,10 @@ const Add = () => {
                     </span>
                   )}
 
-                  <label className="font-bold text-basic mb-2"> Missing Since </label>
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Missing Since{" "}
+                  </label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -669,10 +817,11 @@ const Add = () => {
                     className={stylee}
                   />
                   {missingErrors.missingsince && (
-                    <span className="text-red-500">{missingErrors.missingsince}</span>
+                    <span className="text-red-500">
+                      {missingErrors.missingsince}
+                    </span>
                   )}
 
-                  
                   <div>
                     <button className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
                       Add
@@ -681,12 +830,9 @@ const Add = () => {
                 </div>
               </form>
             </div>
-
-
           </div>
         </Modal>
-
-      ):null}
+      ) : null}
     </div>
   );
 };
