@@ -29,5 +29,5 @@ const AddSlice = createSlice({
   },
 });
 
-export const { addUserpost, Shelter, work,homeless } = AddSlice.actions;
+export const { addUserpost, Shelter, work , homeless } = AddSlice.actions;
 export default AddSlice.reducer;
