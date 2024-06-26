@@ -20,7 +20,7 @@ console.log(users)
       email,
       password,
     };
-    const url = "http://homecompass.runasp.net/Auth/login";
+    const url = "https://homecompass.runasp.net/Auth/login";
     try {
       const res = await axios.post(url, data);
       console.log(res.data);

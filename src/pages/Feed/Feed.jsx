@@ -31,7 +31,7 @@ const Feed = () => {
   const [result, setresult] = useState([]);
 
   function fetchPost() {
-    axios.get("http://homecompass.runasp.net/Post").then((res) => {
+    axios.get("https://homecompass.runasp.net/Post").then((res) => {
       setresult(res.data);
     });
   }

@@ -11,7 +11,7 @@ const ChangePassword = () => {
     e.preventDefault();
     axios
       .post(
-        `http://homecompass.runasp.net/Auth/changePassword?email=${email}&newpassword=${newpassword}`
+        `https://homecompass.runasp.net/Auth/changePassword?email=${email}&newpassword=${newpassword}`
       )
       .then((res) => {
         console.log(res);

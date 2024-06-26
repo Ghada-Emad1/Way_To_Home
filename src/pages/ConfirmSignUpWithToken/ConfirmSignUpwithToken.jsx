@@ -10,12 +10,12 @@ const ConfirmSignUpwithToken = () => {
   
     const handleSubmit = (e) => {
       e.preventDefault(); 
-      axios.post(`http://homecompass.runasp.net/Auth/confirmEmail?email=${email}.com&token=${token}`).then((res)=>{
+      axios.post(`https://homecompass.runasp.net/Auth/confirmEmail?email=${email}.com&token=${token}`).then((res)=>{
         console.log(res)
       }).catch((err)=>{
         console.log(err)
       })
-      navigate("/dashboard")
+      navigate("/login")
 
     };
   return (

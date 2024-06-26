@@ -6,7 +6,7 @@ const Missing = () => {
   const[missingpeople,setmissingpeople]=useState([])
   function GetMissingPeople() {
     axios
-      .get("http://homecompass.runasp.net/Missing")
+      .get("https://homecompass.runasp.net/Missing")
       .then((res) => {
         setmissingpeople(res.data)
       });

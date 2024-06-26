@@ -8,7 +8,7 @@ const Works = () => {
   const [resp, setresp] = useState([]);
   useEffect(() => {
     axios
-      .get("http://homecompass.runasp.net/Homeless")
+      .get("https://homecompass.runasp.net/Homeless")
       .then((res) => {
         setresp(res.data);
       })
