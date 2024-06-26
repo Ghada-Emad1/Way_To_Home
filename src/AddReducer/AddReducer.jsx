@@ -7,6 +7,7 @@ const AddSlice = createSlice({
     addpost: [],
     addShelter: [],
     addwork: [],
+    addmissing: [],
     addhomeless: [],
   },
   reducers: {
@@ -22,6 +23,10 @@ const AddSlice = createSlice({
       state.addwork.push(actions.payload);
       console.log(actions);
     },
+    missing: (state, actions) => {
+      state.addmissing.push(actions.payload);
+      console.log(actions);
+    },
     homeless: (state, actions) => {
       state.addhomeless.push(actions.payload);
       console.log(actions);
@@ -29,5 +34,5 @@ const AddSlice = createSlice({
   },
 });
 
-export const { addUserpost, Shelter, work , homeless } = AddSlice.actions;
+export const { addUserpost, Shelter, work , missing ,homeless } = AddSlice.actions;
 export default AddSlice.reducer;

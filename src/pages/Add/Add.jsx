@@ -1,13 +1,7 @@
 import Modal from "../../components/Modal/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdClose } from "react-icons/io";
-import img from "/public/shelter11.jpeg";
-import {
-  Shelter,
-  addUserpost,
-  homeless,
-  work,
-} from "../../AddReducer/AddReducer";
+import { Shelter, addUserpost, homeless, work } from "../../AddReducer/AddReducer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -281,8 +275,8 @@ const Add = () => {
     missinglocation: "",
     missingsince: "",
   });
-
-  const addmising = useSelector((state) => state.Addfeed.addhomeless);
+  
+  const addmising =useSelector((state) => state.Addfeed.addhomeless);
 
   const handleMissingSubmit = (e) => {
     e.preventDefault();
@@ -335,7 +329,7 @@ const Add = () => {
       missingsince
     ) {
       dispatch(
-        homeless({
+        missing({
           id: addmising.length + 1,
           name: name,
           missingDescription: physicalDescription,
@@ -377,6 +371,55 @@ const Add = () => {
       console.error("Error:", err.response ? err.response.data : err.message);
     })
   };
+  //Add Homeless
+  const [addHomeless, setaddHomeless] = useState(false);
+  const [nameHomeless, setnameHomeless] = useState("");
+  const [homelessdes, sethomelessdes] = useState("");
+  const [homelessloc, sethomelessloc] = useState("");
+  const [homelesserr, sethomelesserr] = useState({
+    nameHomeless : "",
+    homelessdes : "" ,
+    homelessloc : "" ,
+  });
+  const addhomeless =useSelector((state) => state.Addfeed.addhomeless);
+  const handleHomelessSubmit = (e) => {
+    e.preventDefault();
+    let newErrors = {
+      nameHomeless : "",
+      homelessdes : "" ,
+      homelessloc : "" ,
+    };
+
+    if (nameHomeless === "") {
+      newErrors.nameHomeless = "Please Enter Your Name";
+    }
+    if (homelessdes === "") {
+      newErrors.homelessdes = "Please Enter description";
+    }
+    if (homelessloc === "") {
+      newErrors.homelessloc = "Please Enter Location";
+    }
+    
+    sethomelesserr(newErrors);
+
+    if (nameHomeless && homelessdes && homelessloc) {
+      dispatch(
+        homeless({
+          id: addhomeless.length + 1,
+          name: nameHomeless,
+          description:homelessdes ,
+          location: homelessloc ,
+          
+        })
+      );
+      navgate("/dashboard/homeless");
+      setnameHomeless("");
+      sethomelessdes("");
+      sethomelessloc("");
+      setaddHomeless(false);
+    }
+  };
+
 
   return (
     <div>
@@ -395,7 +438,12 @@ const Add = () => {
           >
             Work
           </button>
-
+          <Link
+            to="/dashboard/restaurant"
+            className="bg-Orange  w-[90px] text-white px-2 md:px-6 py-2 rounded-lg "
+          >
+            Restaurant
+          </Link>
           <div
             className="bg-Orange   text-white cursor-pointer px-4 md:px-6 py-2 rounded-lg "
             onClick={() => setaddpost((prev) => !prev)}
@@ -799,7 +847,7 @@ const Add = () => {
                   />
                   {missingErrors.missinglocation && (
                     <span className="text-red-500">
-                      {errorwork.missinglocation}
+                      {missingErrors.missinglocation}
                     </span>
                   )}
 
@@ -832,7 +880,8 @@ const Add = () => {
             </div>
           </div>
         </Modal>
-      ) : null}
+
+      ):null}
     </div>
   );
 };

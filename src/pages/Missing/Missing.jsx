@@ -18,7 +18,7 @@ const Missing = () => {
   useEffect(() => {
     GetMissingPeople();
   }, []);
-  const addmising =useSelector((state) => state.Addfeed.addhomeless);
+  const addmising =useSelector((state) => state.Addfeed.addmissing);
   return (
     <div className="bg-white  flex flex-col overflow-auto h-[100vh] text-nowrap">
      
