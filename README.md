@@ -1,8 +1,16 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# To get start 
+```git
+git clone git@github.com:Ghada-Emad1/Way_To_Home.git
+```
+![Home](/src/assest/home.png)
+![signup](/src/assest/signup.png)
+![login](/src/assest/login.png)
+![dashboard](/src/assest/dashboard.png)
+![facility](/src/assest/facility.png)
+![work](/src/assest/work.png)
+![feed](/src/assest/feed.png)
+![missingpeople](/src/assest/missingpeople.png)
+![addshelter](/src/assest/addshelter.png)
+![addmissingpeople](/src/assest/addshelter.png)
+![addwork](/src/assest/addwork.png)
+![logout](/src/assest/logout.png)
