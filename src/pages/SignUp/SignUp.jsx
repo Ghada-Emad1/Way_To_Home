@@ -63,7 +63,7 @@ const SignUp = () => {
       email: email,
       password: password,
     };
-    const Url = "http://homecompass.runasp.net/Auth/register";
+    const Url = "https://homecompass.runasp.net/Auth/register";
     try {
       const res = await axios.post(Url, data);
       console.log(res.data);

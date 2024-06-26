@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const Works = () => {
   const[resp, setresp]= useState([]);
   useEffect(()=>{
-    axios .get('http://homecompass.runasp.net/Job').then((res)=>{
+    axios .get('https://homecompass.runasp.net/Job').then((res)=>{
       setresp(res.data)
     }).catch((err)=>{
       console.log(err);

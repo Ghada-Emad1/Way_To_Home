@@ -11,7 +11,7 @@ const Shelter = () => {
   const [resp, setresp] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://homecompass.runasp.net/Facility`)
+      .get(`https://homecompass.runasp.net/Facility`)
       .then((res) => {
         setresp(res.data);
       })

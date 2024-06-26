@@ -8,7 +8,7 @@ const Missing = () => {
   const[missingpeople,setmissingpeople]=useState([])
   function GetMissingPeople() {
     axios
-      .get("http://homecompass.runasp.net/Missing")
+      .get("https://homecompass.runasp.net/Missing")
       .then((res) => {
         setmissingpeople(res.data)
       });
@@ -16,7 +16,7 @@ const Missing = () => {
   useEffect(() => {
     GetMissingPeople();
   }, []);
-  const addmising =useSelector((state) => state.Addfeed.addhomeless);
+  const addmising =useSelector((state) => state.Addfeed.addmissing);
   return (
     <div className="bg-white  flex flex-col overflow-auto h-[100vh] text-nowrap">
      

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Modal from "../../components/Modal/Modal";
 import { useSelector, useDispatch } from "react-redux";
 import { IoMdClose } from "react-icons/io";
-import { Shelter, addUserpost, homeless, work } from "../../AddReducer/AddReducer";
+import { Shelter, addUserpost, homeless, missing, work } from "../../AddReducer/AddReducer";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
@@ -192,7 +192,7 @@ const Add = () => {
     missingsince: "",
   });
   
-  const addmising =useSelector((state) => state.Addfeed.addhomeless);
+  const addmising =useSelector((state) => state.Addfeed.addmissing);
 
   const handleMissingSubmit = (e) => {
     e.preventDefault();
@@ -220,7 +220,7 @@ const Add = () => {
 
     if (name && missingDescription && missinglocation && missingsince) {
       dispatch(
-        homeless({
+        missing({
           id: addmising.length + 1,
           name: name,
           missingDescription:missingDescription ,
@@ -236,6 +236,55 @@ const Add = () => {
       setAddMissing(false);
     }
   };
+  //Add Homeless
+  const [addHomeless, setaddHomeless] = useState(false);
+  const [nameHomeless, setnameHomeless] = useState("");
+  const [homelessdes, sethomelessdes] = useState("");
+  const [homelessloc, sethomelessloc] = useState("");
+  const [homelesserr, sethomelesserr] = useState({
+    nameHomeless : "",
+    homelessdes : "" ,
+    homelessloc : "" ,
+  });
+  const addhomeless =useSelector((state) => state.Addfeed.addhomeless);
+  const handleHomelessSubmit = (e) => {
+    e.preventDefault();
+    let newErrors = {
+      nameHomeless : "",
+      homelessdes : "" ,
+      homelessloc : "" ,
+    };
+
+    if (nameHomeless === "") {
+      newErrors.nameHomeless = "Please Enter Your Name";
+    }
+    if (homelessdes === "") {
+      newErrors.homelessdes = "Please Enter description";
+    }
+    if (homelessloc === "") {
+      newErrors.homelessloc = "Please Enter Location";
+    }
+    
+    sethomelesserr(newErrors);
+
+    if (nameHomeless && homelessdes && homelessloc) {
+      dispatch(
+        homeless({
+          id: addhomeless.length + 1,
+          name: nameHomeless,
+          description:homelessdes ,
+          location: homelessloc ,
+          
+        })
+      );
+      navgate("/dashboard/homeless");
+      setnameHomeless("");
+      sethomelessdes("");
+      sethomelessloc("");
+      setaddHomeless(false);
+    }
+  };
+
 
   return (
     <div>
@@ -254,12 +303,12 @@ const Add = () => {
           >
             Work
           </button>
-          <Link
-            to="/dashboard/restaurant"
-            className="bg-Orange  w-[90px] text-white px-2 md:px-6 py-2 rounded-lg "
+          <button
+            className="bg-Orange  text-white px-2 md:px-6 py-2 rounded-lg "
+            onClick={() => setaddHomeless((prev) => !prev)}
           >
-            Restaurant
-          </Link>
+            Homeless
+          </button>
           <div
             className="bg-Orange   text-white cursor-pointer px-4 md:px-6 py-2 rounded-lg "
             onClick={() => setaddpost((prev) => !prev)}
@@ -569,7 +618,7 @@ const Add = () => {
                   />
                   {missingErrors.missinglocation && (
                     <span className="text-red-500">
-                      {errorwork.missinglocation}
+                      {missingErrors.missinglocation}
                     </span>
                   )}
 
@@ -602,6 +651,82 @@ const Add = () => {
         </Modal>
 
       ):null}
+      {/* Add Homeless */}
+      {addHomeless ?(
+          <Modal>
+          <div className="bg-white w-[320px] sm:w-[550px] text-center p-5 rounded-lg  flex flex-col items-center justify-center relative  ">
+
+          <button
+              className="absolute top-5 right-5 text-basic"
+              onClick={() => setaddHomeless(false)}
+            >
+              <IoMdClose size={25} />
+            </button>
+            <h1 className="text-[30px] text-Orange">Add Homeless People </h1>
+            <div className="  mt-4">
+              <form onSubmit={handleHomelessSubmit} className="  gap-3">
+                <div className="flex flex-col justify-start items-start    ">
+                  <label className="font-bold text-basic mb-2"> Your Name</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setnameHomeless(e.target.value);
+                      sethomelesserr({ nameHomeless: "" });
+                    }}
+                    placeholder="Enter your Name"
+                    className={stylee}
+                  />
+
+                  {homelesserr.nameHomeless && (
+                    <span className="text-red-500">{homelesserr.nameHomeless}</span>
+                  )}
+                  <label className="font-bold text-basic mb-2"> Description</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      sethomelessdes(e.target.value);
+                      sethomelesserr({ homelessdes: "" });
+                    }}
+                    placeholder="Enter Description"
+                    className={stylee}
+                  />
+
+                  {homelesserr.homelessdes && (
+                    <span className="text-red-500">{homelesserr.homelessdes}</span>
+                  )}
+
+                  <label className="font-bold text-basic mb-2"> Location </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      sethomelessloc(e.target.value);
+                      sethomelesserr({ homelessloc: "" });
+                    }}
+                    placeholder="Enter your Location"
+                    className={stylee}
+                  />
+                  {homelesserr.homelessloc && (
+                    <span className="text-red-500">
+                      {homelesserr.homelessloc}
+                    </span>
+                  )}
+
+                  <div>
+                    <button className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
+        </Modal>
+
+
+      )
+      :null}
     </div>
   );
 };
