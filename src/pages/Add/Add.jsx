@@ -425,6 +425,21 @@ const Add = () => {
       sethomelessloc("");
       setaddHomeless(false);
     }
+    const data = {
+      
+      FullName: nameHomeless,
+      lastKnownLocation: homelessloc,
+      physicalDescription: homelessdes,
+      //contactNumber: contactNumber,
+     // homeAddress: homeAddress,
+      reporterId: addhomeless.length+1,
+      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+    };
+    axios.post("https://homecompass.runasp.net/Homeless",data).then((res)=>{
+      console.log(res.data)
+    }).catch((err)=>{
+      console.error("Error:", err.response ? err.response.data : err.message);
+    })
   };
 
   return (
@@ -508,7 +523,7 @@ const Add = () => {
       {/* Add shelter */}
       {addShelter ? (
         <Modal>
-          <div className="bg-white w-[350px] sm:w-[600px] text-center p-5 rounded-lg h-[480px] flex flex-col items-center justify-center relative  ">
+          <div className="bg-white w-[350px] sm:w-[600px] text-center p-5 rounded-lg  flex flex-col items-center justify-center relative  ">
             <button
               className="absolute top-5 right-5 text-basic"
               onClick={() => setShelter(false)}
