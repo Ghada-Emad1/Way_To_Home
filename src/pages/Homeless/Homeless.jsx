@@ -44,7 +44,7 @@ const Homeless = () => {
           </div>
         ))}
 
-        {addhomeless.map((data, id) => (
+        {/* {addhomeless.map((data, id) => (
           <div key={id} className="p-5 bg-[#EFF5F5] rounded-[8px]">
             <div>
               <img src={imge} alt="homeless_photo"  className="w-[360px] h-[200px] rounded-sm"/>
@@ -66,7 +66,7 @@ const Homeless = () => {
               </h5>
             </div>
           </div>
-        ))}
+        ))} */}
 
         
       </div>

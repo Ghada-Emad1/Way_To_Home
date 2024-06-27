@@ -235,7 +235,7 @@ const Add = () => {
           Salary: Salary,
         })
       );
-      navgate("/dashboard/shelter");
+      navgate("/dashboard/Works");
       setnamejob("");
       setdescrptionwork("");
       setworkaddrese("");
@@ -388,10 +388,12 @@ const Add = () => {
   const [nameHomeless, setnameHomeless] = useState("");
   const [homelessdes, sethomelessdes] = useState("");
   const [homelessloc, sethomelessloc] = useState("");
+  const [homelessgender, sethomelessgender] = useState("");
   const [homelesserr, sethomelesserr] = useState({
     nameHomeless: "",
     homelessdes: "",
     homelessloc: "",
+    homelessgender: "",
   });
   const addhomeless = useSelector((state) => state.Addfeed.addhomeless);
   const handleHomelessSubmit = (e) => {
@@ -400,6 +402,7 @@ const Add = () => {
       nameHomeless: "",
       homelessdes: "",
       homelessloc: "",
+      homelessgender: "",
     };
 
     if (nameHomeless === "") {
@@ -411,35 +414,53 @@ const Add = () => {
     if (homelessloc === "") {
       newErrors.homelessloc = "Please Enter Location";
     }
+    if (homelessgender === "") {
+      newErrors.homelessgender = "Please Enter Location";
+    }
 
     sethomelesserr(newErrors);
 
-    if (nameHomeless && homelessdes && homelessloc) {
+    if (nameHomeless && homelessdes && homelessloc && homelessgender) {
       dispatch(
         homeless({
           id: addhomeless.length + 1,
           name: nameHomeless,
           description: homelessdes,
           location: homelessloc,
+          gender : homelessgender,
         })
       );
       navgate("/dashboard/homeless");
       setnameHomeless("");
       sethomelessdes("");
       sethomelessloc("");
+      sethomelessgender("");
       setaddHomeless(false);
     }
     const data = {
-      FullName: nameHomeless,
-      lastKnownLocation: homelessloc,
-      physicalDescription: homelessdes,
+      fullName: nameHomeless,
+      age :'0',
+      gender :homelessgender,
+      currentLocation: homelessloc,
+      additionalDetails: homelessdes,
+      archived :"true",
       //contactNumber: contactNumber,
       // homeAddress: homeAddress,
-      reporterId: addhomeless.length + 1,
-      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+      // reporterId: addhomeless.length + 1,
+      // contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+      skills: [
+        
+           "Resource Name", // Provide a valid resource name
+          
+        
+      ],
+      healthCondition :"good",
+      phoneNumber :"010022",
+      photoUrl: img,
+      reporterId: userInfo[0].id,
     };
     axios
-      .post("https://homecompass.runasp.net/Homeless", data)
+      .post("https://homecompass.runasp.net/homeless", data)
       .then((res) => {
         console.log(res.data);
       })
@@ -971,6 +992,24 @@ const Add = () => {
                   {homelesserr.homelessloc && (
                     <span className="text-red-500">
                       {homelesserr.homelessloc}
+                    </span>
+                  )}
+                  <label className="font-bold text-basic mb-2">
+                    {" "}
+                    Gender{" "}
+                  </label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      sethomelessgender(e.target.value);
+                      sethomelesserr({ homelessgender: "" });
+                    }}
+                    placeholder="Enter your Location"
+                    className={stylee}
+                  />
+                  {homelesserr.homelessgender && (
+                    <span className="text-red-500">
+                      {homelesserr.homelessgender}
                     </span>
                   )}
 
