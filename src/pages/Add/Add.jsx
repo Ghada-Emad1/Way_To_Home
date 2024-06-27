@@ -14,6 +14,8 @@ import { useState } from "react";
 import axios from "axios";
 
 const Add = () => {
+  const userInfo=useSelector((state)=>state.Adduser.userInfo)
+  console.log("userinfo",userInfo[0].id)
   const navgate = useNavigate();
   const dispatch = useDispatch();
   // Add post
@@ -39,7 +41,7 @@ const Add = () => {
     const data = {
       title: despost,
       content: despost,
-      userId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+      userId: userInfo[0].id,
     };
     axios
       .post("https://homecompass.runasp.net/post", data)
@@ -141,7 +143,7 @@ const Add = () => {
       hours: 8, // Provide valid hours
       photoUrl: img, // Provide a valid photo URL
       contactInformation: Phone, // Corrected from 'contactInformaton' to 'contactInformation'
-      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9", // Ensure this ID exists in the backend
+      contributorId: userInfo[0].id, // Ensure this ID exists in the backend
     };
 
     axios
@@ -250,7 +252,7 @@ const Add = () => {
       workHours: Workhour,
       salary: Salary,
       contactInformation: workemail,
-      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+      contributorId: userInfo[0].id,
       categoryId: addwork.length + 1,
     };
     await axios

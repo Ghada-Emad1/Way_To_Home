@@ -15,6 +15,7 @@ const Feed = () => {
   const [showOne, setShowOne] = useState({});
   const titledes = useSelector((state) => state.Addfeed.addpost);
   const users = useSelector((state) => state.Adduser.userInfo);
+  const currentDate = new Date().toLocaleDateString();
 
   const handleClick = (postId) => {
     setLikedPosts((prevLikedPosts) => ({
@@ -41,7 +42,7 @@ const Feed = () => {
   return (
     <div className="m-3">
       <div className="h-[100vh] overflow-auto grid-cols-1 grid md:grid-cols-2  gap-4   ">
-        {result.slice(0,-1).map((element) => (
+        {result.slice(0, -1).map((element) => (
           <div
             key={element.id}
             className="bg-light  w-[350px] flex  gap-4 p-3 rounded-lg"
@@ -56,7 +57,10 @@ const Feed = () => {
               </small>
               <div className="px-8 ">
                 <p className=" text-basic font-bold">{element.content}</p>
-                <p className="font-bold mt-4">Pubiched On: {" "} <span className=" font-light">{element.publisedOn}</span></p>
+                <p className="font-bold mt-4">
+                  Pubiched On:{" "}
+                  <span className=" font-light">{element.publisedOn}</span>
+                </p>
                 <div className="flex gap-5 mt-5 justify-center">
                   <div className="flex items-center gap-1">
                     <small>{element.likesCount}</small>
@@ -88,6 +92,9 @@ const Feed = () => {
 
             <div className=" flex justify-center ">
               <p>{ele.postt}</p>
+            </div>
+            <div className="flex justify-center font-bold text-basic">
+              Published on: <span className="font-light">{currentDate}</span>
             </div>
             <div className="flex justify-evenly items-center mt-2 ">
               {/* <AiFillLike  size={25} /> */}
