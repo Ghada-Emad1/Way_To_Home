@@ -14,8 +14,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const Add = () => {
-  const userInfo=useSelector((state)=>state.Adduser.userInfo)
-  console.log("userinfo",userInfo[0].id)
+  const userInfo = useSelector((state) => state.Adduser.userInfo);
   const navgate = useNavigate();
   const dispatch = useDispatch();
   // Add post
@@ -371,7 +370,7 @@ const Add = () => {
       physicalDescription: physicalDescription,
       contactNumber: contactNumber,
       homeAddress: homeAddress,
-      reporterId: addmising.length + 1,
+      reporterId: "d6f916b8-17fb-440b-8145-e125b29a5764",
       contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
     };
     axios
@@ -388,10 +387,16 @@ const Add = () => {
   const [nameHomeless, setnameHomeless] = useState("");
   const [homelessdes, sethomelessdes] = useState("");
   const [homelessloc, sethomelessloc] = useState("");
+  const [HomelessGender, setHomelessGender] = useState("");
+  const[HomelessPhone,setHomelessPhone]=useState("");
+  const[HomelessAge,setHomelessAge]=useState("")
   const [homelesserr, sethomelesserr] = useState({
     nameHomeless: "",
     homelessdes: "",
     homelessloc: "",
+    Gender: "",
+    phone:"",
+    age:"",
   });
   const addhomeless = useSelector((state) => state.Addfeed.addhomeless);
   const handleHomelessSubmit = (e) => {
@@ -400,8 +405,19 @@ const Add = () => {
       nameHomeless: "",
       homelessdes: "",
       homelessloc: "",
+      Gender: "",
+      phone:"",
+      age:""
     };
-
+    if(HomelessAge===0||HomelessAge<0||HomelessAge===""){
+      newErrors.age="This Age is unValid"
+    }
+    if (HomelessPhone===""){
+      newErrors.phone="Please Enter Your Phone"
+    }
+    if (HomelessGender === "") {
+      newErrors.Gender = "Please Enter The Gender";
+    }
     if (nameHomeless === "") {
       newErrors.nameHomeless = "Please Enter Your Name";
     }
@@ -421,22 +437,28 @@ const Add = () => {
           name: nameHomeless,
           description: homelessdes,
           location: homelessloc,
+          Gender: HomelessGender,
+          phone:HomelessPhone,
+          age:HomelessAge
         })
       );
       navgate("/dashboard/homeless");
       setnameHomeless("");
       sethomelessdes("");
       sethomelessloc("");
+      setHomelessAge("");
+      setHomelessPhone("");
+      setHomelessGender("");
       setaddHomeless(false);
     }
     const data = {
       FullName: nameHomeless,
-      lastKnownLocation: homelessloc,
-      physicalDescription: homelessdes,
-      //contactNumber: contactNumber,
-      // homeAddress: homeAddress,
-      reporterId: addhomeless.length + 1,
+      Gender:HomelessGender,
+      reporterId: "d6f916b8-17fb-440b-8145-e125b29a5764",
       contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+      age:HomelessAge,
+      phoneNumber:HomelessPhone,
+      currentlocation:homelessloc,
     };
     axios
       .post("https://homecompass.runasp.net/Homeless", data)
@@ -916,10 +938,7 @@ const Add = () => {
             <div className="  mt-4">
               <form onSubmit={handleHomelessSubmit} className="  gap-3">
                 <div className="flex flex-col justify-start items-start    ">
-                  <label className="font-bold text-basic mb-2">
-                    {" "}
-                    Your Name
-                  </label>
+                  <label className="font-bold text-basic mb-2"> Name</label>
                   <input
                     type="text"
                     onChange={(e) => {
@@ -934,6 +953,48 @@ const Add = () => {
                     <span className="text-red-500">
                       {homelesserr.nameHomeless}
                     </span>
+                  )}
+                  <label className="font-bold text-basic mb-2"> Gender</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setHomelessGender(e.target.value);
+                      sethomelesserr({ Gender: "" });
+                    }}
+                    placeholder="Enter their Gender"
+                    className={stylee}
+                  />
+
+                  {homelesserr.Gender && (
+                    <span className="text-red-500">{homelesserr.Gender}</span>
+                  )}
+                   <label className="font-bold text-basic mb-2"> Age</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setHomelessAge(e.target.value);
+                      sethomelesserr({ age: "" });
+                    }}
+                    placeholder="Enter their Age"
+                    className={stylee}
+                  />
+
+                  {homelesserr.age && (
+                    <span className="text-red-500">{homelesserr.age}</span>
+                  )}
+                   <label className="font-bold text-basic mb-2"> Phone</label>
+                  <input
+                    type="text"
+                    onChange={(e) => {
+                      setHomelessPhone(e.target.value);
+                      sethomelesserr({ phone: "" });
+                    }}
+                    placeholder="Enter their Phone"
+                    className={stylee}
+                  />
+
+                  {homelesserr.phone && (
+                    <span className="text-red-500">{homelesserr.phone}</span>
                   )}
                   <label className="font-bold text-basic mb-2">
                     {" "}
