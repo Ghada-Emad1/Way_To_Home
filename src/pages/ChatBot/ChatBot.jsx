@@ -10,7 +10,7 @@ const ChatBot = () => {
   const [chatContent, setChatContent] = useState("");
   console.log(userQes);
 
-  const APi_key = "AIzaSyALoxzlcf5wQ8Yh3F2LUlP4a0EiFBkCBB8";
+  const APi_key = "AIzaSyDZTvDM2PocaMAxU_OizfJTLlUhqsIXC0Y";
   const genAI = new GoogleGenerativeAI(APi_key);
   const model_name = genAI.getGenerativeModel({ model: "gemini-pro" });
   let history = [];
