@@ -3,9 +3,7 @@ import imge from "/public/Ellipse7.png";
 import axios from "axios";
 import { FaHeart } from "react-icons/fa6";
 import { MdOutlineReportGmailerrorred } from "react-icons/md";
-import { AiFillLike } from "react-icons/ai";
 import { LiaCommentSolid } from "react-icons/lia";
-import { AiFillInfoCircle } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import "./style.css";
 import { useEffect, useState } from "react";
@@ -79,7 +77,46 @@ const Feed = () => {
           </div>
         ))}
 
-        
+        {titledes.map((ele, id) => (
+          <div
+            key={id}
+            className=" flex flex-col  bg-light p-3 gap-1 rounded-md"
+          >
+            {users.map((e) => (
+              <div key={e} className="flex gap-2 items-center">
+                <img className="w-[70px] h-[70px]" src={imge} />
+                <div>
+                  <h1 className="text-Orange text-sm bold">Needy</h1>
+                  <span className="text-Orange text-[15px]">{e.username}</span>
+                </div>
+              </div>
+            ))}
+
+            <div className=" flex justify-center ">
+              <p>{ele.postt}</p>
+            </div>
+            <div className="flex justify-center font-bold text-basic">
+              Published on: <span className="font-light">{currentDate}</span>
+            </div>
+            <div className="flex justify-evenly items-center mt-2 ">
+              {/* <AiFillLike  size={25} /> */}
+              <button
+                onClick={() => handleClick(id)}
+                className=" text-[#ff0000] flex gap-1"
+              >
+                {/* <FcLike /> */}
+                <FaHeart color={likedPosts[id] ? "red" : "#28484A"} size={25} />
+                {showOne[id] && <span>1</span>}
+              </button>
+              <button className="text-basic">
+                <LiaCommentSolid size={25} />
+              </button>
+              <button className="text-[#F9B300]">
+                <MdOutlineReportGmailerrorred size={25} />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
       <Outlet />
     </div>
@@ -87,44 +124,3 @@ const Feed = () => {
 };
 
 export default Feed;
-
-// {titledes.map((ele, id) => (
-//   <div
-//     key={id}
-//     className=" flex flex-col  bg-light p-3 gap-1 rounded-md"
-//   >
-//     {users.map((e) => (
-//       <div key={e} className="flex gap-2 items-center">
-//         <img className="w-[70px] h-[70px]" src={imge} />
-//         <div>
-//           <h1 className="text-Orange text-sm bold">Needy</h1>
-//           <span className="text-Orange text-[15px]">{e.username}</span>
-//         </div>
-//       </div>
-//     ))}
-
-//     <div className=" flex justify-center ">
-//       <p>{ele.postt}</p>
-//     </div>
-//     <div className="flex justify-center font-bold text-basic">
-//       Published on: <span className="font-light">{currentDate}</span>
-//     </div>
-//     <div className="flex justify-evenly items-center mt-2 ">
-//       {/* <AiFillLike  size={25} /> */}
-//       <button
-//         onClick={() => handleClick(id)}
-//         className=" text-[#ff0000] flex gap-1"
-//       >
-//         {/* <FcLike /> */}
-//         <FaHeart color={likedPosts[id] ? "red" : "#28484A"} size={25} />
-//         {showOne[id] && <span>1</span>}
-//       </button>
-//       <button className="text-basic">
-//         <LiaCommentSolid size={25} />
-//       </button>
-//       <button className="text-[#F9B300]">
-//         <MdOutlineReportGmailerrorred size={25} />
-//       </button>
-//     </div>
-//   </div>
-// ))}

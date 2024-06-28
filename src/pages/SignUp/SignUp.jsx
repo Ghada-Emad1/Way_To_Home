@@ -1,43 +1,42 @@
+import  { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import YupPassword from "yup-password";
-YupPassword(yup);
 import { useNavigate } from "react-router-dom";
-import Signup from "/signup.jpg";
-import { FaFacebook } from "react-icons/fa";
-import { FaGoogle } from "react-icons/fa";
-import { useState } from "react";
+import { FaFacebook, FaGoogle } from "react-icons/fa";
 import axios from "axios";
+//import { useDispatch, useSelector } from "react-redux";
+//import { addUserInfo } from "../../AddReducer/AddUserInfo";
+import Signup from "/signup.jpg";
 
-import { useDispatch, useSelector } from "react-redux";
+YupPassword(yup);
 
-import { addUserInfo } from "../../AddReducer/AddUserInfo";
 const SignUp = () => {
-  const [firstName, setfirstName] = useState("");
-  const [lastName, setlastName] = useState("");
-  const [username, setusername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+  const [password, setPassword] = useState("");
   const [apiError, setApiError] = useState("");
-  const users = useSelector((state) => state.Adduser.userInfo);
+ // const users = useSelector((state) => state.Adduser.userInfo);
 
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const navigate = useNavigate();
   const inputText = `p-2 w-full focus:outline-basic rounded-lg border-2 border-light`;
+
   const schema = yup.object().shape({
     firstName: yup.string().required("This Field is Required"),
     lastName: yup.string().required("This Field is Required"),
     UserName: yup.string().required("This Field is Required"),
     Email: yup
       .string()
-      .email("Invaild Email")
+      .email("Invalid Email")
       .required("Your Email is Required"),
-
     password: yup
       .string()
       .required("No Password Provided")
-      .min(8, "Password is too short-should be 8 characters")
+      .min(8, "Password is too short - should be 8 characters")
       .matches(/[a-z]/, "Passwords must have at least one lowercase character.")
       .matches(/[A-Z]/, "Passwords must have at least one uppercase character.")
       .matches(/[0-9]/, "Passwords must have at least one digit ('0'-'9')")
@@ -46,6 +45,7 @@ const SignUp = () => {
         "Passwords must have at least one non alphanumeric character."
       ),
   });
+
   const {
     register,
     handleSubmit,
@@ -72,7 +72,7 @@ const SignUp = () => {
       return true;
     } catch (err) {
       if (err.response && err.response.data) {
-        setApiError(err.response.data); // Set error message from response
+        setApiError(JSON.stringify(err.response.data)); // Ensure error is a string
       } else {
         setApiError("An unexpected error occurred. Please try again.");
       }
@@ -83,8 +83,8 @@ const SignUp = () => {
   const onSubmit = async () => {
     const success = await fetchData();
     if (success) {
-      const newUserId = users.length === 0 ? 1 : users[users.length - 1].id + 1;
-      dispatch(addUserInfo({ id: newUserId, username, email }));
+      //const newUserId = users.length === 0 ? 1 : users[users.length - 1].id + 1;
+      //dispatch(addUserInfo({ id: newUserId, username, email }));
       navigate("/confirmsignupwithToken");
       reset();
     }
@@ -104,7 +104,7 @@ const SignUp = () => {
       >
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className="font-bold text-basic">
-            FirstName
+            First Name
           </label>
           <input
             type="text"
@@ -114,7 +114,7 @@ const SignUp = () => {
             required
             className={inputText}
             {...register("firstName")}
-            onChange={(e) => setfirstName(e.target.value)}
+            onChange={(e) => setFirstName(e.target.value)}
           />
           <p className=" text-Error">{errors.firstName?.message}</p>
         </div>
@@ -131,7 +131,7 @@ const SignUp = () => {
             required
             className={inputText}
             {...register("lastName")}
-            onChange={(e) => setlastName(e.target.value)}
+            onChange={(e) => setLastName(e.target.value)}
           />
           <p className=" text-Error">{errors.lastName?.message}</p>
         </div>
@@ -148,7 +148,7 @@ const SignUp = () => {
             required
             className={inputText}
             {...register("UserName")}
-            onChange={(e) => setusername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <p className=" text-Error">{errors.UserName?.message}</p>
         </div>
@@ -179,7 +179,7 @@ const SignUp = () => {
             placeholder="Password"
             className={inputText}
             {...register("password")}
-            onChange={(e) => setpassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <p className="text-Error">{errors.password?.message}</p>
         </div>
@@ -187,16 +187,15 @@ const SignUp = () => {
         <div>
           <button
             type="submit"
-            onClick={() => fetchData()}
             className="bg-basic font-bold text-white px-10 py-2 flex justify-center  items-center text-center"
           >
             Next
           </button>
         </div>
-        {apiError && <p className="text-Error">{apiError}</p>}
+        {apiError && <p className="text-Error">{typeof apiError === 'string' ? apiError : 'An error occurred'}</p>}
 
         <div className="flex justify-center -mt-2 flex-col gap-4 items-center">
-          <h1 className="font-bold text-Orange text-lg">contact With Us</h1>
+          <h1 className="font-bold text-Orange text-lg">Contact With Us</h1>
           <div className="flex gap-6">
             <button>
               <FaFacebook size={25} />
@@ -212,3 +211,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+

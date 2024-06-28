@@ -7,7 +7,6 @@ import Settings from "../Settings/Settings";
 import Feed from "../Feed/Feed";
 import Works from "../Works/Works";
 import ChatBot from "../ChatBot/ChatBot";
-import Search from "../Search/Search";
 import DashboarHome from "../DashboardHome/DashboarHome";
 import Homeless from "../Homeless/Homeless";
 const Dashboard = () => {
@@ -29,7 +28,7 @@ const Dashboard = () => {
 
             <Route path="settings" element={<Settings />} />
             <Route path="chatbot" element={<ChatBot />} />
-            <Route path="search" element={<Search />} />
+            
           </Routes>
         )}
       </div>

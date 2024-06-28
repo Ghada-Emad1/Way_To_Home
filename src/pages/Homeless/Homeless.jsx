@@ -23,7 +23,7 @@ const Homeless = () => {
         {resp.map((data, id) => (
           <div key={id} className="p-5 bg-[#EFF5F5] rounded-[8px]">
             <div>
-              <img src={data.photoURL} alt="homeless_photo"  className="w-[360px] h-[200px] rounded-sm"/>
+              <img src={imge} alt="homeless_photo"  className="w-[360px] h-[200px] rounded-sm"/>
             </div>
             <div>
               <p className="text-[#497174] text-lg font-semibold">

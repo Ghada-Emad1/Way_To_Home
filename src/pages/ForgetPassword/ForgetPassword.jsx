@@ -9,7 +9,7 @@ const ForgetPassword = () => {
   const[email,setemail]=useState("")
   console.log(email)
 const forgetpasswordauth=()=>{
-   axios.post(`http://homecompass.runasp.net/Auth/forgotPassword?email=${email}`).then((res)=>{
+   axios.post(`https://homecompass.runasp.net/Auth/forgotPassword?email=${email}`).then((res)=>{
     console.log(res)
     navigate("/confirmtoken")
    })

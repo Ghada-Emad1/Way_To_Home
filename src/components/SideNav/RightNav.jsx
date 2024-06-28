@@ -1,5 +1,4 @@
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { IoIosSearch } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -21,14 +20,7 @@ const RightNav = () => {
             </Link>
           </div>
 
-          <div className="bg-white rounded-xl shadow-lg md:w-[150px] flex items-center justify-center">
-            <Link to="/dashboard/search">
-              <button className="flex items-center p-4 ">
-                <IoIosSearch className="mr-4" />
-                <span className="md:block hidden">Search</span>
-              </button>
-            </Link>
-          </div>
+        
           <div className="bg-white rounded-xl text-Orange font-bold text-xl flex items-center justify-center  shadow-lg md:w-[150px]">
             <button
               onClick={() => setShowAdd((prev) => !prev)}

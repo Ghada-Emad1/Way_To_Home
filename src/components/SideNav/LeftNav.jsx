@@ -34,7 +34,8 @@ const LeftNav = () => {
   const handleLogout = () => {
     if (users.length > 0) {
       dispatch(deleteuser(users[0].id));
-      //navgate("/")
+      localStorage.removeItem("user");
+      navigate("/");
     }
   };
   return (

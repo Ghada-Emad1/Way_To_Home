@@ -15,7 +15,7 @@ import SignUp from "./pages/SignUp/SignUp";
 import ForgetPassword from "./pages/ForgetPassword/ForgetPassword";
 import Works from "./pages/Works/Works";
 import ChatBot from "./pages/ChatBot/ChatBot";
-import Search from "./pages/Search/Search";
+
 
 import ChangePassword from "./pages/ChangePassword/ChangePassword";
 import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
@@ -46,7 +46,7 @@ function App() {
             <Route path="shelter" element={<Shelter />} />
             <Route path="missingpeople" element={<Missing />} />
             <Route path="chatbot" element={<ChatBot />} />
-            <Route path="search" element={<Search />} />
+            
             <Route path="homeless" element={<Homeless />} />
 
             <Route path="works" element={<Works />} />

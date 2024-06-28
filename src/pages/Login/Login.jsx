@@ -2,8 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginImage from "/login.jpg";
 import axios from "axios";
 import { useState } from "react";
-import { useSelector ,useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { addUserInfo } from "../../AddReducer/AddUserInfo";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,48 +13,55 @@ const Login = () => {
   const users = useSelector((state) => state.Adduser.userInfo);
   const dispatch = useDispatch();
 
-console.log(users)
+  console.log(users);
   const inputText = `p-2 w-full focus:outline-basic rounded-lg border-2 border-light`;
 
-  const fetchLogin = async () => {
-    const data = {
-      email,
-      password,
-    };
-    const url = "https://homecompass.runasp.net/Auth/login";
-    try {
-      const res = await axios.post(url, data);
-      console.log(res.data);
-      const userData = res.data;
-      localStorage.setItem("user", JSON.stringify(userData)); // Store user data in localStorage
-      dispatch(addUserInfo({
-        id: userData.userId,
-        email: userData.email,
-        username: userData.username,
-        roles: userData.roles,
-        token: userData.token
-      }));
-      setApiError(""); // Clear previous error
-      return true;
-    } catch (err) {
-      if (err.response && err.response.data) {
-        setApiError(err.response.data); // Set error message from response
-      } else {
-        setApiError("An unexpected error occurred. Please try again.");
-      }
-      return false;
-    }
+ // Login.js
+const fetchLogin = async () => {
+  const data = {
+    email,
+    password,
   };
+  const url = "https://homecompass.runasp.net/Auth/login";
+  try {
+    const res = await axios.post(url, data);
+    const userData = res.data;
+    localStorage.setItem("user", JSON.stringify(userData)); // Store user data in localStorage
+    const existingUser = users.find((user) => user.id === userData.userId);
+    if (!existingUser) {
+      dispatch(
+        addUserInfo({
+          id: userData.userId,
+          email: userData.email,
+          username: userData.username,
+          roles: userData.roles,
+          token: userData.token,
+        })
+      );
+    }
+    setApiError(""); // Clear previous error
+    return true;
+  } catch (err) {
+    if (err.response && err.response.data) {
+      setApiError(err.response.data); // Set error message from response
+      if (err.response.data.includes("confirm your email")) {
+        navigate("/confirm-email"); // Navigate to email confirmation page
+      }
+    } else {
+      setApiError("An unexpected error occurred. Please try again.");
+    }
+    return false;
+  }
+};
+
 
   const onSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
     const success = await fetchLogin();
     if (success) {
       console.log("Successful login");
-     
       navigate("/dashboard/"); // Change to your desired route after successful login
     }
-    
   };
 
   return (
