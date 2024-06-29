@@ -22,6 +22,7 @@ import ConfirmPassword from "./pages/ConfirmPassword/ConfirmPassword";
 
 import ConfirmSignUpwithToken from "./pages/ConfirmSignUpWithToken/ConfirmSignUpwithToken";
 import Homeless from "./pages/Homeless/Homeless";
+import Search from "./pages/Search/Search";
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
             <Route path="shelter" element={<Shelter />} />
             <Route path="missingpeople" element={<Missing />} />
             <Route path="chatbot" element={<ChatBot />} />
-            
+            <Route path="search"element={<Search/>}/>
             <Route path="homeless" element={<Homeless />} />
 
             <Route path="works" element={<Works />} />

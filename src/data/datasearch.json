@@ -1,0 +1,13 @@
+{
+    "knownFaces": [
+      {
+        "label": "Person One",
+        "descriptors": [ "This person is Found"]
+      },
+      {
+        "label": "Person Two",
+        "descriptors": ["This person is Not Found"]
+      }
+    ]
+  }
+  

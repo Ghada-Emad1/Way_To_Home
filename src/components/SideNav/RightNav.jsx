@@ -1,7 +1,7 @@
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { IoSearch } from "react-icons/io5";
 import Add from "../../pages/Add/Add";
 
 const RightNav = () => {
@@ -18,6 +18,16 @@ const RightNav = () => {
                 <span className="md:block hidden">ChatBot</span>
               </button>
             </Link>
+            
+          </div>
+          <div className="bg-white rounded-xl flex items-center justify-center shadow-lg md:w-[150px]">
+            <Link to="/dashboard/search">
+              <button className="flex items-center p-4">
+                <IoSearch className="mr-4" />
+                <span className="md:block hidden">Search</span>
+              </button>
+            </Link>
+            
           </div>
 
         

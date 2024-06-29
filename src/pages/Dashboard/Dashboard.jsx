@@ -9,6 +9,7 @@ import Works from "../Works/Works";
 import ChatBot from "../ChatBot/ChatBot";
 import DashboarHome from "../DashboardHome/DashboarHome";
 import Homeless from "../Homeless/Homeless";
+import Search from "../Search/Search";
 const Dashboard = () => {
   const location = useLocation();
 
@@ -21,14 +22,13 @@ const Dashboard = () => {
         ) : (
           <Routes>
             <Route path="shelter" element={<Shelter />} />
-            <Route path="missingpeople" element={<Missing/>} />
+            <Route path="missingpeople" element={<Missing />} />
             <Route path="homeless" element={<Homeless />} />
             <Route path="works" element={<Works />} />
             <Route path="feed" element={<Feed />} />
-
+            <Route path="search" element={<Search />} />
             <Route path="settings" element={<Settings />} />
             <Route path="chatbot" element={<ChatBot />} />
-            
           </Routes>
         )}
       </div>
