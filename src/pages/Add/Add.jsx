@@ -272,16 +272,16 @@ const Add = () => {
   const [contactNumber, setcotactNumber] = useState("");
   const [physicalDescription, setphysicalDescription] = useState("");
   const [gender, setgender] = useState("");
-  const [missinglocation, setMissinglocation] = useState("");
+  //const [missinglocation, setMissinglocation] = useState("");
   const [missingsince, setmissingsince] = useState("");
   const [missingErrors, setMissingErrors] = useState({
     name: "",
     age: "",
-    homeaddress: "",
+    homeAddress: "",
     contactNumber: "",
     gender: "",
     physicalDescription: "",
-    missinglocation: "",
+    //missinglocation: "",
     missingsince: "",
   });
 
@@ -292,11 +292,11 @@ const Add = () => {
     let newErrors = {
       name: "",
       age: "",
-      homeaddress: "",
+      homeAddress: "",
       contactNumber: "",
       gender: "",
       physicalDescription: "",
-      missinglocation: "",
+     // missinglocation: "",
       missingsince: "",
     };
 
@@ -310,7 +310,7 @@ const Add = () => {
       newErrors.age = "Please Enter Age";
     }
     if (homeAddress === "") {
-      newErrors.homeaddress = "Please Enter Home Address";
+      newErrors.homeAddress = "Please Enter Location";
     }
     if (gender === "") {
       newErrors.gender = "Please Enter the gender";
@@ -318,9 +318,9 @@ const Add = () => {
     if (contactNumber === "") {
       newErrors.contactNumber = "Please Enter Your Phone";
     }
-    if (missinglocation === "") {
-      newErrors.missinglocation = "Please Enter Location";
-    }
+    // if (missinglocation === "") {
+    //   newErrors.missinglocation = "Please Enter Location";
+    // }
     if (missingsince === "") {
       newErrors.missingsince = "Please Enter Time of mising ";
     }
@@ -334,7 +334,7 @@ const Add = () => {
       age &&
       homeAddress &&
       contactNumber &&
-      missinglocation &&
+      //missinglocation &&
       missingsince
     ) {
       dispatch(
@@ -346,7 +346,7 @@ const Add = () => {
           gender: gender,
           contactNumber: contactNumber,
           homeAddress: homeAddress,
-          missinglocation: missinglocation,
+          //missinglocation: missinglocation,
           missingsince: missingsince,
         })
       );
@@ -357,7 +357,7 @@ const Add = () => {
       setcotactNumber("");
       setgender("");
       sethomeAddress("");
-      setMissinglocation("");
+      //setMissinglocation("");
       setmissingsince("");
       setAddMissing(false);
     }
@@ -371,7 +371,7 @@ const Add = () => {
       contactNumber: contactNumber,
       homeAddress: homeAddress,
       reporterId: "d6f916b8-17fb-440b-8145-e125b29a5764",
-      contributorId: "df864a81-c1cc-460a-9fc5-50f12d370ac9",
+      contributorId: userInfo[0].id,
     };
     axios
       .post("https://homecompass.runasp.net/Missing", data)
@@ -819,15 +819,15 @@ const Add = () => {
                     type="text"
                     onChange={(e) => {
                       setphysicalDescription(e.target.value);
-                      setMissingErrors({ missingDescription: "" });
+                      setMissingErrors({ physicalDescription: "" });
                     }}
                     placeholder="Enter Description"
                     className={stylee}
                   />
 
-                  {missingErrors.missingDescription && (
+                  {missingErrors.physicalDescription && (
                     <span className="text-red-500">
-                      {missingErrors.missingDescription}
+                      {missingErrors.physicalDescription}
                     </span>
                   )}
                   <label className="font-bold text-basic mb-2">Age</label>
@@ -882,15 +882,15 @@ const Add = () => {
                   <input
                     type="text"
                     onChange={(e) => {
-                      setMissinglocation(e.target.value);
-                      setMissingErrors({ missinglocation: "" });
+                      sethomeAddress(e.target.value);
+                      setMissingErrors({ homeAddress: "" });
                     }}
                     placeholder="Enter your Location"
                     className={stylee}
                   />
-                  {missingErrors.missinglocation && (
+                  {missingErrors.homeAddress && (
                     <span className="text-red-500">
-                      {errorwork.missinglocation}
+                      {missingErrors.homeAddress}
                     </span>
                   )}
 

@@ -57,7 +57,7 @@ const Missing = () => {
             </div>
           </div>
         ))}
-        {addmising.map((element, index) => (
+        {/* {addmising.map((element, index) => (
           <div
             key={index}
             className="bg-light p-4 content flex rounded-md   "
@@ -90,7 +90,7 @@ const Missing = () => {
               </div>
             </div>
           </div>
-        ))}
+        ))} */}
       </div>
 
       <Outlet />
