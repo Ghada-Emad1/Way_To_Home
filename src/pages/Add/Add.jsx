@@ -773,7 +773,7 @@ const Add = () => {
                     <span className="text-red-500">{errorwork.skills}</span>
                   )}
                   <div>
-                    <button className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
+                    <button onClick={hundelsubmitwork} className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
                       Add
                     </button>
                   </div>
@@ -914,7 +914,7 @@ const Add = () => {
                   )}
 
                   <div>
-                    <button className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
+                    <button onClick={handleMissingSubmit} className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
                       Add
                     </button>
                   </div>
@@ -1036,7 +1036,7 @@ const Add = () => {
                   )}
 
                   <div>
-                    <button className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
+                    <button onClick={handleHomelessSubmit} className="px-6 py-2 rounded-md text-white bg-Orange mt-1">
                       Add
                     </button>
                   </div>

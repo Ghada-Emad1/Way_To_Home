@@ -5,20 +5,23 @@ import { useSelector } from "react-redux";
 import imge from '/public/missing.jpg';
 
 const Missing = () => {
-  const addmissingpeople = useSelector((state) => state.Addfeed.addhomeless);
-  console.log(addmissingpeople)
+ 
   const[missingpeople,setmissingpeople]=useState([])
+  console.log(missingpeople)
   function GetMissingPeople() {
     axios
       .get("https://homecompass.runasp.net/Missing")
       .then((res) => {
+        console.log(res.data);
         setmissingpeople(res.data)
+       
       });
   }
   useEffect(() => {
     GetMissingPeople();
   }, []);
   const addmising =useSelector((state) => state.Addfeed.addmissing);
+  console.log(addmising)
   return (
     <div className="bg-white  flex flex-col overflow-auto h-[100vh] text-nowrap">
      
@@ -32,7 +35,7 @@ const Missing = () => {
               <div className="flex justify-center mb-4 m-auto">
                 <img
                   className="w-[360px] h-[200px]  rounded-sm  "
-                  src={element.photoURL}
+                  src={imge}
                   alt=""
                 />
               </div>
